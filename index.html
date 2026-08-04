@@ -229,7 +229,7 @@
   @media(max-width:640px){.project-number{font-size:4rem;right:.65rem;top:.5rem}.modal-panel{max-height:90vh;border-radius:18px}.back-top{right:1rem;bottom:1rem}}
 
 </style>
-</head>
+<style>@media (min-width:768px){header nav{display:flex;align-items:center;column-gap:2.25rem!important}header nav>a{margin-left:0!important;margin-right:0!important}}</style></head>
 <body class="relative antialiased">
 <div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -237,7 +237,7 @@
 <div aria-hidden="true" class="cursor-dot" id="cursorDot"></div>
 <!-- ================= NAVBAR ================= -->
 <header class="navbar fixed top-0 inset-x-0 z-40" id="navbar">
-<nav aria-label="Primary" class="max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 py-4">
+<nav aria-label="Primary" class="max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 py-4 gap-9">
 <a class="font-display text-lg font-semibold tracking-tight" href="#top">Parnika S M<span style="color:var(--lavender-deep)">.</span></a>
 <ul class="hidden md:flex items-center gap-7 text-sm">
 <li><a class="underline-hover" href="#about">About</a></li>
@@ -350,7 +350,15 @@
 <span class="chip">Cloud technologies</span>
 </div>
 </div>
-<div class="reveal card p-7" style="background:var(--card);">
+<div class="reveal card p-7" style="margin-bottom:1.25rem">
+<p class="eyebrow mb-3">education</p>
+<h3 class="font-display text-xl font-semibold">B.E. in Computer Science &amp; Engineering</h3>
+<p class="mt-1.5 text-sm" style="color:var(--ink-soft)">Jyothy Institute of Technology, Bengaluru</p>
+<div class="mt-4 flex items-center justify-between gap-4 flex-wrap">
+<span class="font-mono text-sm">2023 – 2027</span>
+<span class="font-display font-semibold">CGPA: 9.32</span>
+</div>
+</div><div class="reveal card p-7" style="background:var(--card);">
 <p class="eyebrow mb-4">currently building</p>
 <ul class="space-y-3.5 font-mono text-sm">
 <li class="flex gap-3"><span style="color:var(--lavender-deep)">→</span> MediAssist (Final Year Major Project)</li>
@@ -359,19 +367,10 @@
 <li class="flex gap-3"><span style="color:var(--blue-deep)">→</span> AI experiments</li>
 </ul>
 </div>
-<div class="card p-7 mt-5 lift">
-<p class="eyebrow mb-3">education</p>
-<h3 class="font-display text-xl font-semibold">B.E. in Computer Science &amp; Engineering</h3>
-<p class="mt-1.5 text-sm" style="color:var(--ink-soft)">Jyothy Institute of Technology, Bengaluru</p>
-<div class="mt-4 flex items-center justify-between gap-4 flex-wrap">
-<span class="font-mono text-sm">2023 – 2027</span>
-<span class="font-display font-semibold">CGPA: 9.32</span>
-</div>
-</div>
+
 </div>
 </section>
 <!-- ================= EDUCATION ================= -->
-
 <!-- ================= PROJECTS ================= -->
 <section class="px-5 sm:px-8 py-24" id="projects">
 <div class="max-w-6xl mx-auto">
@@ -385,7 +384,6 @@
 <div class="space-y-6" id="projectList">
 <!-- Project 1 — MediAssist (featured, final-year major project) -->
 <article class="reveal card featured-card lift p-7 sm:p-9 project-card" data-category="ai-ml full-stack" data-project="0"><span aria-hidden="true" class="project-number">01</span>
-
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <div class="flex flex-wrap items-center gap-3 mb-2">
@@ -394,8 +392,6 @@
 </div>
 <h3 class="font-display text-2xl font-semibold mb-2">MediAssist</h3>
 <p class="max-w-lg" style="color:var(--ink-soft)">MediAssist is an AI-assisted healthcare platform focused on prescription analysis, medication management and doctor appointment workflows.</p>
-
-
 <div class="mt-5 flex flex-wrap gap-2">
 <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Firebase</span><span class="chip">Cloud Firestore</span>
 </div>
@@ -408,13 +404,11 @@
 </article>
 <!-- Project 2 — Imperial Wheels -->
 <article class="reveal card lift p-7 sm:p-9 sm:ml-10 project-card" data-category="full-stack web" data-project="1"><span aria-hidden="true" class="project-number">02</span>
-
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--lavender-deep)">Full-Stack Rental Platform</p>
 <h3 class="font-display text-2xl font-semibold mb-2">Imperial Wheels</h3>
 <p class="max-w-lg" style="color:var(--ink-soft)">A MERN-based car and bike rental platform that enables users to browse vehicles, manage bookings and handle rental operations through a secure web application.</p>
-
 <div class="mt-5 flex flex-wrap gap-2">
 <span class="chip">MongoDB</span><span class="chip">Express.js</span><span class="chip">React.js</span><span class="chip">Node.js</span>
 </div>
@@ -427,13 +421,11 @@
 </article>
 <!-- Project 3 — Metro Fare Calculator -->
 <article class="reveal card lift p-7 sm:p-9 project-card" data-category="full-stack web" data-project="2"><span aria-hidden="true" class="project-number">03</span>
-
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--peach-deep)">Full-Stack Transportation System</p>
 <h3 class="font-display text-2xl font-semibold mb-2">Metro Fare Calculator</h3>
 <p class="max-w-lg" style="color:var(--ink-soft)">A metro fare calculation system that determines routes and dynamic fares based on passenger details, discounts and travel conditions.</p>
-
 <div class="mt-5 flex flex-wrap gap-2">
 <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Node.js</span>
 </div>
@@ -446,13 +438,11 @@
 </article>
 <!-- Project 4 — Gesture Controlled Infotainment System -->
 <article class="reveal card lift p-7 sm:p-9 sm:ml-10 project-card" data-category="computer-vision web" data-project="3"><span aria-hidden="true" class="project-number">04</span>
-
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--sage-deep)">Touch-Free Dashboard</p>
 <h3 class="font-display text-2xl font-semibold mb-2">Gesture Controlled Infotainment System</h3>
 <p class="max-w-lg" style="color:var(--ink-soft)">A gesture-controlled infotainment dashboard that enables touch-free interaction using real-time hand gesture recognition.</p>
-
 <div class="mt-5 flex flex-wrap gap-2">
 <span class="chip">Python</span><span class="chip">MediaPipe</span><span class="chip">OpenCV</span><span class="chip">HTML</span>
 </div>
@@ -465,13 +455,11 @@
 </article>
 <!-- Project 5 — CampusPortal -->
 <article class="reveal card lift p-7 sm:p-9 project-card" data-category="full-stack web" data-project="4"><span aria-hidden="true" class="project-number">05</span>
-
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--blue-deep)">Campus Management Platform</p>
 <h3 class="font-display text-2xl font-semibold mb-2">CampusPortal</h3>
 <p class="max-w-lg" style="color:var(--ink-soft)">A campus management portal designed to streamline academic and administrative workflows by providing a centralized platform for students, faculty and campus operations.</p>
-
 <div class="mt-5 flex flex-wrap gap-2">
 <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">HTML</span><span class="chip">CSS</span>
 </div>
@@ -484,13 +472,11 @@
 </article>
 <!-- Project 6 — Khana Kreation -->
 <article class="reveal card lift p-7 sm:p-9 sm:ml-10 project-card" data-category="ai-ml web" data-project="5"><span aria-hidden="true" class="project-number">06</span>
-
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--peach-deep)">AI + Web Application</p>
 <h3 class="font-display text-2xl font-semibold mb-2">Khana Kreation</h3>
 <p class="max-w-lg" style="color:var(--ink-soft)">An AI-powered recipe recommendation platform that generates personalized recipe suggestions based on user preferences and available ingredients.</p>
-
 <div class="mt-5 flex flex-wrap gap-2">
 <span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">MongoDB</span><span class="chip">AI APIs</span>
 </div>
@@ -582,8 +568,8 @@
 </div>
 <div class="mt-5 reveal card lift p-6">
 <p class="eyebrow mb-3">Languages Spoken</p><div class="flex flex-wrap gap-2">
-<span class="chip">English (Professional)</span><span class="chip">Kannada (Native)</span>
-<span class="chip">Hindi (Intermediate)</span><span class="chip">Telugu (Intermediate)</span>
+<span class="chip">English (Fluent)</span><span class="chip">Kannada (Native)</span>
+<span class="chip">Hindi (Conversational)</span><span class="chip">Telugu (Conversational)</span>
 <span class="chip">German (Beginner)</span></div></div></div>
 </section>
 <!-- ================= ACHIEVEMENTS ================= -->
@@ -599,9 +585,6 @@
 <button class="card lift p-6 reveal achievement-card text-left" data-achievement="Google Cloud Gen AI Academy APAC 2026|Cohort 2 · Completed July 23, 2026|Certificate of Completion for Google Cloud Gen AI Academy APAC 2026 — Cohort 2, powered by Hack2Skill." data-certificate="google-genai"><p class="font-display font-semibold mb-1.5">Google Cloud Gen AI Academy APAC 2026</p><p class="text-sm" style="color:var(--ink-soft)">Cohort 2.</p></button>
 <button class="card lift p-6 reveal achievement-card text-left" data-achievement="Google Cloud Computing Foundations|Certificate.|Certificate."><p class="font-display font-semibold mb-1.5">Google Cloud Computing Foundations</p><p class="text-sm" style="color:var(--ink-soft)">Certificate.</p></button>
 <button class="card lift p-6 reveal achievement-card text-left" data-achievement="SAP Technology Consultant — Professional Certificate|Coursera · Completed Aug 2, 2026|Completed the 7-course SAP Technology Consultant Professional Certificate, covering enterprise systems, SAP customer engagement and discovery, solution design and implementation, project management methodologies, requirements gathering, stakeholder interviewing, client communication, client analysis and solution design." data-certificate="sap"><p class="eyebrow mb-2" style="color:var(--blue-deep)">Coursera · Aug 2026</p><p class="font-display font-semibold mb-1.5">SAP Technology Consultant</p><p class="text-sm" style="color:var(--ink-soft)">Professional Certificate · 7-course program</p></button>
-
-
-
 </div>
 </div>
 </section>
