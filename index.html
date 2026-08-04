@@ -223,7 +223,9 @@
   .gallery-main{aspect-ratio:16/9;object-fit:cover;width:100%;border-radius:14px;border:1px solid var(--line);background:var(--paper-2)}
   .gallery-thumb{width:72px;height:48px;object-fit:cover;border-radius:8px;border:1px solid var(--line);cursor:pointer;opacity:.7}.gallery-thumb.active{opacity:1;border-color:var(--lavender-deep)}
   .achievement-card{cursor:pointer}.achievement-featured{border-color:var(--lavender-deep);box-shadow:0 0 0 1px var(--lavender) inset}
-  .achievement-card[data-certificate]::after{content:'view certificate ↗';display:block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  .achievement-card[data-certificate]::after,.achievement-card[data-credly]::after{display:block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  .achievement-card[data-certificate]::after{content:'view certificate ↗'}
+  .achievement-card[data-credly]::after{content:'view credential ↗'}
   #certificateImage{max-height:78vh;max-width:100%;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 18px 60px rgba(45,43,40,.16)}
   .back-top{position:fixed;right:1.25rem;bottom:1.25rem;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);z-index:35;box-shadow:0 8px 24px -14px rgba(33,29,46,.4);opacity:0;pointer-events:none;transform:translateY(8px);transition:.25s ease}.back-top.show{opacity:1;pointer-events:auto;transform:none}
   @media(max-width:640px){.project-number{font-size:4rem;right:.65rem;top:.5rem}.modal-panel{max-height:90vh;border-radius:18px}.back-top{right:1rem;bottom:1rem}}
@@ -627,7 +629,7 @@
 <p class="eyebrow mb-2" style="color:var(--blue-deep)">Google Cloud · Credly</p>
 <p class="font-display font-semibold mb-1.5">Google Cloud Computing Foundations Certificate</p>
 <p class="text-sm" style="color:var(--ink-soft)">Official verifiable digital credential</p>
-<span class="inline-block mt-[14px] font-mono text-[10px] uppercase tracking-[.08em]" style="color:var(--ink-soft)">View credential ↗</span>
+
 </button>
 <button class="card lift p-6 reveal achievement-card text-left" data-achievement="SAP Technology Consultant — Professional Certificate|Coursera · Completed Aug 2, 2026|Completed the 7-course SAP Technology Consultant Professional Certificate, covering enterprise systems, SAP customer engagement and discovery, solution design and implementation, project management methodologies, requirements gathering, stakeholder interviewing, client communication, client analysis and solution design." data-certificate="sap"><p class="eyebrow mb-2" style="color:var(--blue-deep)">Coursera · Aug 2026</p><p class="font-display font-semibold mb-1.5">SAP Technology Consultant</p><p class="text-sm" style="color:var(--ink-soft)">Professional Certificate · 7-course program</p></button>
 </div>
