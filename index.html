@@ -229,7 +229,41 @@
   @media(max-width:640px){.project-number{font-size:4rem;right:.65rem;top:.5rem}.modal-panel{max-height:90vh;border-radius:18px}.back-top{right:1rem;bottom:1rem}}
 
 </style>
-<style>@media (min-width:768px){header nav{display:flex;align-items:center;column-gap:2.25rem!important}header nav>a{margin-left:0!important;margin-right:0!important}}</style></head>
+<style>@media (min-width:768px){header nav{display:flex;align-items:center;column-gap:2.25rem!important}header nav>a{margin-left:0!important;margin-right:0!important}}</style>
+<style>
+@media (min-width: 768px) {
+  #about .max-w-6xl {
+    align-items: stretch !important;
+  }
+  #about .about-card-stack {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.25rem;
+    height: 100%;
+    min-height: 0;
+  }
+  #about .about-stack-card {
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media (max-width: 767px) {
+  #about .about-card-stack {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  #about .about-stack-card {
+    width: 100%;
+    margin: 0 !important;
+  }
+}
+</style>
+</head>
 <body class="relative antialiased">
 <div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -350,25 +384,8 @@
 <span class="chip">Cloud technologies</span>
 </div>
 </div>
-<div class="reveal card p-7" style="margin-bottom:1.25rem">
-<p class="eyebrow mb-3">education</p>
-<h3 class="font-display text-xl font-semibold">B.E. in Computer Science &amp; Engineering</h3>
-<p class="mt-1.5 text-sm" style="color:var(--ink-soft)">Jyothy Institute of Technology, Bengaluru</p>
-<div class="mt-4 flex items-center justify-between gap-4 flex-wrap">
-<span class="font-mono text-sm">2023 – 2027</span>
-<span class="font-display font-semibold">CGPA: 9.32</span>
-</div>
-</div><div class="reveal card p-7" style="background:var(--card);">
-<p class="eyebrow mb-4">currently building</p>
-<ul class="space-y-3.5 font-mono text-sm">
-<li class="flex gap-3"><span style="color:var(--lavender-deep)">→</span> MediAssist (Final Year Major Project)</li>
-<li class="flex gap-3"><span style="color:var(--sage-deep)">→</span> DSA practice</li>
-<li class="flex gap-3"><span style="color:var(--peach-deep)">→</span> Full-stack applications</li>
-<li class="flex gap-3"><span style="color:var(--blue-deep)">→</span> AI experiments</li>
-</ul>
-</div>
 
-</div>
+<div class="about-card-stack"></div></div>
 </section>
 <!-- ================= EDUCATION ================= -->
 <!-- ================= PROJECTS ================= -->
