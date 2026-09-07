@@ -444,8 +444,28 @@
 <button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="full-stack">Full Stack</button><button class="filter-btn" data-filter="ai-ml">AI / ML</button><button class="filter-btn" data-filter="web">Web</button><button class="filter-btn" data-filter="computer-vision">Computer Vision</button>
 </div>
 <div class="space-y-6" id="projectList">
-<!-- Project 1 — MediAssist (featured, final-year major project) -->
-<article class="reveal card featured-card lift p-7 sm:p-9 project-card" data-category="ai-ml full-stack" data-project="0"><span aria-hidden="true" class="project-number">01</span>
+<!-- Project 1 — OPPY (featured, live) -->
+<article class="reveal card featured-card lift p-7 sm:p-9 project-card" data-category="ai-ml full-stack web" data-project="9"><span aria-hidden="true" class="project-number">01</span>
+<div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
+<div>
+<div class="flex flex-wrap items-center gap-3 mb-2">
+<p class="eyebrow" style="color:var(--blue-deep)">AI Opportunity Discovery Platform</p>
+<span class="status-badge"><span class="dot"></span>Live · Deployed</span>
+</div>
+<h3 class="font-display text-2xl font-semibold mb-2">OPPY</h3>
+<p class="max-w-lg" style="color:var(--ink-soft)">An AI-powered opportunity discovery platform that helps students and early-career users discover, personalize, save and track opportunities like internships, jobs, hackathons, fellowships, events, grants and scholarships.</p>
+<div class="mt-5 flex flex-wrap gap-2">
+<span class="chip">Next.js 15</span><span class="chip">TypeScript</span><span class="chip">MongoDB</span><span class="chip">Sarvam AI</span>
+</div>
+</div>
+<div class="flex sm:flex-col gap-3 sm:items-end shrink-0">
+<button aria-label="View project details" class="detail-btn" data-open-project="9">View Details</button>
+<a class="text-sm font-medium underline-hover whitespace-nowrap" href="https://github.com/parnika0110/oppy" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
+</div>
+</div>
+</article>
+<!-- Project 2 — MediAssist (final-year major project) -->
+<article class="reveal card lift p-7 sm:p-9 project-card" data-category="ai-ml full-stack" data-project="0"><span aria-hidden="true" class="project-number">02</span>
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <div class="flex flex-wrap items-center gap-3 mb-2">
@@ -464,8 +484,8 @@
 </div>
 </div>
 </article>
-<!-- Project 2 — Imperial Wheels -->
-<article class="reveal card lift p-7 sm:p-9 project-card" data-category="full-stack web" data-project="1"><span aria-hidden="true" class="project-number">02</span>
+<!-- Project 3 — Imperial Wheels -->
+<article class="reveal card lift p-7 sm:p-9 project-card" data-category="full-stack web" data-project="1"><span aria-hidden="true" class="project-number">03</span>
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--lavender-deep)">Full-Stack Rental Platform</p>
@@ -481,8 +501,8 @@
 </div>
 </div>
 </article>
-<!-- Project 3 — Metro Fare Calculator -->
-<article class="reveal card lift p-7 sm:p-9 project-card" data-category="full-stack web" data-project="2"><span aria-hidden="true" class="project-number">03</span>
+<!-- Project 4 — Metro Fare Calculator -->
+<article class="reveal card lift p-7 sm:p-9 project-card" data-category="full-stack web" data-project="2"><span aria-hidden="true" class="project-number">04</span>
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--peach-deep)">Full-Stack Transportation System</p>
@@ -498,8 +518,8 @@
 </div>
 </div>
 </article>
-<!-- Project 4 — Gesture Controlled Infotainment System -->
-<article class="reveal card lift p-7 sm:p-9 project-card" data-category="computer-vision web" data-project="3"><span aria-hidden="true" class="project-number">04</span>
+<!-- Project 5 — Gesture Controlled Infotainment System -->
+<article class="reveal card lift p-7 sm:p-9 project-card" data-category="computer-vision web" data-project="3"><span aria-hidden="true" class="project-number">05</span>
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--sage-deep)">Touch-Free Dashboard</p>
@@ -515,8 +535,8 @@
 </div>
 </div>
 </article>
-<!-- Project 5 — CampusPortal -->
-<article class="reveal card lift p-7 sm:p-9 project-card" data-category="full-stack web" data-project="4"><span aria-hidden="true" class="project-number">05</span>
+<!-- Project 6 — CampusPortal -->
+<article class="reveal card lift p-7 sm:p-9 project-card" data-category="full-stack web" data-project="4"><span aria-hidden="true" class="project-number">06</span>
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--blue-deep)">Campus Management Platform</p>
@@ -532,8 +552,8 @@
 </div>
 </div>
 </article>
-<!-- Project 6 — Khana Kreation -->
-<article class="reveal card lift p-7 sm:p-9 project-card" data-category="ai-ml web" data-project="5"><span aria-hidden="true" class="project-number">06</span>
+<!-- Project 7 — Khana Kreation -->
+<article class="reveal card lift p-7 sm:p-9 project-card" data-category="ai-ml web" data-project="5"><span aria-hidden="true" class="project-number">07</span>
 <div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
 <div>
 <p class="eyebrow mb-2" style="color:var(--peach-deep)">AI + Web Application</p>
@@ -928,13 +948,14 @@
     {title:'Khana Kreation',category:'AI / ML · Web',overview:'An AI-powered recipe recommendation platform that generates personalized recipe suggestions based on user preferences and available ingredients.',features:['Personalized recipe recommendations','Ingredient-based suggestions','User preference customization','AI-assisted content generation','Responsive interface'],tech:['React.js','Node.js','MongoDB','AI APIs','JavaScript'],github:'https://github.com/parnika0110/recipe-app',folder:'images/khana-kreation'},
     {title:'PlanTopia',category:'Full-Stack · Subscription Management',overview:'PlanTopia is a subscription management system built to organize subscription plans and provide role-based workflows for users and administrators.',features:['User registration and login','Role-based access for Admin and User','Subscription viewing and management','Admin controls for subscription records','Email notification workflows'],tech:['Next.js','TypeScript','Node.js','MongoDB','REST APIs'],github:'https://github.com/parnika0110/subscription-management-system',folder:''},
     {title:'Emotion Detector ANN',category:'AI / ML Experiment',overview:'An emotion-detection experiment built around an artificial neural network to explore machine-learning based classification.',features:['Artificial neural network workflow','Python-based implementation','Data preprocessing for model input','Emotion classification experiment','Model-focused learning project'],tech:['Python','Machine Learning','Artificial Neural Networks'],github:'https://github.com/parnika0110/emotion-detector-ann',folder:''},
-    {title:'Notes Keeper',category:'Web Application',overview:'A lightweight notes application focused on creating and managing notes through a simple web interface.',features:['Create notes','Organize note content','Simple browser-based interface','Lightweight JavaScript implementation','Focused CRUD-style interaction'],tech:['JavaScript','HTML','CSS'],github:'https://github.com/parnika0110/NOTES_KEEPER',folder:''}
+    {title:'Notes Keeper',category:'Web Application',overview:'A lightweight notes application focused on creating and managing notes through a simple web interface.',features:['Create notes','Organize note content','Simple browser-based interface','Lightweight JavaScript implementation','Focused CRUD-style interaction'],tech:['JavaScript','HTML','CSS'],github:'https://github.com/parnika0110/NOTES_KEEPER',folder:''},
+    {title:'OPPY',category:'AI Opportunity Discovery Platform · Live · Deployed',overview:'OPPY discovers real opportunities from across the web and matches them to what users are looking for. It is built for students and early-career users, combining opportunity aggregation, AI-powered natural-language and voice search, personalized recommendations, saving and application tracking in one platform.',features:['Browse and discover opportunities with category, location, remote, skill/interest, experience and search filters','AI-powered natural-language search and voice input using Sarvam AI','Personalized "Recommended for you" opportunities based on user interests and preferences','Aggregates internships, jobs, hackathons, fellowships, events, grants and scholarships','Save opportunities to a personal Saved list','Application tracking with statuses including Interested, Applied, Interview, Offer and more','Similar opportunities and recently viewed history','Automated opportunity ingestion, normalization, deduplication, quality filtering and lifecycle handling','Public opportunity discovery with authentication required for saving, tracking, personalization, profile, resume and dashboard features'],tech:['Next.js 15','React 19','TypeScript','MongoDB','Sarvam AI','OpenAI','AWS Lambda','AWS Amplify','EmailJS','Tailwind CSS','Vitest'],github:'https://github.com/parnika0110/oppy',live:'https://myoppy.xyz/',folder:''}
   ];
   const pm=document.getElementById('projectModal'), pmClose=document.getElementById('projectModalClose'); let lastFocus=null, galleryImages=[], galleryIndex=0;
   const gallery=document.getElementById('projectGallery'), mainImg=document.getElementById('galleryMain'), thumbs=document.getElementById('galleryThumbs');
   function showGallery(i){galleryIndex=i;mainImg.src=galleryImages[i];mainImg.alt=`${projects[+pm.dataset.project].title} screenshot ${i+1}`;thumbs.querySelectorAll('img').forEach((x,n)=>x.classList.toggle('active',n===i));}
   async function discoverGallery(p){gallery.classList.add('hidden');galleryImages=[];thumbs.innerHTML=''; const candidates=Array.from({length:8},(_,i)=>`${p.folder}/${String(i+1).padStart(2,'0')}.png`); const ok=await Promise.all(candidates.map(src=>new Promise(res=>{const im=new Image();im.onload=()=>res(src);im.onerror=()=>res(null);im.src=src;}))); galleryImages=ok.filter(Boolean); if(!galleryImages.length)return; gallery.classList.remove('hidden'); galleryImages.forEach((src,i)=>{const im=document.createElement('img');im.src=src;im.loading='lazy';im.alt=`${p.title} screenshot thumbnail ${i+1}`;im.className='gallery-thumb';im.onclick=()=>showGallery(i);thumbs.appendChild(im)});showGallery(0);}
-  function openProject(i){const p=projects[i];lastFocus=document.activeElement;pm.dataset.project=i;document.getElementById('projectModalCategory').textContent=p.category;document.getElementById('projectModalTitle').textContent=p.title;document.getElementById('projectModalOverview').textContent=p.overview;document.getElementById('projectModalFeatures').innerHTML=p.features.map(x=>`<li class="flex gap-2"><span style="color:var(--lavender-deep)">·</span>${x}</li>`).join('');document.getElementById('projectModalTech').innerHTML=p.tech.map(x=>`<span class="chip">${x}</span>`).join('');document.getElementById('projectModalGithub').href=p.github;pm.classList.remove('hidden');pm.classList.add('flex');pm.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';pmClose.focus();discoverGallery(p);}
+  function openProject(i){const p=projects[i];lastFocus=document.activeElement;pm.dataset.project=i;document.getElementById('projectModalCategory').textContent=p.category;document.getElementById('projectModalTitle').textContent=p.title;document.getElementById('projectModalOverview').textContent=p.overview;document.getElementById('projectModalFeatures').innerHTML=p.features.map(x=>`<li class="flex gap-2"><span style="color:var(--lavender-deep)">·</span>${x}</li>`).join('');document.getElementById('projectModalTech').innerHTML=p.tech.map(x=>`<span class="chip">${x}</span>`).join('');const gh=document.getElementById('projectModalGithub'),lv=document.getElementById('projectModalLive');gh.href=p.github;if(p.live){lv.href=p.live;lv.classList.remove('hidden','border');lv.style.cssText='background:var(--ink);color:var(--paper)';gh.classList.add('border');gh.style.cssText='border-color:var(--line)';gh.before(lv);}else{lv.classList.add('hidden','border');lv.href='#';lv.style.cssText='border-color:var(--line)';gh.classList.remove('border');gh.style.cssText='background:var(--ink);color:var(--paper)';lv.after(gh);}pm.classList.remove('hidden');pm.classList.add('flex');pm.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';pmClose.focus();discoverGallery(p);}
   function closeProject(){pm.classList.add('hidden');pm.classList.remove('flex');pm.setAttribute('aria-hidden','true');document.body.style.overflow='';lastFocus?.focus();}
   document.querySelectorAll('[data-open-project]').forEach(b=>b.addEventListener('click',()=>openProject(+b.dataset.openProject)));pmClose.addEventListener('click',closeProject);pm.addEventListener('click',e=>{if(e.target===pm)closeProject()});document.getElementById('galleryPrev').onclick=()=>galleryImages.length&&showGallery((galleryIndex-1+galleryImages.length)%galleryImages.length);document.getElementById('galleryNext').onclick=()=>galleryImages.length&&showGallery((galleryIndex+1)%galleryImages.length);
 
