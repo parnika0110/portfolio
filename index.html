@@ -434,6 +434,7 @@
 <li><a class="underline-hover" href="#projects">Projects</a></li>
 <li><a class="underline-hover" href="#experience">Experience</a></li>
 <li><a class="underline-hover" href="#skills">Skills</a></li>
+<li><a class="underline-hover" href="#certifications">Certifications</a></li>
 <li><a class="underline-hover" href="#coding">Coding</a></li>
 <li><a class="underline-hover" href="#contact">Contact</a></li>
 </ul>
@@ -456,6 +457,7 @@
 <li><a class="block py-2.5" href="#projects">Projects</a></li>
 <li><a class="block py-2.5" href="#experience">Experience</a></li>
 <li><a class="block py-2.5" href="#skills">Skills</a></li>
+<li><a class="block py-2.5" href="#certifications">Certifications</a></li>
 <li><a class="block py-2.5" href="#coding">Coding</a></li>
 <li><a class="block py-2.5" href="#contact">Contact</a></li>
 <li><a class="block py-2.5 font-medium" download="Parnika_SM_Resume.pdf" href="./Parnika_SM_Resume.pdf" id="resumeBtnMobile" rel="noopener noreferrer" target="_blank">Resume →</a></li>
@@ -477,6 +479,7 @@
 <p class="mt-6 text-lg max-w-md hero-animate hero-d3" style="color:var(--ink-soft)">
         Computer Science student exploring software engineering, full-stack, backend and AI development — one project and one problem at a time.
       </p>
+<p class="mt-4 text-sm font-medium hero-animate hero-d3" style="color:var(--sage-deep)">Open to software engineering internships and entry-level opportunities.</p>
 <div class="mt-9 flex flex-wrap items-center gap-4 hero-animate hero-d4">
 <a class="px-5 py-3 rounded-full text-sm font-medium underline-hover" href="#projects" style="background:var(--ink); color:var(--paper);">
           Explore my work
@@ -499,7 +502,10 @@
 </div>
 <!-- floating desk composition -->
 <div class="relative h-[420px] sm:h-[480px] hero-animate hero-d-desk" id="floatWrap">
-<div aria-hidden="true">
+<div class="absolute inset-x-12 top-7 bottom-7 overflow-hidden rounded-[28px] border shadow-xl" style="border-color:var(--line); background:var(--card);">
+<img alt="Parnika S M" class="h-full w-full object-cover object-top" height="1536" src="./assets/parnika-profile.png" width="1024"/>
+</div>
+<div aria-hidden="true" class="relative z-10">
 <div class="float-card absolute left-2 top-2 card px-5 py-4 shadow-sm" style="--r:-6deg; transform:rotate(-6deg);">
 <span class="font-mono text-sm" style="color:var(--lavender-deep)">&lt;/&gt;</span>
 </div>
@@ -808,7 +814,19 @@
 <span class="chip">Hindi (Conversational)</span><span class="chip">Telugu (Conversational)</span>
 <span class="chip">German (Beginner)</span></div></div></div>
 </section>
-<!-- ================= ACHIEVEMENTS ================= -->
+<!-- ================= CERTIFICATIONS ================= -->
+<section class="px-5 sm:px-8 py-24" id="certifications" style="background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+<div class="max-w-6xl mx-auto">
+<h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-2 reveal">Credentials that back the work.</h2>
+<p class="mb-14 reveal" style="color:var(--ink-soft)">Industry-recognized learning across cloud, enterprise technology, and AI.</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<button class="card lift p-6 reveal achievement-card text-left" data-achievement="Oracle Certified Foundations Associate — Agentic AI|Oracle · 2026|Earned the Oracle Certified Foundations Associate credential in Agentic AI." data-certificate="oracle-agentic-ai" data-certificate-url="https://catalog-education.oracle.com/pls/certview/sharebadge?id=8CA82A400265FFE6ADD9C40A45376EF4F101ACA536E0502CC01B218B4C32AA01" data-certificate-link-label="Verify credential ↗"><p class="eyebrow mb-2" style="color:var(--peach-deep)">Oracle · 2026</p><p class="font-display font-semibold mb-1.5">Oracle Certified Foundations Associate</p><p class="text-sm" style="color:var(--ink-soft)">Agentic AI</p></button>
+<button class="card lift p-6 reveal achievement-card text-left" data-achievement="Google Cloud Gen AI Academy APAC 2026|Cohort 2 · Completed July 23, 2026|Completed Cohort 2 of the Google Cloud Gen AI Academy APAC 2026, gaining hands-on exposure to generative AI concepts and Google Cloud technologies." data-certificate="google-genai"><p class="eyebrow mb-2" style="color:var(--blue-deep)">Google Cloud · 2026</p><p class="font-display font-semibold mb-1.5">Google Cloud Gen AI Academy APAC</p><p class="text-sm" style="color:var(--ink-soft)">Cohort 2</p></button>
+<button class="card lift p-6 reveal achievement-card text-left" data-achievement="Google Cloud Computing Foundations Certificate|Google Cloud · Credly|Earned the Google Cloud Computing Foundations credential, building foundational knowledge of cloud computing concepts and Google Cloud technologies." data-credly="ce554f43-e072-4354-90ef-39cee4aa71d4" data-credly-url="https://www.credly.com/badges/ce554f43-e072-4354-90ef-39cee4aa71d4/linked_in?t=ssnyrg"><p class="eyebrow mb-2" style="color:var(--blue-deep)">Google Cloud · Credly</p><p class="font-display font-semibold mb-1.5">Cloud Computing Foundations</p><p class="text-sm" style="color:var(--ink-soft)">Verifiable digital credential</p></button>
+<button class="card lift p-6 reveal achievement-card text-left" data-achievement="SAP Technology Consultant — Professional Certificate|Coursera · Completed Aug 2, 2026|Completed the 7-course SAP Technology Consultant Professional Certificate, covering enterprise systems, SAP customer engagement and discovery, solution design and implementation, project management methodologies, requirements gathering, stakeholder interviewing, client communication, client analysis and solution design." data-certificate="sap"><p class="eyebrow mb-2" style="color:var(--blue-deep)">Coursera · 2026</p><p class="font-display font-semibold mb-1.5">SAP Technology Consultant</p><p class="text-sm" style="color:var(--ink-soft)">Professional Certificate</p></button>
+</div>
+</div>
+</section>
 <section class="px-5 sm:px-8 py-24" id="achievements">
 <div class="max-w-6xl mx-auto">
 <h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-14 reveal">A few markers along the way.</h2>
@@ -819,15 +837,6 @@
 <button class="card lift p-6 reveal achievement-card text-left" data-achievement="3rd Place — CSI Coding Challenge|Placed 3rd among 38 teams.|Secured 3rd place in a competitive coding challenge among 38 participating teams, putting problem-solving and programming skills to the test."><p class="font-display font-semibold mb-1.5">3rd Place — CSI Coding Challenge</p><p class="text-sm" style="color:var(--ink-soft)">Placed 3rd among 38 teams.</p></button>
 <button class="card lift p-6 reveal achievement-card text-left" data-achievement="CSI Programmers' Day|Volunteer.|Volunteered for CSI Programmers’ Day and contributed to the coordination and execution of the event."><p class="font-display font-semibold mb-1.5">CSI Programmers' Day</p><p class="text-sm" style="color:var(--ink-soft)">Volunteer.</p></button>
 <button class="card lift p-6 reveal achievement-card text-left" data-achievement="Pranati College Fest|Coordinator.|Worked as a coordinator for Pranati, contributing to the planning, coordination, and smooth execution of college fest activities."><p class="font-display font-semibold mb-1.5">Pranati College Fest</p><p class="text-sm" style="color:var(--ink-soft)">Coordinator.</p></button>
-<button class="card lift p-6 reveal achievement-card text-left" data-achievement="Google Cloud Gen AI Academy APAC 2026|Cohort 2 · Completed July 23, 2026|Completed Cohort 2 of the Google Cloud Gen AI Academy APAC 2026, gaining hands-on exposure to generative AI concepts and Google Cloud technologies." data-certificate="google-genai"><p class="font-display font-semibold mb-1.5">Google Cloud Gen AI Academy APAC 2026</p><p class="text-sm" style="color:var(--ink-soft)">Cohort 2.</p></button>
-<button class="card lift p-6 reveal achievement-card text-left" data-achievement="Google Cloud Computing Foundations Certificate|Earned the Google Cloud Computing Foundations credential, building foundational knowledge of cloud computing concepts and Google Cloud technologies." data-credly="ce554f43-e072-4354-90ef-39cee4aa71d4" data-credly-url="https://www.credly.com/badges/ce554f43-e072-4354-90ef-39cee4aa71d4/linked_in?t=ssnyrg">
-<p class="eyebrow mb-2" style="color:var(--blue-deep)">Google Cloud · Credly</p>
-<p class="font-display font-semibold mb-1.5">Google Cloud Computing Foundations Certificate</p>
-<p class="text-sm" style="color:var(--ink-soft)">Official verifiable digital credential</p>
-
-</button>
-<button class="card lift p-6 reveal achievement-card text-left" data-achievement="SAP Technology Consultant — Professional Certificate|Coursera · Completed Aug 2, 2026|Completed the 7-course SAP Technology Consultant Professional Certificate, covering enterprise systems, SAP customer engagement and discovery, solution design and implementation, project management methodologies, requirements gathering, stakeholder interviewing, client communication, client analysis and solution design." data-certificate="sap"><p class="eyebrow mb-2" style="color:var(--blue-deep)">Coursera · Aug 2026</p><p class="font-display font-semibold mb-1.5">SAP Technology Consultant</p><p class="text-sm" style="color:var(--ink-soft)">Professional Certificate · 7-course program</p></button>
-<button class="card lift p-6 reveal achievement-card text-left" data-achievement="Oracle Certified Foundations Associate — Agentic AI|Oracle · 2026|Earned the Oracle Certified Foundations Associate credential in Agentic AI." data-certificate="oracle-agentic-ai" data-certificate-url="./certifications/oracle-agentic-ai-certificate.pdf"><p class="eyebrow mb-2" style="color:var(--peach-deep)">Oracle · 2026</p><p class="font-display font-semibold mb-1.5">Oracle Certified Foundations Associate</p><p class="text-sm" style="color:var(--ink-soft)">Agentic AI</p></button>
 </div>
 </div>
 </section>
@@ -1013,6 +1022,7 @@
   const commands = [
     { label:'About', action: () => scrollToId('about') },
     { label:'Projects', action: () => scrollToId('projects') },
+    { label:'Certifications', action: () => scrollToId('certifications') },
     { label:'GitHub', action: () => window.open('https://github.com/parnika0110','_blank') },
     { label:'LinkedIn', action: () => window.open('https://www.linkedin.com/in/parnika-s-m/','_blank') },
     { label:'LeetCode', action: () => window.open('https://leetcode.com/u/parnika_sm/','_blank') },
@@ -1112,7 +1122,7 @@ if(rich){richWrap.classList.remove('hidden');descEl.classList.add('hidden');}els
 if(cert&&certificateImages[cert]){
   certImg.src=certificateImages[cert];certImg.alt=t+' certificate';
   certWrap.classList.remove('hidden');certWrap.classList.add('flex');
-  if(c.dataset.certificateUrl){certDownload.href=c.dataset.certificateUrl;certDownload.classList.remove('hidden');}else{certDownload.classList.add('hidden');certDownload.removeAttribute('href');}
+  if(c.dataset.certificateUrl){certDownload.href=c.dataset.certificateUrl;certDownload.textContent=c.dataset.certificateLinkLabel||'View full certificate ↗';certDownload.classList.remove('hidden');}else{certDownload.classList.add('hidden');certDownload.removeAttribute('href');}
   credlyWrap.classList.add('hidden');
 }else if(credly){
   certWrap.classList.add('hidden');certWrap.classList.remove('flex');certImg.removeAttribute('src');
