@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify"
+    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
+    "sync": "node scripts/sync-projects.js",
+    "sync:build": "node scripts/sync-projects.js && tailwindcss -i ./src/input.css -o ./styles.css --minify"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
