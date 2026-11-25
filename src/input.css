@@ -1277,3 +1277,11 @@
   .js .reveal, .js .sec-head.reveal .sec-num, .js .case.reveal .case__media { opacity: 1 !important; transform: none !important; translate: none !important; scale: none !important; }
   .cmark, .orbit { display: none !important; }
 }
+
+/* ------------------------------------------------------------ featured cases: keep the heading and Problem together beside a taller visual */
+@layer components {
+  /* the visual spans the heading and Problem rows; the heading row fits its content and any spare height
+     falls below the Problem text, instead of opening a gap between the heading and "Problem" */
+  @media (min-width: 1000px) { .case--flagship { grid-template-rows: auto 1fr auto auto; } }
+  @media (min-width: 900px) { .case--sage { grid-template-rows: auto 1fr auto auto; } }
+}
