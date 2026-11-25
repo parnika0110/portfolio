@@ -136,7 +136,7 @@
   /* ------------------------------------------------------------ project filters */
   const filterBtns = $$('#projectFilters .filter');
   const filterStatus = $('#filterStatus');
-  const filterables = () => $$('#projectList .case, #more-projects .pc, #other-builds .build');
+  const filterables = () => $$('#projectList .case, #more-projects .pc');
   filterBtns.forEach((btn) => btn.addEventListener('click', () => {
     const f = btn.dataset.filter;
     filterBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));

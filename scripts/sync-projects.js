@@ -11,12 +11,11 @@
  *  3. Filter: owner repos, not forked, not archived, topic="portfolio"
  *  4. Merge: overrides take priority; newly discovered repos appended
  *  5. Write data/projects.json  (deterministic - no volatile timestamps)
- *  6. Patch index.html:
- *       - the case-notes modal data in <script id="project-data" type="application/json">
- *       - the "Other builds" cards between the SYNC:experiments sentinels
- *     Featured case studies (section "featured") are hand-composed editorial
- *     layouts in index.html and are NOT regenerated; edit them by hand.
- *     Newly discovered repos are added to "Other builds" automatically.
+ *  6. Patch index.html: the case-notes modal data in
+ *     <script id="project-data" type="application/json">, for the showcased projects only.
+ *     The showcase (three case studies + four postcards) is curated and hand-composed in
+ *     index.html; it is NOT regenerated. Projects with section "experiments" — including
+ *     newly discovered repos — are recorded in data/projects.json but not shown on the page.
  *
  * Usage:
  *   npm run sync                         fetch GitHub + patch files
@@ -41,10 +40,6 @@ const OUTPUT_DATA_FILE = path.join(__dirname, '..', 'data', 'projects.json');
 const INDEX_HTML_FILE  = path.join(__dirname, '..', 'index.html');
 const OFFLINE          = process.argv.includes('--offline');
 
-// Sentinel comments that bracket the auto-managed "Other builds" cards in index.html.
-// Ensure index.html contains these exact strings.
-const SENTINEL_EXPERIMENTS_START = '<!-- SYNC:experiments-start -->';
-const SENTINEL_EXPERIMENTS_END   = '<!-- SYNC:experiments-end -->';
 // The case-notes modal reads its data from this JSON block.
 const PROJECT_DATA_PATTERN = /(<script id="project-data" type="application\/json">)[\s\S]*?(<\/script>)/;
 
@@ -150,34 +145,9 @@ function esc(text) {
 // HTML card builders
 // ---------------------------------------------------------------------------
 
-// "Other builds" card \u2014 markup must match the .build component in src/input.css.
-function buildExperimentCard(p, frameNo) {
-  const fr   = String(frameNo).padStart(2, '0');
-  const cats = (p.categories || []).join(' ');
-  const live = p.demoUrl
-    ? `<a class="link-btn ulink" href="${esc(p.demoUrl)}" rel="noopener noreferrer" target="_blank">Live <span aria-hidden="true" class="arrow">&#x2197;</span></a>`
-    : '';
-  return `<article class="build" data-category="${esc(cats)}">
-<p class="build__fr">FR ${fr} \u00b7 experiment</p>
-<h4>${esc(p.title)}</h4>
-<p>${esc(p.subtitle || p.description)}</p>
-<p class="build__tags">${esc(p.tags || (p.chips || []).join(' \u00b7 '))}</p>
-<div class="build__links"><button aria-label="Open ${esc(p.title)} case notes" class="link-btn ulink" data-open-project="${esc(p.id)}" type="button">Case notes</button>${live}<a class="link-btn ulink" href="${esc(p.repositoryUrl)}" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">&#x2197;</span></a></div>
-</article>`;
-}
-
 // ---------------------------------------------------------------------------
 // HTML patching
 // ---------------------------------------------------------------------------
-
-function replaceBetweenSentinels(html, start, end, content) {
-  const si = html.indexOf(start);
-  const ei = html.indexOf(end);
-  if (si === -1) throw new Error(`Sentinel not found: ${start}`);
-  if (ei === -1) throw new Error(`Sentinel not found: ${end}`);
-  if (ei <= si)  throw new Error(`End sentinel before start: ${end}`);
-  return html.slice(0, si + start.length) + '\n' + content + '\n' + html.slice(ei);
-}
 
 function replaceProjectData(html, modalProjects) {
   if (!PROJECT_DATA_PATTERN.test(html)) {
@@ -283,7 +253,7 @@ async function sync() {
     projectsMap.set(lk, {
       id:           repo.name,
       title:        normalizeTitle(repo.name),
-      // New repos land in "Other builds"; promote to a hand-written case study via overrides.
+      // New repos are recorded but not shown; to showcase one, compose it in index.html and set its section via overrides.
       section:      'experiments',
       displayOrder: 20 + projectsMap.size,
       featured:     false,
@@ -330,25 +300,24 @@ async function sync() {
   }
   let html = fs.readFileSync(INDEX_HTML_FILE, 'utf8');
 
-  // Case-notes modal data, looked up by project id (data-open-project="<id>").
-  const modalProjects = all.map(p => {
+  // Case-notes modal data for the showcased projects, looked up by id (data-open-project="<id>").
+  const modalProjects = featured.map(p => {
     const item = { id: p.id, title: p.title, category: p.category, overview: p.overview, features: p.features, tech: p.tech, github: p.repositoryUrl, screenshots: p.screenshots || [] };
     if (p.demoUrl) item.live = p.demoUrl;
     return item;
   });
-  const frameNo = new Map(all.map((p, i) => [p.id, i + 1]));
-  const experimentsHtml = experiments.map(p => buildExperimentCard(p, frameNo.get(p.id))).join('\n');
 
   // Featured case studies are hand-composed; just flag any that are missing from the page.
   for (const p of featured) {
     if (!html.includes(`data-open-project="${p.id}"`)) {
-      console.warn(`[Sync] Featured project '${p.id}' has no case study in index.html — add one by hand or set its section to "experiments".`);
+      console.warn(`[Sync] Showcased project '${p.id}' is not on the page — add it to index.html by hand or set its section to "experiments".`);
     }
+  }
+  if (experiments.length) {
+    console.log(`[Sync] Not shown on the page (section "experiments"): ${experiments.map(p => p.id).join(', ')}`);
   }
 
   try {
-    html = replaceBetweenSentinels(html, SENTINEL_EXPERIMENTS_START, SENTINEL_EXPERIMENTS_END, experimentsHtml);
-    console.log('[Sync] Patched "Other builds" via sentinels.');
     html = replaceProjectData(html, modalProjects);
     console.log('[Sync] Patched case-notes modal data.');
   } catch (e) {
@@ -357,7 +326,7 @@ async function sync() {
   }
 
   fs.writeFileSync(INDEX_HTML_FILE, html, 'utf8');
-  console.log(`[Sync] Done. ${featured.length} featured, ${experiments.length} experiments.`);
+  console.log(`[Sync] Done. ${featured.length} showcased, ${experiments.length} recorded only.`);
 }
 
 if (require.main === module) {

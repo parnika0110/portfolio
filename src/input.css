@@ -444,7 +444,7 @@
   .cases { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2.5rem, 4.4vw, 3.5rem); }
   .case { position: relative; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(1rem, 2vw, 1.35rem); grid-template-areas: "head" "media" "body" "foot"; }
   /* grid children never force their track wider than the viewport */
-  .case > *, .hero__grid > *, .about > *, .contact > *, .life-intro > *, .tool-grid > *, .creds > *, .frames > *, .others__grid > *, .gesture-media > *, .ledger-media > *, .modal__grid > * { min-width: 0; }
+  .case > *, .hero__grid > *, .about > *, .contact > *, .life-intro > *, .tool-grid > *, .creds > *, .frames > *, .gesture-media > *, .ledger-media > *, .modal__grid > * { min-width: 0; }
   .case[hidden] { display: none; }
   .case__head { grid-area: head; }
   .case__media { grid-area: media; position: relative; min-width: 0; }
@@ -581,23 +581,8 @@
   .recipe dt::before { background: var(--tan); height: 2px; }
   .recipe dd { color: var(--ink-2); line-height: 1.65; }
 
-  /* other builds — contact-sheet index */
-  .others { margin-top: clamp(3.5rem, 7vw, 5.5rem); }
-  .others__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; padding-bottom: 1.1rem; border-bottom: 1.5px solid var(--ink); }
+  /* section sub-heading (More projects) */
   .others__title { font-size: clamp(1.6rem, 2.8vw, 2.1rem); font-weight: 600; letter-spacing: -.03em; }
-  .others__grid { display: grid; }
-  @media (min-width: 720px) { .others__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .build { position: relative; display: flex; flex-direction: column; gap: .55rem; padding: 1.4rem 1.25rem 1.5rem 0; border-bottom: 1px solid var(--line-2); }
-  @media (min-width: 720px) {
-    .build { padding: 1.5rem 1.5rem 1.6rem; border-bottom: 0; border-right: 1px solid var(--line-2); }
-    .build:first-child { padding-left: 0; }
-    .build:last-child { border-right: 0; }
-  }
-  .build__fr { font-family: var(--font-mono); font-size: .7rem; color: var(--tan-700); letter-spacing: .06em; }
-  .build h4 { font-size: 1.2rem; font-weight: 600; }
-  .build p { color: var(--ink-2); font-size: .94rem; }
-  .build__tags { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-3); }
-  .build__links { display: flex; gap: 1.1rem; align-items: center; margin-top: auto; padding-top: .6rem; }
   .link-btn { font-weight: 600; font-size: .86rem; display: inline-flex; align-items: center; gap: .35rem; min-height: 36px; }
 
   /* ---------- experience archive ---------- */
@@ -1040,6 +1025,10 @@
   .more-work { margin-top: clamp(3rem, 6vw, 4.5rem); }
   .more-work__head { display: grid; gap: .3rem; margin-bottom: clamp(1.25rem, 2.6vw, 1.75rem); padding-bottom: 1rem; border-bottom: 1.5px solid var(--ink); }
   .more-work__head .copy { max-width: 62ch; }
+  /* the one link to every repository: quiet, at the end of the archive */
+  .more-work__foot { display: flex; justify-content: flex-end; margin-top: .5rem; }
+  .more-work__foot .text-link { font-size: .88rem; color: var(--ink-2); }
+  .more-work__foot .text-link:hover { color: var(--ink); }
 
   /* more projects: the postcard archive — four postcard backs in one overlapping rack */
   .pc-rack { display: grid; gap: 1.25rem; padding: .25rem 0 .75rem; }
@@ -1223,6 +1212,7 @@
     .more-work { margin-top: clamp(2.25rem, 3.4vw, 2.75rem); }
     .more-work__head { grid-template-columns: auto minmax(0, 1fr); column-gap: 2.5rem; align-items: end; margin-bottom: .9rem; padding-bottom: .75rem; }
     .more-work__head > .label, .more-work__head > .others__title { grid-column: 1; }
+    .more-work__foot { margin-top: .1rem; }
     .more-work__head > .copy { grid-column: 2; grid-row: 1 / span 2; justify-self: end; max-width: 50ch; text-align: right; font-size: .95rem; line-height: 1.5; }
   }
 }

@@ -14,7 +14,7 @@ Live: https://parnika-sm.vercel.app/
 | `styles.css` | Built, minified CSS — generated, but committed so Vercel can serve it as-is |
 | `js/main.js` | Interactions: nav, filters, modals + gallery, ⌘K palette, copy email, GitHub repo count |
 | `data/projects-override.json` | Source of truth for project details shown in the case-notes modal |
-| `scripts/sync-projects.js` | Refreshes the modal data and the "Other builds" cards from the overrides + GitHub |
+| `scripts/sync-projects.js` | Refreshes the case-notes data for the seven showcased projects from the overrides + GitHub |
 | `images/<project>/` | Project screenshots |
 | `certifications/` | Certificate images and the Oracle badge/PDF |
 | `assets/` | Portrait (`parnika-portrait.webp` is served; the PNGs are fallbacks/originals) |
@@ -32,10 +32,12 @@ Run `npm run build` after any CSS change, and commit the regenerated `styles.css
 ## Updating projects
 
 - Edit `data/projects-override.json`, then run `npm run sync` (fetches GitHub) or
-  `npm run sync:offline` (overrides only). This rewrites the `project-data` JSON block and the
-  "Other builds" cards between the `SYNC:experiments` comments in `index.html`.
-- The seven featured case studies are hand-composed layouts in `index.html`; the sync script
-  never overwrites them. New repos tagged `portfolio` on GitHub land in "Other builds".
+  `npm run sync:offline` (overrides only). This rewrites the `project-data` JSON block in
+  `index.html` for the showcased projects.
+- The showcase is curated: seven projects (three case studies and four postcards), hand-composed in
+  `index.html`; the sync script never overwrites them. Repos with section `"experiments"` — and
+  new repos tagged `portfolio` — are recorded in `data/projects.json` but not shown on the page.
+  Every repository stays reachable from the "All repositories" link at the end of the postcards.
 - Screenshots: add files under `images/<project>/` and list them in that project's
   `screenshots` array (`{ "src": "...", "alt": "..." }`).
 
