@@ -45,15 +45,15 @@
     "description": "MediAssist is an AI-assisted healthcare platform focused on prescription analysis, medication management and doctor appointment workflows.",
     "overview": "MediAssist is an AI-assisted healthcare platform focused on prescription analysis, medication management, symptom assessment and doctor appointment workflows.",
     "features": [
-      "OCR-based prescription analysis and medicine extraction",
+      "Prescription OCR service (FastAPI, PaddleOCR, OpenCV) that extracts each medicine’s name, dosage, frequency and duration — being integrated with the app",
       "Medication management and reminder workflows",
       "Medication history tracking",
       "Symptom-based health assessment",
       "Doctor directory and appointment booking",
-      "Email confirmations"
+      "Appointment email confirmations (planned)"
     ],
     "chips": ["Flutter", "Dart", "Firebase", "Cloud Firestore"],
-    "tech": ["Flutter", "Dart", "Firebase", "Cloud Firestore", "OCR", "AI / ML", "REST APIs", "Email Services"],
+    "tech": ["Flutter", "Dart", "Firebase", "Cloud Firestore", "Python", "FastAPI", "PaddleOCR", "OpenCV"],
     "repositoryUrl": "https://github.com/parnika0110/mediassist",
     "demoUrl": "",
     "imageFolder": "images/mediassist"
@@ -74,10 +74,11 @@
       "Vehicle listings",
       "CRUD operations",
       "Booking workflow",
-      "Automated email notifications using Nodemailer"
+      "Admin dashboard to approve or reject bookings and add, edit or remove vehicles",
+      "Automated booking-status emails (approved / rejected) sent with Resend"
     ],
     "chips": ["MongoDB", "Express.js", "React.js", "Node.js"],
-    "tech": ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Nodemailer"],
+    "tech": ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Resend"],
     "repositoryUrl": "https://github.com/parnika0110/imperial-wheels",
     "demoUrl": "",
     "imageFolder": "images/imperial-wheels",
@@ -101,7 +102,7 @@
       "Route calculation",
       "Dynamic fare calculation",
       "Peak and non-peak pricing",
-      "Smart card / token discounts",
+      "Smart Card and NCMC discounts (5% peak, 10% non-peak); no discount on tokens",
       "Holiday-based fare logic"
     ],
     "chips": ["HTML", "CSS", "JavaScript", "Node.js"],
@@ -183,12 +184,13 @@
     "features": [
       "Personalized recipe recommendations",
       "Ingredient-based suggestions",
-      "User preference customization",
-      "AI-assisted content generation",
+      "Dietary and cuisine preference customization",
+      "AI-generated recipes with Google Gemini, with AI recipe images from Pollinations.ai",
+      "Sign-in, saved recipes, 5-star ratings and comments",
       "Responsive interface"
     ],
-    "chips": ["React.js", "Node.js", "MongoDB", "AI APIs"],
-    "tech": ["React.js", "Node.js", "MongoDB", "AI APIs", "JavaScript"],
+    "chips": ["Next.js", "Prisma", "PostgreSQL", "Google Gemini"],
+    "tech": ["Next.js", "React", "Prisma", "PostgreSQL", "NextAuth", "Google Gemini API", "Pollinations.ai", "Tailwind CSS", "JavaScript"],
     "repositoryUrl": "https://github.com/parnika0110/recipe-app",
     "demoUrl": "https://khanakreation.vercel.app/",
     "imageFolder": "images/khana-kreation",
