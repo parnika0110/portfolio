@@ -1110,3 +1110,7 @@
     .mini__body { grid-area: body; }
   }
 }
+@layer components {
+  /* 1000–1279px: the OPPY media column is narrow enough for the D-Day stamp to reach the tabs */
+  @media (min-width: 1000px) and (max-width: 1279px) { .case--flagship .media-tabs { padding-right: 8.5rem; } }
+}
