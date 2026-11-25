@@ -343,12 +343,6 @@
 
   /* ---------- hero ---------- */
   .hero { position: relative; padding-top: clamp(1.25rem, 3vw, 2.25rem); padding-bottom: clamp(2.5rem, 5vw, 3.75rem); }
-  .hero__meta {
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1.5rem;
-    padding-bottom: .85rem; border-bottom: 1px solid var(--line); margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
-  }
-  .hero__meta-r { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; }
-  .loc { display: inline-flex; align-items: center; gap: .4rem; }
   .avail { display: inline-flex; align-items: center; gap: .55rem; font-size: .85rem; color: var(--sage-700); font-weight: 500; }
   .avail__dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 3px var(--sage-100); }
 
@@ -390,7 +384,6 @@
   .portrait__card img { position: absolute; left: 50%; bottom: 0; width: 92%; height: auto; transform: translateX(-50%); }
   .portrait__stamp { position: absolute; top: -1.1rem; right: -.4rem; --rot: 7deg; z-index: 2; }
   .portrait__postmark { position: absolute; left: -2rem; bottom: 2.4rem; width: 5.6rem; z-index: 2; rotate: -14deg; }
-  .figcap { margin-top: 1.25rem; display: flex; justify-content: space-between; gap: 1rem; }
   @media (max-width: 480px) { .portrait__postmark { left: -1rem; width: 5.2rem; } }
 
   .scroll-cue { display: none; align-items: center; gap: .8rem; margin-top: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--ink-3); }
@@ -841,8 +834,6 @@
   .addr .v { overflow-wrap: anywhere; }
 }
 @layer components {
-  .figcap { flex-wrap: wrap; gap: .25rem 1rem; }
-  .figcap span { white-space: nowrap; }
   @media (max-width: 639px) {
     .case--flagship .case__top { padding-right: 8.75rem; }
   }
