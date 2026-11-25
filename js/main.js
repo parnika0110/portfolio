@@ -278,6 +278,34 @@
   amClose.addEventListener('click', () => closeModal(am));
   am.addEventListener('modal:closed', resetAchievement);
 
+  /* ------------------------------------------------------------ D-Day photo lightbox */
+  const photoModal = $('#photoModal');
+  if (photoModal) {
+    const photoBtns = $$('[data-photo]').sort((a, b) => Number(a.dataset.photo) - Number(b.dataset.photo));
+    const photoImg = $('#photoModalImg');
+    const photoCap = $('#photoModalCap');
+    const photoClose = $('#photoModalClose');
+    let photoIndex = 0;
+    const showPhoto = (i) => {
+      photoIndex = (i + photoBtns.length) % photoBtns.length;
+      const btn = photoBtns[photoIndex];
+      const thumb = btn.querySelector('img');
+      const caption = btn.closest('figure')?.querySelector('figcaption')?.textContent.trim() || '';
+      photoImg.src = btn.dataset.full;
+      photoImg.alt = thumb ? thumb.alt : '';
+      photoCap.textContent = `${photoIndex + 1} / ${photoBtns.length} — ${caption}`;
+    };
+    photoBtns.forEach((btn, i) => btn.addEventListener('click', () => { showPhoto(i); openModal(photoModal, photoClose); }));
+    $('#photoPrev').addEventListener('click', () => showPhoto(photoIndex - 1));
+    $('#photoNext').addEventListener('click', () => showPhoto(photoIndex + 1));
+    photoClose.addEventListener('click', () => closeModal(photoModal));
+    photoModal.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') showPhoto(photoIndex - 1);
+      if (e.key === 'ArrowRight') showPhoto(photoIndex + 1);
+    });
+    photoModal.addEventListener('modal:closed', () => photoImg.removeAttribute('src'));
+  }
+
   /* ------------------------------------------------------------ command palette (⌘K / Ctrl+K) */
   const cmdk = $('#cmdkOverlay');
   const cmdkInput = $('#cmdkInput');

@@ -457,7 +457,7 @@
   .cases { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2.5rem, 4.4vw, 3.5rem); }
   .case { position: relative; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(1rem, 2vw, 1.35rem); grid-template-areas: "head" "media" "body" "foot"; }
   /* grid children never force their track wider than the viewport */
-  .case > *, .hero__grid > *, .about > *, .contact > *, .dday > *, .life-intro > *, .tool-grid > *, .creds > *, .frames > *, .others__grid > *, .gesture-media > *, .ledger-media > *, .modal__grid > * { min-width: 0; }
+  .case > *, .hero__grid > *, .about > *, .contact > *, .life-intro > *, .tool-grid > *, .creds > *, .frames > *, .others__grid > *, .gesture-media > *, .ledger-media > *, .modal__grid > * { min-width: 0; }
   .case[hidden] { display: none; }
   .case__head { grid-area: head; }
   .case__media { grid-area: media; position: relative; min-width: 0; }
@@ -700,26 +700,6 @@
   .cred-note { margin-top: 1.5rem; }
 
   /* ---------- milestones ---------- */
-  .dday { position: relative; display: grid; gap: clamp(1.5rem, 3.5vw, 2.5rem); padding: clamp(1.4rem, 3vw, 2.25rem); border: 1.5px solid var(--ink); border-radius: 6px; background: var(--paper-3); }
-  @media (min-width: 960px) { .dday { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; } }
-  .funnel { display: grid; gap: .15rem; }
-  .funnel__row { display: flex; align-items: baseline; gap: 1rem; border-bottom: 1px solid var(--line); padding-block: .2rem .4rem; }
-  .funnel__row:last-child { border-bottom: 0; }
-  .funnel__n { font-family: var(--font-display); font-weight: 700; letter-spacing: -.05em; line-height: .9; min-width: 0; }
-  .funnel__row:nth-child(1) .funnel__n { font-size: clamp(2.7rem, 5.4vw, 4.1rem); color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
-  .funnel__row:nth-child(2) .funnel__n { font-size: clamp(2.35rem, 4.5vw, 3.4rem); color: transparent; -webkit-text-stroke: 1.5px var(--lilac); }
-  .funnel__row:nth-child(3) .funnel__n { font-size: clamp(2.05rem, 3.8vw, 2.8rem); color: var(--tan); }
-  .funnel__row:nth-child(4) .funnel__n { font-size: clamp(1.85rem, 3.2vw, 2.35rem); color: var(--lilac); }
-  .funnel__l { font-family: var(--font-mono); font-size: .78rem; color: var(--ink-3); letter-spacing: .02em; }
-  .dday__title { font-size: clamp(1.65rem, 3vw, 2.45rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.02; }
-  .dday__title span { display: block; }
-  .dday__title span:last-child { color: var(--lilac); }
-  .dday__story { margin-top: 1rem; color: var(--ink-2); max-width: 60ch; }
-  .dday__stamp { position: absolute; top: -1.75rem; left: clamp(1rem, 4vw, 2.75rem); --rot: -7deg; z-index: 1; }
-  .dday__pm { position: absolute; left: calc(clamp(1rem, 4vw, 2.75rem) + 8rem); top: -1.5rem; width: 5.4rem; rotate: 10deg; }
-  @media (max-width: 520px) { .dday__pm { display: none; } }
-  .dday .funnel { padding-top: 2.5rem; }
-  @media (min-width: 960px) { .dday .funnel { padding-top: 1.5rem; } }
 
   .sheet { display: grid; gap: 1rem; margin-top: clamp(1.25rem, 2.6vw, 1.75rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr)); }
   .ms {
@@ -910,8 +890,6 @@
     /* keep stamps clear of the content they decorate */
     .case--flagship { padding-top: 3.75rem; }
     .case--flagship .flag-stamp { --stamp-scale: .82; transform-origin: top right; top: -1.4rem; }
-    .dday .funnel { padding-top: 3.75rem; }
-    .dday__stamp { --stamp-scale: .85; transform-origin: top left; }
     .portrait__postmark { left: -.35rem; }
   }
   .case--sage .sk-caption { padding-right: 3.6rem; }
@@ -943,10 +921,6 @@
 /* ------------------------------------------------------------ refinement: decorations keep clear of content */
 @layer components {
   .postmark { aspect-ratio: 1; }
-  .dday { margin-top: 2.5rem; }
-  .dday__stamp { top: -1.25rem; }
-  .dday .funnel { padding-top: 4.5rem; }
-  @media (min-width: 960px) { .dday .funnel { padding-top: 1.5rem; } }
 }
 
 /* ------------------------------------------------------------ density refinement: compact components */
@@ -1004,4 +978,67 @@
   .edu.panel--index > * { padding-left: .85rem; }
   .edu h3 { font-size: clamp(1.05rem, 1.35vw, 1.15rem); line-height: 1.2; }
   .edu .gpa__num { font-size: clamp(1.85rem, 2.6vw, 2.2rem); }
+}
+
+/* ------------------------------------------------------------ D-Day: photo-led case study */
+@layer components {
+  .dday-story { display: grid; gap: clamp(1.25rem, 2.6vw, 2rem); }
+  .dday-story > * { min-width: 0; }
+
+  /* 1 · intro */
+  .dday-intro { display: grid; gap: 1.25rem 3rem; align-items: end; }
+  @media (min-width: 900px) { .dday-intro { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); } }
+  .dday-intro__title { font-size: clamp(1.9rem, 3.6vw, 2.9rem); font-weight: 600; letter-spacing: -.035em; line-height: 1; margin-top: .55rem; }
+  .dday-intro__title em { font-style: normal; color: var(--lilac); }
+  .dday-intro__copy { margin-top: .9rem; color: var(--ink-2); max-width: 62ch; }
+  .dday-intro__side { display: grid; gap: 1rem; justify-items: start; }
+  @media (min-width: 900px) { .dday-intro__side { justify-items: end; } }
+  .dday-stamp { --rot: -6deg; }
+  .dday-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, auto)); gap: .5rem 1.75rem; }
+  .dday-metrics > div { display: flex; flex-direction: column-reverse; gap: .3rem; }
+  .dday-metrics dd { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 4vw, 3.3rem); line-height: .9; letter-spacing: -.05em; }
+  .dday-metrics > div:nth-child(1) dd { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+  .dday-metrics > div:nth-child(2) dd { color: transparent; -webkit-text-stroke: 1.5px var(--lilac); }
+  .dday-metrics > div:nth-child(3) dd { color: var(--tan); }
+  .dday-metrics dt { font-family: var(--font-mono); font-size: .72rem; line-height: 1.35; color: var(--ink-3); max-width: 14ch; }
+
+  /* photos: full 3:2 frame, no heavy borders */
+  .photo-btn { display: block; width: 100%; padding: 0; border: 0; background: var(--paper-2); cursor: zoom-in; border-radius: 2px; overflow: hidden; }
+  .photo-btn img { width: 100%; height: auto; aspect-ratio: 3 / 2; display: block; transition: transform .6s var(--ease-out), filter .3s ease; }
+  .photo-btn:hover img { transform: scale(1.012); filter: saturate(1.06); }
+  .photo-btn:focus-visible { outline: 2px solid var(--lilac); outline-offset: 4px; }
+  .dday-cap { margin-top: .55rem; font-family: var(--font-mono); font-size: .76rem; letter-spacing: .02em; color: var(--ink-3); }
+
+  /* 2 · featured photograph, caption in the margin on wide screens */
+  .dday-hero { display: grid; gap: .5rem; }
+  @media (min-width: 900px) {
+    .dday-hero { grid-template-columns: minmax(0, 10fr) minmax(0, 2fr); column-gap: 1.5rem; align-items: end; }
+    .dday-cap--hero { margin-top: 0; padding-bottom: .2rem; border-left: 2px solid var(--lilac); padding-left: .8rem; }
+  }
+
+  /* 3 · photo story: asymmetric, mirrored widths, every photo at its own aspect ratio */
+  .dday-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+  .dday-ph--a, .dday-ph--d, .dday-ph--group { grid-column: 1 / -1; }
+  @media (min-width: 900px) {
+    .dday-gallery { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.25rem; }
+    .dday-ph--a { grid-column: 1 / 8; }
+    .dday-ph--b { grid-column: 8 / 13; margin-top: clamp(2.5rem, 7vw, 6rem); }
+    .dday-ph--c { grid-column: 1 / 6; margin-top: clamp(2rem, 5vw, 4rem); }
+    .dday-ph--d { grid-column: 6 / 13; }
+    .dday-ph--group { grid-column: 1 / -1; }
+  }
+
+  /* 4 · closing note */
+  .dday-close { display: grid; gap: .6rem; padding: 1.1rem 0 .2rem 1.25rem; border-left: 2px solid var(--tan); max-width: 70ch; }
+  .dday-close__text { font-family: var(--font-display); font-size: clamp(1.05rem, 1.5vw, 1.2rem); font-weight: 500; line-height: 1.5; letter-spacing: -.01em; }
+  .dday-close .case__links { margin-top: .5rem; }
+  .dday-story + .sheet { margin-top: clamp(2rem, 4vw, 3rem); }
+
+  /* lightbox */
+  .photo-modal { background: rgb(33 29 43 / .92); padding: clamp(.75rem, 3vw, 2rem); }
+  .photo-modal__panel { display: grid; gap: .9rem; justify-items: center; max-width: min(96vw, 1500px); outline: none; }
+  .photo-modal__img { max-width: 100%; max-height: calc(100dvh - 8.5rem); width: auto; height: auto; border-radius: 2px; }
+  .photo-modal__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .6rem 1rem; width: 100%; }
+  .photo-modal__cap { flex: 1 1 16rem; text-align: center; color: var(--paper); font-family: var(--font-mono); font-size: .8rem; letter-spacing: .02em; }
+  @media (max-width: 600px) { .photo-modal__cap { order: -1; flex-basis: 100%; } }
 }
