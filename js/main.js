@@ -89,14 +89,81 @@
   /* ------------------------------------------------------------ reveal + stamp-in */
   const revealEls = $$('.reveal, .stamp-in');
   if ('IntersectionObserver' in window && !reducedMotion.matches) {
+    const show = (el) => { el.classList.add('is-in'); io.unobserve(el); };
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        if (!e.isIntersecting || e.target.classList.contains('is-in')) return;
+        show(e.target);
+        // siblings in the same row of a grid reveal together (their reveal-d* delays give a gentle stagger)
+        if (!e.target.matches('.reveal')) return;
+        const top = e.target.getBoundingClientRect().top;
+        Array.from(e.target.parentElement?.children || []).forEach((s) => {
+          if (s !== e.target && s.matches('.reveal:not(.is-in)') && Math.abs(s.getBoundingClientRect().top - top) < window.innerHeight * 0.5) show(s);
+        });
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     revealEls.forEach((el) => io.observe(el));
   } else {
     revealEls.forEach((el) => el.classList.add('is-in'));
+  }
+
+  /* ------------------------------------------------------------ arrows nudge the way they point */
+  const ARROW_DIR = { '↗': 'ne', '→': 'e', '←': 'w', '↓': 's', '↑': 'n' };
+  $$('.arrow').forEach((a) => { const d = ARROW_DIR[a.textContent.trim()]; if (d) a.dataset.dir = d; });
+
+  /* ------------------------------------------------------------ hero orbit: pause the slow satellite while the hero is off screen */
+  const orbit = $('.orbit svg');
+  const sat = orbit && $('.orbit__sat', orbit);
+  if (sat && !reducedMotion.matches && typeof orbit.pauseAnimations === 'function') {
+    sat.setAttribute('cx', '0'); sat.setAttribute('cy', '0');
+    const motion = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+    motion.setAttribute('dur', '120s'); motion.setAttribute('repeatCount', 'indefinite');
+    motion.setAttribute('path', 'M156 86 A104 34 0 0 0 84.4 22.1 A104 34 0 0 0 156 86');
+    sat.append(motion);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => (e.isIntersecting ? orbit.unpauseAnimations() : orbit.pauseAnimations())).observe(orbit);
+    }
+  }
+
+  /* ------------------------------------------------------------ contextual cursor tag (mouse / trackpad only; the system cursor stays) */
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  if (finePointer.matches) {
+    const TAGS = [['.pc__stamp', 'View screenshot'], ['.case .shot-btn', 'View project'], ['.photo-btn', 'View photo'], ['.pc', 'Open postcard']];
+    let tag = null; let label = ''; let x = 0; let y = 0; let tx = 0; let ty = 0; let raf = 0; let w = 0;
+    const labelFor = (el) => {
+      if (!(el instanceof Element)) return '';
+      for (const [sel, text] of TAGS) {
+        const hit = el.closest(sel);
+        if (!hit) continue;
+        // inside a postcard, its own links and buttons already say what they do
+        if (sel === '.pc' && el.closest('a, button')) return '';
+        return text;
+      }
+      return '';
+    };
+    const hide = () => { if (tag) tag.classList.remove('is-on'); label = ''; };
+    const step = () => {
+      raf = 0;
+      const k = reducedMotion.matches ? 1 : 0.3;
+      x += (tx - x) * k; y += (ty - y) * k;
+      tag.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
+      if (Math.abs(tx - x) > 0.4 || Math.abs(ty - y) > 0.4) raf = requestAnimationFrame(step);
+    };
+    document.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      const text = labelFor(e.target);
+      if (!text) { hide(); return; }
+      if (!tag) { tag = document.createElement('span'); tag.className = 'ctag'; tag.setAttribute('aria-hidden', 'true'); document.body.append(tag); }
+      if (text !== label) { tag.textContent = text; label = text; w = tag.offsetWidth; }
+      tx = e.clientX + 16; ty = e.clientY + 18;
+      if (tx + w > window.innerWidth - 8) tx = e.clientX - w - 12;
+      if (!tag.classList.contains('is-on')) { x = tx; y = ty; tag.classList.add('is-on'); }
+      if (!raf) raf = requestAnimationFrame(step);
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', hide);
+    window.addEventListener('blur', hide);
+    window.addEventListener('scroll', hide, { passive: true });
+    document.addEventListener('click', hide, true);
   }
 
   /* ------------------------------------------------------------ wide sketches: keyboard-scrollable only when they overflow */
@@ -196,7 +263,10 @@
     if (!shots.length) return;
     shotIndex = (i + shots.length) % shots.length;
     const s = shots[shotIndex];
+    galleryMain.classList.add('is-swapping');
+    galleryMain.onload = () => galleryMain.classList.remove('is-swapping');
     galleryMain.src = s.src;
+    if (galleryMain.complete) requestAnimationFrame(() => galleryMain.classList.remove('is-swapping'));
     galleryMain.alt = s.alt || '';
     galleryCap.textContent = `${shotIndex + 1} / ${shots.length} — ${s.alt || ''}`;
     $$('button', galleryThumbs).forEach((b, n) => {
@@ -326,7 +396,10 @@
       const btn = photoBtns[photoIndex];
       const thumb = btn.querySelector('img');
       const caption = btn.closest('figure')?.querySelector('figcaption')?.textContent.trim() || '';
+      photoImg.classList.add('is-swapping');
+      photoImg.onload = () => photoImg.classList.remove('is-swapping');
       photoImg.src = btn.dataset.full;
+      if (photoImg.complete) requestAnimationFrame(() => photoImg.classList.remove('is-swapping'));
       photoImg.alt = thumb ? thumb.alt : '';
       photoCap.textContent = `${photoIndex + 1} / ${photoBtns.length} — ${caption}`;
     };

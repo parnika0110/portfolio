@@ -168,7 +168,7 @@
     </div>
 
     <div class="hero__grid">
-      <div>
+      <div class="hero__main">
         <h1 id="hero-title">
           <span class="hero__hello hero-in hero-d1">Hello, I'm Parnika.</span>
           <span class="hero__big hero-in hero-d2">I make <span class="w-curious"><svg aria-hidden="true" class="squiggle" preserveAspectRatio="none" viewBox="0 0 300 40"><path d="M6 26 C 60 14, 120 30, 180 20 S 260 14, 294 22" fill="none" pathLength="1" stroke="currentColor" stroke-linecap="round" stroke-width="30"/></svg><span class="w-curious__t">curious</span></span> ideas <span class="w-work">work.</span></span>
@@ -186,6 +186,20 @@
           </span>
         </div>
         <a class="scroll-cue label" href="#about"><span aria-hidden="true" class="scroll-cue__line"></span>Scroll — the journal continues</a>
+        <figure aria-hidden="true" class="orbit">
+          <svg viewBox="0 0 240 104">
+            <ellipse class="orbit__ring" cx="120" cy="54" rx="104" ry="34"/>
+            <ellipse class="orbit__ring orbit__ring--inner" cx="120" cy="54" rx="58" ry="18"/>
+            <path class="orbit__link" d="M22 60 C 60 18, 92 22, 120 40 S 190 88, 220 48" pathLength="1"/>
+            <circle class="orbit__sat" cx="156" cy="86" r="3"/>
+            <circle class="orbit__node orbit__node--idea" cx="22" cy="60" r="5.5"/>
+            <circle class="orbit__node orbit__node--build" cx="120" cy="40" r="7"/>
+            <circle class="orbit__node orbit__node--people" cx="220" cy="48" r="5.5"/>
+            <text text-anchor="middle" x="22" y="82">IDEA</text>
+            <text text-anchor="middle" x="120" y="22">BUILD</text>
+            <text text-anchor="middle" x="220" y="70">PEOPLE</text>
+          </svg>
+        </figure>
       </div>
 
       <figure class="portrait hero-in hero-d3">
@@ -550,6 +564,7 @@
             <div class="pc__corner">
               <button aria-label="Open Imperial Wheels case notes and screenshots" class="shot-btn pc__stamp" data-open-project="imperial-wheels" data-shot="0" type="button"><span class="pc__face"><img alt="Imperial Wheels home page with the hero, vehicle search and navigation" decoding="async" height="764" loading="lazy" src="./images/imperial-wheels/01.webp" style="object-position:50% 0%" width="1280"/><b aria-hidden="true">04</b></span></button>
               <svg aria-hidden="true" class="pc__pm" viewBox="0 0 120 120"><circle cx="60" cy="60" fill="none" r="56" stroke="currentColor" stroke-width="2.2"/><circle cx="60" cy="60" fill="none" r="37" stroke="currentColor" stroke-width="1.2"/><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9.5" font-weight="500" letter-spacing="1.2"><textPath href="#pm-arc" lengthAdjust="spacing" textLength="288">FIRST COMMIT · FIELD JOURNAL · Nº 04 ·</textPath></text><text fill="currentColor" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" text-anchor="middle" x="60" y="60">MAR</text><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" letter-spacing="1" text-anchor="middle" x="60" y="76">2026</text></svg>
+              <svg aria-hidden="true" class="pc__wave" viewBox="0 0 74 30"><path d="M0 5q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/><path d="M0 15q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/><path d="M0 25q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/></svg>
             </div>
             <p class="sr-only">First commit: March 2026.</p>
             <ul class="pc__lines">
@@ -569,6 +584,7 @@
             <div class="pc__corner">
               <button aria-label="Open Metro Fare Calculator case notes and screenshots" class="shot-btn pc__stamp" data-open-project="metro-fare-calculator" data-shot="0" type="button"><span class="pc__face"><img alt="Metro Fare Calculator showing a Whitefield to Majestic route, fare and alternate routes" decoding="async" height="676" loading="lazy" src="./images/metro/01.webp" style="object-position:62% 0%" width="1280"/><b aria-hidden="true">05</b></span></button>
               <svg aria-hidden="true" class="pc__pm" viewBox="0 0 120 120"><circle cx="60" cy="60" fill="none" r="56" stroke="currentColor" stroke-width="2.2"/><circle cx="60" cy="60" fill="none" r="37" stroke="currentColor" stroke-width="1.2"/><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9.5" font-weight="500" letter-spacing="1.2"><textPath href="#pm-arc" lengthAdjust="spacing" textLength="288">FIRST COMMIT · FIELD JOURNAL · Nº 05 ·</textPath></text><text fill="currentColor" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" text-anchor="middle" x="60" y="60">APR</text><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" letter-spacing="1" text-anchor="middle" x="60" y="76">2026</text></svg>
+              <svg aria-hidden="true" class="pc__wave" viewBox="0 0 74 30"><path d="M0 5q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/><path d="M0 15q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/><path d="M0 25q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/></svg>
             </div>
             <p class="sr-only">First commit: April 2026.</p>
             <ul class="pc__lines">
@@ -588,6 +604,7 @@
             <div class="pc__corner">
               <button aria-label="Open CampusPortal case notes and screenshots" class="shot-btn pc__stamp" data-open-project="CampusPortal" data-shot="1" type="button"><span class="pc__face"><img alt="CampusPortal sign-in screen" decoding="async" height="800" loading="lazy" src="./images/campusportal/02.webp" style="object-position:50% 30%" width="1280"/><b aria-hidden="true">06</b></span></button>
               <svg aria-hidden="true" class="pc__pm" viewBox="0 0 120 120"><circle cx="60" cy="60" fill="none" r="56" stroke="currentColor" stroke-width="2.2"/><circle cx="60" cy="60" fill="none" r="37" stroke="currentColor" stroke-width="1.2"/><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9.5" font-weight="500" letter-spacing="1.2"><textPath href="#pm-arc" lengthAdjust="spacing" textLength="288">FIRST COMMIT · FIELD JOURNAL · Nº 06 ·</textPath></text><text fill="currentColor" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" text-anchor="middle" x="60" y="60">JUL</text><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" letter-spacing="1" text-anchor="middle" x="60" y="76">2026</text></svg>
+              <svg aria-hidden="true" class="pc__wave" viewBox="0 0 74 30"><path d="M0 5q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/><path d="M0 15q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/><path d="M0 25q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/></svg>
             </div>
             <p class="sr-only">First commit: July 2026.</p>
             <ul class="pc__lines">
@@ -607,6 +624,7 @@
             <div class="pc__corner">
               <button aria-label="Open Khana Kreation case notes and screenshots" class="shot-btn pc__stamp" data-open-project="recipe-app" data-shot="1" type="button"><span class="pc__face"><img alt="Khana Kreation ingredient input with dietary and cuisine preferences" decoding="async" height="800" loading="lazy" src="./images/khana-kreation/02.webp" style="object-position:50% 0%" width="1280"/><b aria-hidden="true">07</b></span></button>
               <svg aria-hidden="true" class="pc__pm" viewBox="0 0 120 120"><circle cx="60" cy="60" fill="none" r="56" stroke="currentColor" stroke-width="2.2"/><circle cx="60" cy="60" fill="none" r="37" stroke="currentColor" stroke-width="1.2"/><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9.5" font-weight="500" letter-spacing="1.2"><textPath href="#pm-arc" lengthAdjust="spacing" textLength="288">FIRST COMMIT · FIELD JOURNAL · Nº 07 ·</textPath></text><text fill="currentColor" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" text-anchor="middle" x="60" y="60">NOV</text><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" letter-spacing="1" text-anchor="middle" x="60" y="76">2025</text></svg>
+              <svg aria-hidden="true" class="pc__wave" viewBox="0 0 74 30"><path d="M0 5q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/><path d="M0 15q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/><path d="M0 25q6-5 12 0t12 0 12 0 12 0 12 0 12 0" pathLength="1"/></svg>
             </div>
             <p class="sr-only">First commit: November 2025.</p>
             <ul class="pc__lines">
