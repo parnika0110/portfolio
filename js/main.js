@@ -136,7 +136,7 @@
   /* ------------------------------------------------------------ project filters */
   const filterBtns = $$('#projectFilters .filter');
   const filterStatus = $('#filterStatus');
-  const filterables = () => $$('#projectList .case, #other-builds .build');
+  const filterables = () => $$('#projectList .case, #more-projects .mini, #other-builds .build');
   filterBtns.forEach((btn) => btn.addEventListener('click', () => {
     const f = btn.dataset.filter;
     filterBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
@@ -210,6 +210,11 @@
     $('#projectModalCategory').textContent = p.category || '';
     $('#projectModalTitle').textContent = p.title;
     $('#projectModalOverview').textContent = p.overview || '';
+    // extra case notes (problem, approach, diagrams) kept in <template data-notes="id">
+    const extra = $('#projectModalExtra');
+    const notes = document.querySelector(`template[data-notes="${CSS.escape(id)}"]`);
+    extra.replaceChildren(...(notes ? [notes.content.cloneNode(true)] : []));
+    extra.hidden = !notes;
     const feats = $('#projectModalFeatures');
     feats.replaceChildren(...(p.features || []).map((f) => Object.assign(document.createElement('li'), { textContent: f })));
     const tech = $('#projectModalTech');

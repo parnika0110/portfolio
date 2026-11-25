@@ -286,7 +286,7 @@
       <div>
         <p class="label label--lilac">Selected work — case notes from the build log</p>
         <h2 class="sec-title" id="work-title">Things I've built, <em>and why.</em></h2>
-        <p class="sec-intro">Seven builds, each one a different problem. Open any case for features, the full stack and screenshots.</p>
+        <p class="sec-intro">Three projects in depth, four more at a glance. Every project has full case notes with features, the complete stack and screenshots.</p>
       </div>
     </header>
 
@@ -301,7 +301,7 @@
 
     <div class="cases" id="projectList">
 
-      <!-- 01 — OPPY (flagship) -->
+      <!-- Featured 01 — OPPY (flagship) -->
       <article aria-labelledby="t-oppy" class="case case--flagship reveal" data-category="ai-ml full-stack web" id="case-oppy">
         <span aria-hidden="true" class="stamp stamp--tan stamp--lg flag-stamp stamp-in"><span class="stamp__face"><span>D-Day</span><span class="stamp__big">Demo</span><span>BLR Tech Week</span><span>2026</span></span></span>
         <div class="case__head">
@@ -383,20 +383,29 @@
         <div class="case__body">
           <dl class="pb">
             <div><dt>Problem</dt><dd>Internships, jobs, hackathons, fellowships, events, grants and scholarships are scattered across the web — and finding, personalising and tracking them happens in different places.</dd></div>
-            <div><dt>What I built</dt><dd>One platform that discovers real opportunities across the web and matches them to each user: natural-language and voice search (Sarvam AI), “Recommended for you” picks, a saved list and application tracking.</dd></div>
+            <div><dt>What I built</dt><dd>One platform that discovers real opportunities across the web and matches them to each user.</dd></div>
           </dl>
+        </div>
+        <div class="case__kc">
+          <p class="label">Key contributions</p>
+          <ul class="kc kc--cols">
+              <li>Scheduled ingestion pipeline on AWS Lambda that normalises, de-duplicates and quality-filters opportunities</li>
+              <li>Natural-language and voice search with Sarvam AI</li>
+              <li>“Recommended for you” matching from each user’s interests</li>
+              <li>Saved list and application tracking, from Interested to Offer</li>
+            </ul>
         </div>
         <div class="case__foot">
           <div class="stack"><p class="label">Stack</p><ul><li>Next.js 15</li><li>React 19</li><li>TypeScript</li><li>MongoDB</li><li>Sarvam AI</li><li>OpenAI</li><li>AWS Lambda</li><li>AWS Amplify</li><li>Tailwind CSS</li><li>Vitest</li></ul></div>
           <div class="case__links">
             <a class="btn btn--paper btn--sm" href="https://myoppy.xyz/" rel="noopener noreferrer" target="_blank">Live demo <span aria-hidden="true" class="arrow">↗</span></a>
             <a class="btn btn--outline-paper btn--sm" href="https://github.com/parnika0110/oppy" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="oppy" style="color:var(--paper)" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <button class="text-link ulink" data-open-project="oppy" style="color:var(--paper)" type="button">Full case study <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
       </article>
 
-      <!-- 02 — MediAssist (sage) -->
+      <!-- Featured 02 — MediAssist (sage) -->
       <article aria-labelledby="t-medi" class="case case--sage reveal" data-category="ai-ml full-stack" id="case-mediassist">
         <div class="case__head">
           <div class="case__top">
@@ -452,113 +461,33 @@
         <div class="case__body">
           <dl class="pb">
             <div><dt>Problem</dt><dd>Prescriptions, medication schedules, symptoms and appointments are hard to keep organised when they live in different places.</dd></div>
-            <div><dt>What I'm building</dt><dd>A Flutter and Firebase app for medication reminders and history, symptom-based assessment and doctor appointment booking — plus a Python OCR service (FastAPI, PaddleOCR, OpenCV) that reads prescription photos and extracts each medicine’s dosage, frequency and duration.</dd></div>
+            <div><dt>What I'm building</dt><dd>One healthcare companion for prescriptions, medication, symptoms and doctor appointments.</dd></div>
           </dl>
+        </div>
+        <div class="case__kc">
+          <p class="label">Key contributions</p>
+          <ul class="kc kc--cols">
+              <li>Flutter and Firebase app with sign-in and Cloud Firestore data</li>
+              <li>Medication reminders and history, saved per user</li>
+              <li>Symptom-based health assessment</li>
+              <li>Doctor directory, appointment booking and a doctor dashboard</li>
+              <li>Python OCR service — a FastAPI endpoint that cleans prescription photos with OpenCV, reads them with PaddleOCR and parses each medicine’s dosage, frequency and duration; being connected to the app</li>
+            </ul>
         </div>
         <div class="case__foot">
           <div class="stack"><p class="label">Stack</p><ul><li>Flutter</li><li>Dart</li><li>Firebase</li><li>Cloud Firestore</li><li>Python</li><li>FastAPI</li><li>PaddleOCR</li><li>OpenCV</li></ul></div>
           <div class="case__links">
             <a class="btn btn--ink btn--sm" href="https://github.com/parnika0110/mediassist" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="mediassist" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <button class="text-link ulink" data-open-project="mediassist" type="button">Full case study <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
       </article>
 
-      <!-- 03 — Imperial Wheels (media-led) -->
-      <article aria-labelledby="t-iw" class="case case--media reveal" data-category="full-stack web" id="case-imperial-wheels">
-        <div class="case__head">
-          <div class="case__top">
-            <span class="case__num"><b>03</b> / 07</span>
-            <span class="team-tag">Team project</span>
-          </div>
-          <p class="label">Full-Stack Rental Platform</p>
-          <h3 class="case__title" id="t-iw">Imperial Wheels</h3>
-          <p class="case__line">A MERN car and bike rental platform for browsing vehicles, booking them and managing rentals.</p>
-        </div>
-        <div class="case__media">
-          <button aria-label="Open Imperial Wheels case notes and screenshots" class="shot-btn" data-open-project="imperial-wheels" type="button">
-            <div class="shot shot--zoom">
-              <div aria-hidden="true" class="shot__bar"><i></i><i></i><i></i><span>imperial-wheels · home</span></div>
-              <div class="shot__img" style="aspect-ratio:1280/764"><img alt="Imperial Wheels home page with the hero, vehicle search and navigation" decoding="async" height="764" loading="lazy" src="./images/imperial-wheels/01.webp" width="1280"/></div>
-            </div>
-          </button>
-          <p class="shot-cap label"><span>Screenshot · captured from the project's source</span><span>2 frames</span></p>
-          <div class="case__flow">
-            <p class="label" style="margin-bottom:.6rem">Booking flow</p>
-            <ol class="flow">
-              <li class="flow__step"><b>1</b>Browse cars &amp; bikes</li><li aria-hidden="true" class="flow__arrow">→</li>
-              <li class="flow__step"><b>2</b>Vehicle details</li><li aria-hidden="true" class="flow__arrow">→</li>
-              <li class="flow__step"><b>3</b>Book (signed in · JWT)</li><li aria-hidden="true" class="flow__arrow">→</li>
-              <li class="flow__step"><b>4</b>Admin approval &amp; email</li>
-            </ol>
-          </div>
-        </div>
-        <div class="case__body">
-          <dl class="pb">
-            <div><dt>Problem</dt><dd>Renting a car or bike should be simple: browse, pick a vehicle, book it and hear back quickly.</dd></div>
-            <div><dt>What we built</dt><dd>A secure MERN web app with JWT authentication, vehicle listings, CRUD operations, and a booking workflow where admins approve or reject requests, with automated status emails via Resend.</dd></div>
-          </dl>
-        </div>
-        <div class="case__foot">
-          <div class="stack"><p class="label">Stack</p><ul><li>MongoDB</li><li>Express.js</li><li>React.js</li><li>Node.js</li><li>JWT</li><li>Resend</li></ul></div>
-          <div class="case__links">
-            <a class="btn btn--ink btn--sm" href="https://github.com/parnika0110/imperial-wheels" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="imperial-wheels" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 04 — Metro Fare Calculator (transit) -->
-      <article aria-labelledby="t-metro" class="case case--transit reveal" data-category="full-stack web" id="case-metro">
-        <div class="case__head">
-          <div class="case__top">
-            <span class="case__num"><b>04</b> / 07</span>
-          </div>
-          <p class="label">Full-Stack Transportation System</p>
-          <h3 class="case__title" id="t-metro">Metro Fare Calculator</h3>
-          <p class="case__line">A Bengaluru Metro route and fare calculator with dynamic, rule-based fares.</p>
-        </div>
-        <div class="transit-line">
-          <div class="transit" role="group" aria-label="How a fare is calculated">
-            <ol>
-              <li><b>Pick stations</b><span>source → destination</span></li>
-              <li><b>Find route</b><span>network as a graph <br/>stations = nodes</span></li>
-              <li class="is-change"><b>Interchanges</b><span>detected when the <br/>route changes line</span></li>
-              <li><b>Fare rules</b><span>token · Smart Card · NCMC <br/>peak / non-peak · holidays</span></li>
-              <li class="is-end"><b>₹ Fare</b><span>route, stops &amp; <br/>journey details</span></li>
-            </ol>
-          </div>
-        </div>
-        <div class="case__media">
-          <button aria-label="Open Metro Fare Calculator case notes and screenshots" class="shot-btn" data-open-project="metro-fare-calculator" type="button">
-            <div class="shot shot--zoom">
-              <div aria-hidden="true" class="shot__bar"><i></i><i></i><i></i><span>metro-fare-calculator · fare calculator</span></div>
-              <div class="shot__img" style="aspect-ratio:1280/676"><img alt="Metro Fare Calculator showing a Whitefield to Majestic route, fare and alternate routes" decoding="async" height="676" loading="lazy" src="./images/metro/01.webp" width="1280"/></div>
-            </div>
-          </button>
-          <p class="shot-cap label"><span>Whitefield → Majestic · Smart Card · non-peak</span><span>2 frames</span></p>
-        </div>
-        <div class="case__body">
-          <dl class="pb">
-            <div><dt>Problem</dt><dd>Planning a metro trip means knowing the route, where to change lines and what it will actually cost.</dd></div>
-            <div><dt>What I built</dt><dd>Graph-based route finding with interchange detection, and dynamic fares for peak and non-peak hours, Smart Card and NCMC discounts, and holidays.</dd></div>
-          </dl>
-          <p class="ticket"><span class="label">Fare rule · from the build</span><strong>Smart Card &amp; NCMC: 5% off peak · 10% off non-peak</strong></p>
-        </div>
-        <div class="case__foot">
-          <div class="stack"><p class="label">Stack</p><ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Node.js</li></ul></div>
-          <div class="case__links">
-            <a class="btn btn--ink btn--sm" href="https://github.com/parnika0110/metro-fare-calculator" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="metro-fare-calculator" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 05 — Gesture Controlled Infotainment System (dark) -->
+      <!-- Featured 03 — Gesture Controlled Infotainment System (dark) -->
       <article aria-labelledby="t-gesture" class="case case--dark reveal" data-category="computer-vision web" id="case-gesture">
         <div class="case__head">
           <div class="case__top">
-            <span class="case__num"><b>05</b> / 07</span>
+            <span class="case__num"><b>03</b> / 07</span>
             <span class="team-tag">Team mini-project</span>
           </div>
           <p class="label">Computer Vision · Touch-Free Dashboard</p>
@@ -607,31 +536,148 @@
         <div class="case__body">
           <dl class="pb">
             <div><dt>Problem</dt><dd>Controlling music, navigation, calls and settings on an infotainment dashboard without touching the screen.</dd></div>
-            <div><dt>What we built</dt><dd>OpenCV captures webcam frames, MediaPipe Hands tracks hand landmarks, the index fingertip drives a pointer and a thumb–index pinch triggers actions — plus map-based navigation.</dd></div>
+            <div><dt>Technical highlights</dt><dd><ul class="kc">
+              <li>Real-time hand-landmark tracking with MediaPipe Hands — in a Python + OpenCV prototype and in the browser</li>
+              <li>The index fingertip drives an on-screen pointer; a thumb–index pinch clicks buttons and drags sliders</li>
+              <li>Gesture-controlled music, navigation, calls and settings screens</li>
+              <li>Navigation built with Leaflet and OpenStreetMap, with Nominatim destination search</li>
+            </ul></dd></div>
           </dl>
         </div>
         <div class="case__foot">
           <div class="stack"><p class="label">Stack</p><ul><li>Python</li><li>MediaPipe</li><li>OpenCV</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Leaflet</li></ul></div>
           <div class="case__links">
             <a class="btn btn--paper btn--sm" href="https://github.com/parnika0110/Gesture_App" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="Gesture_App" style="color:var(--paper)" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <button class="text-link ulink" data-open-project="Gesture_App" style="color:var(--paper)" type="button">Full case study <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
       </article>
+    </div>
 
-      <!-- 06 — CampusPortal (ledger) -->
-      <article aria-labelledby="t-campus" class="case case--ledger reveal" data-category="full-stack web" id="case-campusportal">
-        <span aria-hidden="true" class="ledger-holes"><i></i><i></i><i></i><i></i><i></i></span>
-        <div class="case__head">
-          <div class="case__top">
-            <span class="case__num"><b>06</b> / 07</span>
+    <div class="more-work" id="more-projects">
+      <div class="more-work__head reveal">
+        <p class="label label--tan">At a glance</p>
+        <h3 class="others__title">More projects</h3>
+        <p class="copy">Four more builds. Open any project’s case notes for its problem, approach, diagrams and screenshots.</p>
+      </div>
+      <div class="minis">
+        <article aria-labelledby="t-iw" class="mini mini--ink reveal" data-category="full-stack web" id="case-imperial-wheels">
+          <button aria-label="Open Imperial Wheels case notes and screenshots" class="shot-btn mini__shot" data-open-project="imperial-wheels" data-shot="0" type="button">
+            <span class="shot shot--zoom"><span aria-hidden="true" class="shot__bar"><i></i><i></i><i></i></span><span class="shot__img"><img alt="Imperial Wheels home page with the hero, vehicle search and navigation" decoding="async" height="764" loading="lazy" src="./images/imperial-wheels/01.webp" style="object-position:50% 0%" width="1280"/></span></span>
+          </button>
+          <div class="mini__body">
+            <p class="mini__meta"><span class="case__num"><b>04</b> / 07</span><span class="label">Full-stack rental platform</span><span class="team-tag">Team project</span></p>
+            <h4 class="mini__title" id="t-iw">Imperial Wheels</h4>
+            <p class="mini__line">A MERN car and bike rental platform with JWT sign-in, vehicle listings and bookings that admins approve or reject — with automated status emails.</p>
+            <p class="mini__stack"><span class="sr-only">Stack: </span>MongoDB · Express.js · React.js · Node.js · JWT · Resend</p>
+            <div class="mini__links">
+              <a class="link-btn ulink" href="https://github.com/parnika0110/imperial-wheels" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+              <button class="text-link ulink" data-open-project="imperial-wheels" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            </div>
           </div>
-          <p class="label">Campus Management Platform · Full Stack</p>
-          <h3 class="case__title" id="t-campus">CampusPortal</h3>
-          <p class="case__line">A centralised portal for academic and administrative workflows across students, faculty and campus operations.</p>
-        </div>
-        <div class="case__media ledger-media">
-          <figure class="sketch sketch--wide">
+        </article>
+        <article aria-labelledby="t-metro" class="mini mini--transit reveal" data-category="full-stack web" id="case-metro">
+          <span aria-hidden="true" class="mini__route"><i></i><i></i><i class="x"></i><i></i><i></i></span>
+          <button aria-label="Open Metro Fare Calculator case notes and screenshots" class="shot-btn mini__shot" data-open-project="metro-fare-calculator" data-shot="0" type="button">
+            <span class="shot shot--zoom"><span aria-hidden="true" class="shot__bar"><i></i><i></i><i></i></span><span class="shot__img"><img alt="Metro Fare Calculator showing a Whitefield to Majestic route, fare and alternate routes" decoding="async" height="676" loading="lazy" src="./images/metro/01.webp" style="object-position:62% 0%" width="1280"/></span></span>
+          </button>
+          <div class="mini__body">
+            <p class="mini__meta"><span class="case__num"><b>05</b> / 07</span><span class="label">Transportation system</span></p>
+            <h4 class="mini__title" id="t-metro">Metro Fare Calculator</h4>
+            <p class="mini__line">A Bengaluru Metro planner that finds routes over a graph of the network and prices each trip by time, holidays and ticket type, with Smart Card and NCMC discounts.</p>
+            <p class="mini__stack"><span class="sr-only">Stack: </span>HTML · CSS · JavaScript · Node.js</p>
+            <div class="mini__links">
+              <a class="link-btn ulink" href="https://github.com/parnika0110/metro-fare-calculator" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+              <button class="text-link ulink" data-open-project="metro-fare-calculator" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            </div>
+          </div>
+        </article>
+        <article aria-labelledby="t-campus" class="mini mini--ledger reveal" data-category="full-stack web" id="case-campusportal">
+          <button aria-label="Open CampusPortal case notes and screenshots" class="shot-btn mini__shot" data-open-project="CampusPortal" data-shot="1" type="button">
+            <span class="shot shot--zoom"><span aria-hidden="true" class="shot__bar"><i></i><i></i><i></i></span><span class="shot__img"><img alt="CampusPortal sign-in screen" decoding="async" height="800" loading="lazy" src="./images/campusportal/02.webp" style="object-position:50% 30%" width="1280"/></span></span>
+          </button>
+          <div class="mini__body">
+            <p class="mini__meta"><span class="case__num"><b>06</b> / 07</span><span class="label">Campus management platform</span></p>
+            <h4 class="mini__title" id="t-campus">CampusPortal</h4>
+            <p class="mini__line">A PHP and MySQL campus portal with role-based dashboards for students, teachers and admins — courses, grades, attendance, assignments and announcements.</p>
+            <p class="mini__stack"><span class="sr-only">Stack: </span>PHP · MySQL · HTML · CSS · JavaScript</p>
+            <div class="mini__links">
+              <a class="link-btn ulink" href="https://github.com/parnika0110/CampusPortal" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+              <button class="text-link ulink" data-open-project="CampusPortal" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            </div>
+          </div>
+        </article>
+        <article aria-labelledby="t-khana" class="mini mini--recipe reveal" data-category="ai-ml web" id="case-khana-kreation">
+          <p aria-hidden="true" class="mini__band"><span>Recipe card № 07</span><span>Serves: anyone with a fridge</span></p>
+          <button aria-label="Open Khana Kreation case notes and screenshots" class="shot-btn mini__shot" data-open-project="recipe-app" data-shot="1" type="button">
+            <span class="shot shot--zoom"><span aria-hidden="true" class="shot__bar"><i></i><i></i><i></i></span><span class="shot__img"><img alt="Khana Kreation ingredient input with dietary and cuisine preferences" decoding="async" height="800" loading="lazy" src="./images/khana-kreation/02.webp" style="object-position:50% 0%" width="1280"/></span></span>
+          </button>
+          <div class="mini__body">
+            <p class="mini__meta"><span class="case__num"><b>07</b> / 07</span><span class="label">AI recipe app</span></p>
+            <h4 class="mini__title" id="t-khana">Khana Kreation</h4>
+            <p class="mini__line">A Next.js recipe app that turns the ingredients you have into personalised recipes with Google Gemini — sign in to save, rate and comment on them.</p>
+            <p class="mini__stack"><span class="sr-only">Stack: </span>Next.js · React · Prisma · PostgreSQL · NextAuth · Google Gemini</p>
+            <div class="mini__links">
+              <a class="link-btn ulink" href="https://khanakreation.vercel.app/" rel="noopener noreferrer" target="_blank">Live demo <span aria-hidden="true" class="arrow">↗</span></a>
+              <a class="link-btn ulink" href="https://github.com/parnika0110/recipe-app" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+              <button class="text-link ulink" data-open-project="recipe-app" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Case notes extras: rendered inside the case-notes dialog for the compact projects. -->
+    <template data-notes="imperial-wheels">
+      <div class="notes-block">
+<dl class="pb">
+            <div><dt>Problem</dt><dd>Renting a car or bike should be simple: browse, pick a vehicle, book it and hear back quickly.</dd></div>
+            <div><dt>What we built</dt><dd>A secure MERN web app with JWT authentication, vehicle listings, CRUD operations, and a booking workflow where admins approve or reject requests, with automated status emails via Resend.</dd></div>
+          </dl>
+      </div>
+      <div class="notes-block">
+        <p class="label">Booking flow</p>
+<div>
+            
+            <ol class="flow">
+              <li class="flow__step"><b>1</b>Browse cars &amp; bikes</li><li aria-hidden="true" class="flow__arrow">→</li>
+              <li class="flow__step"><b>2</b>Vehicle details</li><li aria-hidden="true" class="flow__arrow">→</li>
+              <li class="flow__step"><b>3</b>Book (signed in · JWT)</li><li aria-hidden="true" class="flow__arrow">→</li>
+              <li class="flow__step"><b>4</b>Admin approval &amp; email</li>
+            </ol>
+          </div>
+      </div>
+    </template>
+    <template data-notes="metro-fare-calculator">
+      <div class="notes-block">
+<dl class="pb">
+            <div><dt>Problem</dt><dd>Planning a metro trip means knowing the route, where to change lines and what it will actually cost.</dd></div>
+            <div><dt>What I built</dt><dd>Graph-based route finding with interchange detection, and dynamic fares for peak and non-peak hours, Smart Card and NCMC discounts, and holidays.</dd></div>
+          </dl>
+        <p class="ticket"><span class="label">Fare rule · from the build</span><strong>Smart Card &amp; NCMC: 5% off peak · 10% off non-peak</strong></p>
+      </div>
+      <div class="notes-block">
+        <p class="label">How a fare is calculated</p>
+<div class="transit" role="group" aria-label="How a fare is calculated">
+            <ol>
+              <li><b>Pick stations</b><span>source → destination</span></li>
+              <li><b>Find route</b><span>network as a graph <br/>stations = nodes</span></li>
+              <li class="is-change"><b>Interchanges</b><span>detected when the <br/>route changes line</span></li>
+              <li><b>Fare rules</b><span>token · Smart Card · NCMC <br/>peak / non-peak · holidays</span></li>
+              <li class="is-end"><b>₹ Fare</b><span>route, stops &amp; <br/>journey details</span></li>
+            </ol>
+          </div>
+      </div>
+    </template>
+    <template data-notes="CampusPortal">
+      <div class="notes-block">
+<dl class="pb">
+            <div><dt>Problem</dt><dd>Academic activity and communication between students, teachers and admins need one organised place.</dd></div>
+            <div><dt>What I built</dt><dd>Student information management, faculty and student workflows, campus resources and dashboards — with role-based access for students, teachers and admins.</dd></div>
+          </dl>
+      </div>
+      <div class="notes-block">
+<figure class="sketch sketch--wide">
             <figcaption class="sk-caption"><span class="label">Three-tier architecture · from the README</span></figcaption>
             <svg aria-labelledby="sk-campus-t" role="img" viewBox="0 0 420 330">
               <title id="sk-campus-t">CampusPortal's three-tier architecture: students, teachers and admins use the presentation layer (HTML, CSS, JavaScript), which talks to a PHP application layer with session-based, role-based access, backed by a MySQL data layer.</title>
@@ -655,67 +701,16 @@
               <text class="sk-label sk-label--sm" text-anchor="middle" x="210" y="300">users · courses · grades · attendance …</text>
             </svg>
           </figure>
-          <div class="ledger-shots">
-            <button aria-label="Open CampusPortal case notes and screenshots" class="shot-btn" data-open-project="CampusPortal" data-shot="0" type="button">
-              <div class="shot shot--zoom"><div class="shot__img" style="aspect-ratio:16/10"><img alt="CampusPortal landing page" decoding="async" height="700" loading="lazy" src="./images/campusportal/01.webp" width="1280"/></div></div>
-            </button>
-            <button aria-label="Open CampusPortal sign-in screenshot" class="shot-btn" data-open-project="CampusPortal" data-shot="1" type="button">
-              <div class="shot shot--zoom"><div class="shot__img" style="aspect-ratio:16/10"><img alt="CampusPortal sign-in screen" decoding="async" height="800" loading="lazy" src="./images/campusportal/02.webp" width="1280"/></div></div>
-            </button>
-          </div>
-        </div>
-        <div class="case__body">
-          <dl class="pb">
-            <div><dt>Problem</dt><dd>Academic activity and communication between students, teachers and admins need one organised place.</dd></div>
-            <div><dt>What I built</dt><dd>Student information management, faculty and student workflows, campus resources and dashboards — with role-based access for students, teachers and admins.</dd></div>
-          </dl>
-        </div>
-        <div class="case__foot">
-          <div class="stack"><p class="label">Stack</p><ul><li>PHP</li><li>MySQL</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul></div>
-          <div class="case__links">
-            <a class="btn btn--ink btn--sm" href="https://github.com/parnika0110/CampusPortal" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="CampusPortal" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 07 — Khana Kreation (recipe card) -->
-      <article aria-labelledby="t-khana" class="case case--recipe reveal" data-category="ai-ml web" id="case-khana-kreation">
-        <div aria-hidden="true" class="recipe-band"><span class="label">Recipe card № 07</span><span class="label">Serves: anyone with a fridge</span></div>
-        <div class="case__head">
-          <div class="case__top">
-            <span class="case__num"><b>07</b> / 07</span>
-            <span class="status-pill">Live</span>
-          </div>
-          <p class="label label--tan">AI / ML · Web</p>
-          <h3 class="case__title" id="t-khana">Khana Kreation</h3>
-          <p class="case__line">An AI-powered recipe recommender that suggests personalised recipes from the ingredients you have.</p>
-        </div>
-        <div class="case__media">
-          <button aria-label="Open Khana Kreation case notes and screenshots" class="shot-btn" data-open-project="recipe-app" data-shot="1" type="button">
-            <div class="shot shot--zoom">
-              <div aria-hidden="true" class="shot__bar"><i></i><i></i><i></i><span>khanakreation.vercel.app</span></div>
-              <div class="shot__img" style="aspect-ratio:1280/800"><img alt="Khana Kreation ingredient input with dietary and cuisine preferences" decoding="async" height="800" loading="lazy" src="./images/khana-kreation/02.webp" width="1280"/></div>
-            </div>
-          </button>
-          <p class="shot-cap label"><span>Screenshot · ingredients &amp; preferences</span><span>2 frames</span></p>
-        </div>
-        <div class="case__body">
-          <dl class="pb recipe">
+      </div>
+    </template>
+    <template data-notes="recipe-app">
+      <div class="notes-block">
+<dl class="pb recipe">
             <div><dt>The problem</dt><dd>Deciding what to cook with what's already in the kitchen.</dd></div>
             <div><dt>Method</dt><dd>Add your ingredients, set dietary and cuisine preferences, and get personalised recipes generated with Google Gemini — then save, rate and comment on them.</dd></div>
           </dl>
-        </div>
-        <div class="case__foot">
-          <div class="stack stack--ingredients"><p class="label">Ingredients</p><ul><li>Next.js</li><li>React</li><li>Prisma</li><li>PostgreSQL</li><li>NextAuth</li><li>Google Gemini</li><li>Tailwind CSS</li></ul></div>
-          <div class="case__links">
-            <a class="btn btn--ink btn--sm" href="https://khanakreation.vercel.app/" rel="noopener noreferrer" target="_blank">Live demo <span aria-hidden="true" class="arrow">↗</span></a>
-            <a class="btn btn--ghost btn--sm" href="https://github.com/parnika0110/recipe-app" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="recipe-app" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
-          </div>
-        </div>
-      </article>
-    </div>
+      </div>
+    </template>
 
     <!-- Other builds -->
     <div class="others reveal" id="other-builds">
@@ -1106,6 +1101,7 @@
       <button aria-label="Close project details" class="btn btn--ghost btn--sm modal__close" id="projectModalClose" type="button">Close ×</button>
     </div>
     <p class="copy" id="projectModalOverview" style="margin-top:1rem"></p>
+    <div class="modal__extra" hidden id="projectModalExtra"></div>
     <div class="gallery" hidden id="projectGallery">
       <img alt="" class="gallery__main" id="galleryMain"/>
       <p class="gallery__cap label" id="galleryCap"></p>
