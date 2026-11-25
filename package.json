@@ -2,6 +2,7 @@
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
     "sync": "node scripts/sync-projects.js",
+    "sync:offline": "node scripts/sync-projects.js --offline",
     "sync:build": "node scripts/sync-projects.js && tailwindcss -i ./src/input.css -o ./styles.css --minify"
   },
   "devDependencies": {

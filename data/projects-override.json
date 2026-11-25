@@ -76,7 +76,11 @@
     "tech": ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Nodemailer"],
     "repositoryUrl": "https://github.com/parnika0110/imperial-wheels",
     "demoUrl": "",
-    "imageFolder": "images/imperial-wheels"
+    "imageFolder": "images/imperial-wheels",
+    "screenshots": [
+      { "src": "images/imperial-wheels/01.webp", "alt": "Imperial Wheels home page with the hero, vehicle search and navigation" },
+      { "src": "images/imperial-wheels/02.webp", "alt": "Imperial Wheels login screen" }
+    ]
   },
   "metro-fare-calculator": {
     "title": "Metro Fare Calculator",
@@ -100,7 +104,11 @@
     "tech": ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MongoDB"],
     "repositoryUrl": "https://github.com/parnika0110/metro-fare-calculator",
     "demoUrl": "",
-    "imageFolder": "images/metro"
+    "imageFolder": "images/metro",
+    "screenshots": [
+      { "src": "images/metro/01.webp", "alt": "Metro Fare Calculator showing a Whitefield to Majestic route, fare and alternate routes" },
+      { "src": "images/metro/02.webp", "alt": "Metro Fare Calculator fare slab chart for tokens, Smart Cards and NCMC" }
+    ]
   },
   "Gesture_App": {
     "title": "Gesture Controlled Infotainment System",
@@ -124,7 +132,10 @@
     "tech": ["Python", "MediaPipe", "OpenCV", "HTML", "CSS", "JavaScript", "Leaflet API"],
     "repositoryUrl": "https://github.com/parnika0110/Gesture_App",
     "demoUrl": "",
-    "imageFolder": "images/gesture"
+    "imageFolder": "images/gesture",
+    "screenshots": [
+      { "src": "images/gesture/01.webp", "alt": "Gesture-controlled infotainment dashboard with Music, Navigation, Phone and Car Settings" }
+    ]
   },
   "CampusPortal": {
     "title": "CampusPortal",
@@ -148,7 +159,11 @@
     "tech": ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
     "repositoryUrl": "https://github.com/parnika0110/CampusPortal",
     "demoUrl": "",
-    "imageFolder": "images/campusportal"
+    "imageFolder": "images/campusportal",
+    "screenshots": [
+      { "src": "images/campusportal/01.webp", "alt": "CampusPortal landing page" },
+      { "src": "images/campusportal/02.webp", "alt": "CampusPortal sign-in screen" }
+    ]
   },
   "recipe-app": {
     "title": "Khana Kreation",
@@ -172,7 +187,11 @@
     "tech": ["React.js", "Node.js", "MongoDB", "AI APIs", "JavaScript"],
     "repositoryUrl": "https://github.com/parnika0110/recipe-app",
     "demoUrl": "https://khanakreation.vercel.app/",
-    "imageFolder": "images/khana-kreation"
+    "imageFolder": "images/khana-kreation",
+    "screenshots": [
+      { "src": "images/khana-kreation/01.webp", "alt": "Khana Kreation home page" },
+      { "src": "images/khana-kreation/02.webp", "alt": "Khana Kreation ingredient input with dietary and cuisine preferences" }
+    ]
   },
   "subscription-management-system": {
     "title": "PlanTopia",
@@ -180,7 +199,7 @@
     "displayOrder": 8,
     "featured": false,
     "eyebrow": "",
-    "subtitle": "Subscription management platform",
+    "subtitle": "Subscription management platform.",
     "tags": "TypeScript · Next.js · MongoDB",
     "category": "Full-Stack · Subscription Management",
     "categories": ["full-stack"],
@@ -205,7 +224,7 @@
     "displayOrder": 9,
     "featured": false,
     "eyebrow": "",
-    "subtitle": "Neural-network based emotion detection experiment",
+    "subtitle": "Neural-network emotion classification experiment.",
     "tags": "Python · ANN · Machine Learning",
     "category": "AI / ML Experiment",
     "categories": ["ai-ml"],
@@ -230,8 +249,8 @@
     "displayOrder": 10,
     "featured": false,
     "eyebrow": "",
-    "subtitle": "Lightweight notes management application",
-    "tags": "JavaScript · Web",
+    "subtitle": "Lightweight browser-based notes app.",
+    "tags": "JavaScript · HTML · CSS",
     "category": "Web Application",
     "categories": ["web"],
     "description": "Lightweight notes management application",
