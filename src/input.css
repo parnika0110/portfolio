@@ -973,8 +973,6 @@
   .about--calm .copy + .copy { margin-top: 1.15rem; }
 
   /* focus areas: one inline line instead of a block of chips */
-  .focus-list { display: flex; flex-wrap: wrap; gap: .3rem 0; margin-top: .5rem; font-size: .98rem; line-height: 1.5; color: var(--ink-2); }
-  .focus-list li:not(:last-child)::after { content: "·"; margin-inline: .55rem; color: var(--tan-700); }
 
   /* right column: three quiet entries divided by hairlines, no filled cards */
   .facts { display: grid; align-content: start; }
