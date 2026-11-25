@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 /**
  * scripts/sync-projects.js
@@ -11,7 +11,15 @@
  *  3. Filter: owner repos, not forked, not archived, topic="portfolio"
  *  4. Merge: overrides take priority; newly discovered repos appended
  *  5. Write data/projects.json  (deterministic - no volatile timestamps)
- *  6. Patch index.html between stable sentinel comments
+ *  6. Patch index.html: the case-notes modal data in
+ *     <script id="project-data" type="application/json">, for the showcased projects only.
+ *     The showcase (three case studies + four postcards) is curated and hand-composed in
+ *     index.html; it is NOT regenerated. Projects with section "experiments" — including
+ *     newly discovered repos — are recorded in data/projects.json but not shown on the page.
+ *
+ * Usage:
+ *   npm run sync                         fetch GitHub + patch files
+ *   node scripts/sync-projects.js --offline   use overrides only (no network)
  *
  * Safety rules:
  *  - If GitHub API fails: exit non-zero, DO NOT touch any files.
@@ -30,13 +38,10 @@ const REQUIRED_TOPIC   = 'portfolio';
 const OVERRIDES_FILE   = path.join(__dirname, '..', 'data', 'projects-override.json');
 const OUTPUT_DATA_FILE = path.join(__dirname, '..', 'data', 'projects.json');
 const INDEX_HTML_FILE  = path.join(__dirname, '..', 'index.html');
+const OFFLINE          = process.argv.includes('--offline');
 
-// Sentinel comments that bracket the auto-managed sections in index.html.
-// Ensure index.html contains these exact strings.
-const SENTINEL_FEATURED_START    = '<!-- SYNC:featured-start -->';
-const SENTINEL_FEATURED_END      = '<!-- SYNC:featured-end -->';
-const SENTINEL_EXPERIMENTS_START = '<!-- SYNC:experiments-start -->';
-const SENTINEL_EXPERIMENTS_END   = '<!-- SYNC:experiments-end -->';
+// The case-notes modal reads its data from this JSON block.
+const PROJECT_DATA_PATTERN = /(<script id="project-data" type="application\/json">)[\s\S]*?(<\/script>)/;
 
 // ---------------------------------------------------------------------------
 // GitHub API helpers
@@ -140,78 +145,19 @@ function esc(text) {
 // HTML card builders
 // ---------------------------------------------------------------------------
 
-function buildFeaturedCard(p, fIdx, modalIdx) {
-  const num  = String(fIdx + 1).padStart(2, '0');
-  const cats = p.categories.join(' ');
-
-  const eyebrowHtml = p.eyebrow
-    ? `<p class="eyebrow${p.statusBadge ? '' : ' mb-2'}" style="color:${p.eyebrowColor || 'var(--blue-deep)'}">${esc(p.eyebrow)}</p>`
-    : '';
-  const badgeHtml = p.statusBadge
-    ? `<span class="status-badge"><span class="dot"></span>${esc(p.statusBadge)}</span>`
-    : '';
-  const eyebrowWrapper = (p.eyebrow && p.statusBadge)
-    ? `<div class="flex flex-wrap items-center gap-3 mb-2">\n${eyebrowHtml}\n${badgeHtml}\n</div>`
-    : (p.eyebrow ? eyebrowHtml : '');
-
-  const chips   = (p.chips || []).map(c => `<span class="chip">${esc(c)}</span>`).join('');
-  const liveBtn = p.demoUrl
-    ? `<a class="text-sm font-medium underline-hover whitespace-nowrap" href="${esc(p.demoUrl)}" rel="noopener noreferrer" target="_blank">Live Demo &#x2197;</a>`
-    : '';
-
-  return `<!-- Project ${fIdx + 1} \u2014 ${esc(p.title)} -->
-<article class="reveal card${p.featured ? ' featured-card' : ''} lift p-7 sm:p-9 project-card" data-category="${cats}" data-project="${modalIdx}"><span aria-hidden="true" class="project-number">${num}</span>
-<div class="grid sm:grid-cols-[1fr_auto] gap-6 items-start">
-<div>
-${eyebrowWrapper}
-<h3 class="font-display text-2xl font-semibold mb-2">${esc(p.title)}</h3>
-<p class="max-w-lg" style="color:var(--ink-soft)">${esc(p.description)}</p>
-<div class="mt-5 flex flex-wrap gap-2">
-${chips}
-</div>
-</div>
-<div class="flex sm:flex-col gap-3 sm:items-end shrink-0">
-<button aria-label="View project details" class="detail-btn" data-open-project="${modalIdx}">View Details</button>
-${liveBtn}
-<a class="text-sm font-medium underline-hover whitespace-nowrap" href="${esc(p.repositoryUrl)}" rel="noopener noreferrer" target="_blank">GitHub &#x2197;</a>
-</div>
-</div>
-</article>`;
-}
-
-function buildExperimentCard(p, modalIdx) {
-  return `<article class="card lift p-5">
-<p class="font-display font-semibold">${esc(p.title)}</p>
-<p class="mt-2 text-sm" style="color:var(--ink-soft)">${esc(p.subtitle || p.description)}</p>
-<p class="mt-3 font-mono text-xs" style="color:var(--ink-soft)">${esc(p.tags || (p.chips || []).join(' \u00b7 '))}</p>
-<div class="mt-5 flex gap-4 items-center">
-<button aria-label="View ${esc(p.title)} details" class="detail-btn" data-open-project="${modalIdx}">View Details</button>
-<a class="text-sm font-medium underline-hover" href="${esc(p.repositoryUrl)}" rel="noopener noreferrer" target="_blank">GitHub &#x2197;</a>
-</div></article>`;
-}
-
 // ---------------------------------------------------------------------------
 // HTML patching
 // ---------------------------------------------------------------------------
 
-function replaceBetweenSentinels(html, start, end, content) {
-  const si = html.indexOf(start);
-  const ei = html.indexOf(end);
-  if (si === -1) throw new Error(`Sentinel not found: ${start}`);
-  if (ei === -1) throw new Error(`Sentinel not found: ${end}`);
-  if (ei <= si)  throw new Error(`End sentinel before start: ${end}`);
-  return html.slice(0, si + start.length) + '\n' + content + '\n' + html.slice(ei);
-}
-
-function replaceModalArray(html, modalProjects) {
-  const pattern = /const projects = \[[\s\S]*?\];\s*const pm=/;
-  if (!pattern.test(html)) {
+function replaceProjectData(html, modalProjects) {
+  if (!PROJECT_DATA_PATTERN.test(html)) {
     throw new Error(
-      'Cannot locate `const projects` array in index.html. ' +
-      'Ensure it is immediately followed by `const pm=` on the next line.'
+      'Cannot locate <script id="project-data" type="application/json"> in index.html.'
     );
   }
-  return html.replace(pattern, `const projects = ${JSON.stringify(modalProjects)};\n  const pm=`);
+  // Escape "<" so the JSON can never close the <script> element early.
+  const json = JSON.stringify(modalProjects).replace(/</g, '\\u003c');
+  return html.replace(PROJECT_DATA_PATTERN, (_, open, close) => `${open}${json}${close}`);
 }
 
 // ---------------------------------------------------------------------------
@@ -236,8 +182,13 @@ async function sync() {
   // 2. Fetch repos (hard fail - no disk writes on error)
   let repos;
   try {
-    repos = await fetchAllRepos(GITHUB_USERNAME);
-    console.log(`[Sync] Fetched ${repos.length} total repos.`);
+    if (OFFLINE) {
+      repos = [];
+      console.log('[Sync] --offline: skipping GitHub, using overrides only.');
+    } else {
+      repos = await fetchAllRepos(GITHUB_USERNAME);
+      console.log(`[Sync] Fetched ${repos.length} total repos.`);
+    }
   } catch (err) {
     console.error(`[Sync] GitHub fetch failed: ${err.message}`);
     console.error('[Sync] Aborting - no files were modified.');
@@ -288,6 +239,7 @@ async function sync() {
       repositoryUrl: ov.repositoryUrl || (gh && gh.html_url) || `https://github.com/${GITHUB_USERNAME}/${key}`,
       demoUrl:      ov.demoUrl != null ? ov.demoUrl : ((gh && gh.homepage) || ''),
       imageFolder:  ov.imageFolder || '',
+      screenshots:  Array.isArray(ov.screenshots) ? ov.screenshots : [],
     });
   }
 
@@ -301,7 +253,8 @@ async function sync() {
     projectsMap.set(lk, {
       id:           repo.name,
       title:        normalizeTitle(repo.name),
-      section:      'featured',
+      // New repos are recorded but not shown; to showcase one, compose it in index.html and set its section via overrides.
+      section:      'experiments',
       displayOrder: 20 + projectsMap.size,
       featured:     false,
       eyebrow:      repo.language || 'Software Project',
@@ -323,6 +276,7 @@ async function sync() {
       repositoryUrl: repo.html_url,
       demoUrl:      repo.homepage || '',
       imageFolder:  '',
+      screenshots:  [],
     });
   }
 
@@ -346,62 +300,33 @@ async function sync() {
   }
   let html = fs.readFileSync(INDEX_HTML_FILE, 'utf8');
 
-  // Build modal array - indices must align with `all` order
-  const modalProjects = all.map(p => {
-    const item = { title: p.title, category: p.category, overview: p.overview, features: p.features, tech: p.tech, github: p.repositoryUrl, folder: p.imageFolder || '' };
+  // Case-notes modal data for the showcased projects, looked up by id (data-open-project="<id>").
+  const modalProjects = featured.map(p => {
+    const item = { id: p.id, title: p.title, category: p.category, overview: p.overview, features: p.features, tech: p.tech, github: p.repositoryUrl, screenshots: p.screenshots || [] };
     if (p.demoUrl) item.live = p.demoUrl;
     return item;
   });
-  const idxMap = new Map(all.map((p, i) => [p.id.toLowerCase(), i]));
 
-  const featuredHtml    = featured.map((p, i) => buildFeaturedCard(p, i, idxMap.get(p.id.toLowerCase()))).join('\n');
-  const experimentsHtml = experiments.map(p => buildExperimentCard(p, idxMap.get(p.id.toLowerCase()))).join('');
-
-  // Patch featured section (prefer sentinels, fall back to legacy)
-  try {
-    html = replaceBetweenSentinels(html, SENTINEL_FEATURED_START, SENTINEL_FEATURED_END, featuredHtml);
-    console.log('[Sync] Patched featured section via sentinels.');
-  } catch (e) {
-    console.warn(`[Sync] Sentinel missing (${e.message}); trying legacy #projectList...`);
-    const tag = '<div class="space-y-6" id="projectList">';
-    const s   = html.indexOf(tag);
-    const e2  = html.indexOf('<!-- More experiments -->');
-    if (s !== -1 && e2 !== -1) {
-      html = html.slice(0, s + tag.length) + '\n' + featuredHtml + '\n</div>\n' + html.slice(e2);
-      console.log('[Sync] Patched #projectList via legacy fallback.');
-    } else {
-      console.error('[Sync] Cannot patch featured section - add sentinel comments to index.html.');
+  // Featured case studies are hand-composed; just flag any that are missing from the page.
+  for (const p of featured) {
+    if (!html.includes(`data-open-project="${p.id}"`)) {
+      console.warn(`[Sync] Showcased project '${p.id}' is not on the page — add it to index.html by hand or set its section to "experiments".`);
     }
+  }
+  if (experiments.length) {
+    console.log(`[Sync] Not shown on the page (section "experiments"): ${experiments.map(p => p.id).join(', ')}`);
   }
 
   try {
-    html = replaceBetweenSentinels(html, SENTINEL_EXPERIMENTS_START, SENTINEL_EXPERIMENTS_END, experimentsHtml);
-    console.log('[Sync] Patched experiments section via sentinels.');
-  } catch (e) {
-    console.warn(`[Sync] Sentinel missing (${e.message}); trying legacy experiments grid...`);
-    const heading    = '<p class="eyebrow mb-5">more experiments</p>';
-    const hIdx       = html.indexOf(heading);
-    const gridTag    = '<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">';
-    const gridStart  = hIdx !== -1 ? html.indexOf(gridTag, hIdx) : -1;
-    if (gridStart !== -1) {
-      const gridEnd = html.indexOf('</div>', gridStart + gridTag.length);
-      if (gridEnd !== -1) {
-        html = html.slice(0, gridStart + gridTag.length) + experimentsHtml + html.slice(gridEnd);
-        console.log('[Sync] Patched experiments via legacy fallback.');
-      }
-    }
-  }
-
-  try {
-    html = replaceModalArray(html, modalProjects);
-    console.log('[Sync] Patched modal `const projects` array.');
+    html = replaceProjectData(html, modalProjects);
+    console.log('[Sync] Patched case-notes modal data.');
   } catch (e) {
     console.error(`[Sync] Fatal: ${e.message}`);
     process.exit(1);
   }
 
   fs.writeFileSync(INDEX_HTML_FILE, html, 'utf8');
-  console.log(`[Sync] Done. ${featured.length} featured, ${experiments.length} experiments.`);
+  console.log(`[Sync] Done. ${featured.length} showcased, ${experiments.length} recorded only.`);
 }
 
 if (require.main === module) {

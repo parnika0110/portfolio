@@ -1,5 +1,4 @@
 {
-  "syncedAt": "2026-10-27T20:43:38.894Z",
   "totalCount": 10,
   "featuredCount": 7,
   "experimentsCount": 3,
@@ -55,8 +54,17 @@
       ],
       "repositoryUrl": "https://github.com/parnika0110/oppy",
       "demoUrl": "https://myoppy.xyz/",
-      "imageFolder": "",
-      "lastUpdated": "2026-10-27T20:43:38.893Z"
+      "imageFolder": "images/oppy",
+      "screenshots": [
+        {
+          "src": "images/oppy/01.webp",
+          "alt": "OPPY’s live landing page at myoppy.xyz, with the headline “Good opportunities shouldn’t be this hard to find.”"
+        },
+        {
+          "src": "images/oppy/02.webp",
+          "alt": "OPPY’s discovery step: ask in your own words by typing or speaking, or choose opportunity types step by step"
+        }
+      ]
     },
     {
       "id": "mediassist",
@@ -77,12 +85,12 @@
       "description": "MediAssist is an AI-assisted healthcare platform focused on prescription analysis, medication management and doctor appointment workflows.",
       "overview": "MediAssist is an AI-assisted healthcare platform focused on prescription analysis, medication management, symptom assessment and doctor appointment workflows.",
       "features": [
-        "OCR-based prescription analysis and medicine extraction",
+        "Prescription OCR service (FastAPI, PaddleOCR, OpenCV) that extracts each medicine’s name, dosage, frequency and duration — being integrated with the app",
         "Medication management and reminder workflows",
         "Medication history tracking",
         "Symptom-based health assessment",
         "Doctor directory and appointment booking",
-        "Email confirmations"
+        "Appointment email confirmations (planned)"
       ],
       "chips": [
         "Flutter",
@@ -95,15 +103,15 @@
         "Dart",
         "Firebase",
         "Cloud Firestore",
-        "OCR",
-        "AI / ML",
-        "REST APIs",
-        "Email Services"
+        "Python",
+        "FastAPI",
+        "PaddleOCR",
+        "OpenCV"
       ],
       "repositoryUrl": "https://github.com/parnika0110/mediassist",
       "demoUrl": "",
       "imageFolder": "images/mediassist",
-      "lastUpdated": "2026-10-27T20:43:38.894Z"
+      "screenshots": []
     },
     {
       "id": "imperial-wheels",
@@ -128,7 +136,8 @@
         "Vehicle listings",
         "CRUD operations",
         "Booking workflow",
-        "Automated email notifications using Nodemailer"
+        "Admin dashboard to approve or reject bookings and add, edit or remove vehicles",
+        "Automated booking-status emails (approved / rejected) sent with Resend"
       ],
       "chips": [
         "MongoDB",
@@ -142,12 +151,21 @@
         "React.js",
         "Node.js",
         "JWT",
-        "Nodemailer"
+        "Resend"
       ],
       "repositoryUrl": "https://github.com/parnika0110/imperial-wheels",
       "demoUrl": "",
       "imageFolder": "images/imperial-wheels",
-      "lastUpdated": "2026-10-27T20:43:38.894Z"
+      "screenshots": [
+        {
+          "src": "images/imperial-wheels/01.webp",
+          "alt": "Imperial Wheels home page with the hero, vehicle search and navigation"
+        },
+        {
+          "src": "images/imperial-wheels/02.webp",
+          "alt": "Imperial Wheels login screen"
+        }
+      ]
     },
     {
       "id": "metro-fare-calculator",
@@ -171,7 +189,7 @@
         "Route calculation",
         "Dynamic fare calculation",
         "Peak and non-peak pricing",
-        "Smart card / token discounts",
+        "Smart Card and NCMC discounts (5% peak, 10% non-peak); no discount on tokens",
         "Holiday-based fare logic"
       ],
       "chips": [
@@ -191,7 +209,16 @@
       "repositoryUrl": "https://github.com/parnika0110/metro-fare-calculator",
       "demoUrl": "",
       "imageFolder": "images/metro",
-      "lastUpdated": "2026-10-27T20:43:38.894Z"
+      "screenshots": [
+        {
+          "src": "images/metro/01.webp",
+          "alt": "Metro Fare Calculator showing a Whitefield to Majestic route, fare and alternate routes"
+        },
+        {
+          "src": "images/metro/02.webp",
+          "alt": "Metro Fare Calculator fare slab chart for tokens, Smart Cards and NCMC"
+        }
+      ]
     },
     {
       "id": "Gesture_App",
@@ -236,7 +263,12 @@
       "repositoryUrl": "https://github.com/parnika0110/Gesture_App",
       "demoUrl": "",
       "imageFolder": "images/gesture",
-      "lastUpdated": "2026-10-27T20:43:38.894Z"
+      "screenshots": [
+        {
+          "src": "images/gesture/01.webp",
+          "alt": "Gesture-controlled infotainment dashboard with Music, Navigation, Phone and Car Settings"
+        }
+      ]
     },
     {
       "id": "CampusPortal",
@@ -279,7 +311,16 @@
       "repositoryUrl": "https://github.com/parnika0110/CampusPortal",
       "demoUrl": "",
       "imageFolder": "images/campusportal",
-      "lastUpdated": "2026-10-27T20:43:38.894Z"
+      "screenshots": [
+        {
+          "src": "images/campusportal/01.webp",
+          "alt": "CampusPortal landing page"
+        },
+        {
+          "src": "images/campusportal/02.webp",
+          "alt": "CampusPortal sign-in screen"
+        }
+      ]
     },
     {
       "id": "recipe-app",
@@ -302,27 +343,41 @@
       "features": [
         "Personalized recipe recommendations",
         "Ingredient-based suggestions",
-        "User preference customization",
-        "AI-assisted content generation",
+        "Dietary and cuisine preference customization",
+        "AI-generated recipes with Google Gemini, with AI recipe images from Pollinations.ai",
+        "Sign-in, saved recipes, 5-star ratings and comments",
         "Responsive interface"
       ],
       "chips": [
-        "React.js",
-        "Node.js",
-        "MongoDB",
-        "AI APIs"
+        "Next.js",
+        "Prisma",
+        "PostgreSQL",
+        "Google Gemini"
       ],
       "tech": [
-        "React.js",
-        "Node.js",
-        "MongoDB",
-        "AI APIs",
+        "Next.js",
+        "React",
+        "Prisma",
+        "PostgreSQL",
+        "NextAuth",
+        "Google Gemini API",
+        "Pollinations.ai",
+        "Tailwind CSS",
         "JavaScript"
       ],
       "repositoryUrl": "https://github.com/parnika0110/recipe-app",
       "demoUrl": "https://khanakreation.vercel.app/",
       "imageFolder": "images/khana-kreation",
-      "lastUpdated": "2026-10-27T20:43:38.894Z"
+      "screenshots": [
+        {
+          "src": "images/khana-kreation/01.webp",
+          "alt": "Khana Kreation home page"
+        },
+        {
+          "src": "images/khana-kreation/02.webp",
+          "alt": "Khana Kreation ingredient input with dietary and cuisine preferences"
+        }
+      ]
     },
     {
       "id": "subscription-management-system",
@@ -333,7 +388,7 @@
       "eyebrow": "",
       "eyebrowColor": "var(--blue-deep)",
       "statusBadge": "",
-      "subtitle": "Subscription management platform",
+      "subtitle": "Subscription management platform.",
       "tags": "TypeScript · Next.js · MongoDB",
       "category": "Full-Stack · Subscription Management",
       "categories": [
@@ -363,7 +418,7 @@
       "repositoryUrl": "https://github.com/parnika0110/subscription-management-system",
       "demoUrl": "",
       "imageFolder": "",
-      "lastUpdated": "2026-10-27T20:43:38.894Z"
+      "screenshots": []
     },
     {
       "id": "emotion-detector-ann",
@@ -374,7 +429,7 @@
       "eyebrow": "",
       "eyebrowColor": "var(--blue-deep)",
       "statusBadge": "",
-      "subtitle": "Neural-network based emotion detection experiment",
+      "subtitle": "Neural-network emotion classification experiment.",
       "tags": "Python · ANN · Machine Learning",
       "category": "AI / ML Experiment",
       "categories": [
@@ -402,7 +457,7 @@
       "repositoryUrl": "https://github.com/parnika0110/emotion-detector-ann",
       "demoUrl": "",
       "imageFolder": "",
-      "lastUpdated": "2026-10-27T20:43:38.894Z"
+      "screenshots": []
     },
     {
       "id": "NOTES_KEEPER",
@@ -413,8 +468,8 @@
       "eyebrow": "",
       "eyebrowColor": "var(--blue-deep)",
       "statusBadge": "",
-      "subtitle": "Lightweight notes management application",
-      "tags": "JavaScript · Web",
+      "subtitle": "Lightweight browser-based notes app.",
+      "tags": "JavaScript · HTML · CSS",
       "category": "Web Application",
       "categories": [
         "web"
@@ -440,7 +495,7 @@
       "repositoryUrl": "https://github.com/parnika0110/NOTES_KEEPER",
       "demoUrl": "",
       "imageFolder": "",
-      "lastUpdated": "2026-10-27T20:43:38.894Z"
+      "screenshots": []
     }
   ]
 }

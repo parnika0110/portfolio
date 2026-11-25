@@ -26,7 +26,11 @@
     "tech": ["Next.js 15", "React 19", "TypeScript", "MongoDB", "Sarvam AI", "OpenAI", "AWS Lambda", "AWS Amplify", "EmailJS", "Tailwind CSS", "Vitest"],
     "repositoryUrl": "https://github.com/parnika0110/oppy",
     "demoUrl": "https://myoppy.xyz/",
-    "imageFolder": ""
+    "imageFolder": "images/oppy",
+    "screenshots": [
+      { "src": "images/oppy/01.webp", "alt": "OPPY’s live landing page at myoppy.xyz, with the headline “Good opportunities shouldn’t be this hard to find.”" },
+      { "src": "images/oppy/02.webp", "alt": "OPPY’s discovery step: ask in your own words by typing or speaking, or choose opportunity types step by step" }
+    ]
   },
   "mediassist": {
     "title": "MediAssist",
@@ -41,15 +45,15 @@
     "description": "MediAssist is an AI-assisted healthcare platform focused on prescription analysis, medication management and doctor appointment workflows.",
     "overview": "MediAssist is an AI-assisted healthcare platform focused on prescription analysis, medication management, symptom assessment and doctor appointment workflows.",
     "features": [
-      "OCR-based prescription analysis and medicine extraction",
+      "Prescription OCR service (FastAPI, PaddleOCR, OpenCV) that extracts each medicine’s name, dosage, frequency and duration — being integrated with the app",
       "Medication management and reminder workflows",
       "Medication history tracking",
       "Symptom-based health assessment",
       "Doctor directory and appointment booking",
-      "Email confirmations"
+      "Appointment email confirmations (planned)"
     ],
     "chips": ["Flutter", "Dart", "Firebase", "Cloud Firestore"],
-    "tech": ["Flutter", "Dart", "Firebase", "Cloud Firestore", "OCR", "AI / ML", "REST APIs", "Email Services"],
+    "tech": ["Flutter", "Dart", "Firebase", "Cloud Firestore", "Python", "FastAPI", "PaddleOCR", "OpenCV"],
     "repositoryUrl": "https://github.com/parnika0110/mediassist",
     "demoUrl": "",
     "imageFolder": "images/mediassist"
@@ -70,13 +74,18 @@
       "Vehicle listings",
       "CRUD operations",
       "Booking workflow",
-      "Automated email notifications using Nodemailer"
+      "Admin dashboard to approve or reject bookings and add, edit or remove vehicles",
+      "Automated booking-status emails (approved / rejected) sent with Resend"
     ],
     "chips": ["MongoDB", "Express.js", "React.js", "Node.js"],
-    "tech": ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Nodemailer"],
+    "tech": ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Resend"],
     "repositoryUrl": "https://github.com/parnika0110/imperial-wheels",
     "demoUrl": "",
-    "imageFolder": "images/imperial-wheels"
+    "imageFolder": "images/imperial-wheels",
+    "screenshots": [
+      { "src": "images/imperial-wheels/01.webp", "alt": "Imperial Wheels home page with the hero, vehicle search and navigation" },
+      { "src": "images/imperial-wheels/02.webp", "alt": "Imperial Wheels login screen" }
+    ]
   },
   "metro-fare-calculator": {
     "title": "Metro Fare Calculator",
@@ -93,14 +102,18 @@
       "Route calculation",
       "Dynamic fare calculation",
       "Peak and non-peak pricing",
-      "Smart card / token discounts",
+      "Smart Card and NCMC discounts (5% peak, 10% non-peak); no discount on tokens",
       "Holiday-based fare logic"
     ],
     "chips": ["HTML", "CSS", "JavaScript", "Node.js"],
     "tech": ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MongoDB"],
     "repositoryUrl": "https://github.com/parnika0110/metro-fare-calculator",
     "demoUrl": "",
-    "imageFolder": "images/metro"
+    "imageFolder": "images/metro",
+    "screenshots": [
+      { "src": "images/metro/01.webp", "alt": "Metro Fare Calculator showing a Whitefield to Majestic route, fare and alternate routes" },
+      { "src": "images/metro/02.webp", "alt": "Metro Fare Calculator fare slab chart for tokens, Smart Cards and NCMC" }
+    ]
   },
   "Gesture_App": {
     "title": "Gesture Controlled Infotainment System",
@@ -124,7 +137,10 @@
     "tech": ["Python", "MediaPipe", "OpenCV", "HTML", "CSS", "JavaScript", "Leaflet API"],
     "repositoryUrl": "https://github.com/parnika0110/Gesture_App",
     "demoUrl": "",
-    "imageFolder": "images/gesture"
+    "imageFolder": "images/gesture",
+    "screenshots": [
+      { "src": "images/gesture/01.webp", "alt": "Gesture-controlled infotainment dashboard with Music, Navigation, Phone and Car Settings" }
+    ]
   },
   "CampusPortal": {
     "title": "CampusPortal",
@@ -148,7 +164,11 @@
     "tech": ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
     "repositoryUrl": "https://github.com/parnika0110/CampusPortal",
     "demoUrl": "",
-    "imageFolder": "images/campusportal"
+    "imageFolder": "images/campusportal",
+    "screenshots": [
+      { "src": "images/campusportal/01.webp", "alt": "CampusPortal landing page" },
+      { "src": "images/campusportal/02.webp", "alt": "CampusPortal sign-in screen" }
+    ]
   },
   "recipe-app": {
     "title": "Khana Kreation",
@@ -164,15 +184,20 @@
     "features": [
       "Personalized recipe recommendations",
       "Ingredient-based suggestions",
-      "User preference customization",
-      "AI-assisted content generation",
+      "Dietary and cuisine preference customization",
+      "AI-generated recipes with Google Gemini, with AI recipe images from Pollinations.ai",
+      "Sign-in, saved recipes, 5-star ratings and comments",
       "Responsive interface"
     ],
-    "chips": ["React.js", "Node.js", "MongoDB", "AI APIs"],
-    "tech": ["React.js", "Node.js", "MongoDB", "AI APIs", "JavaScript"],
+    "chips": ["Next.js", "Prisma", "PostgreSQL", "Google Gemini"],
+    "tech": ["Next.js", "React", "Prisma", "PostgreSQL", "NextAuth", "Google Gemini API", "Pollinations.ai", "Tailwind CSS", "JavaScript"],
     "repositoryUrl": "https://github.com/parnika0110/recipe-app",
     "demoUrl": "https://khanakreation.vercel.app/",
-    "imageFolder": "images/khana-kreation"
+    "imageFolder": "images/khana-kreation",
+    "screenshots": [
+      { "src": "images/khana-kreation/01.webp", "alt": "Khana Kreation home page" },
+      { "src": "images/khana-kreation/02.webp", "alt": "Khana Kreation ingredient input with dietary and cuisine preferences" }
+    ]
   },
   "subscription-management-system": {
     "title": "PlanTopia",
@@ -180,7 +205,7 @@
     "displayOrder": 8,
     "featured": false,
     "eyebrow": "",
-    "subtitle": "Subscription management platform",
+    "subtitle": "Subscription management platform.",
     "tags": "TypeScript · Next.js · MongoDB",
     "category": "Full-Stack · Subscription Management",
     "categories": ["full-stack"],
@@ -205,7 +230,7 @@
     "displayOrder": 9,
     "featured": false,
     "eyebrow": "",
-    "subtitle": "Neural-network based emotion detection experiment",
+    "subtitle": "Neural-network emotion classification experiment.",
     "tags": "Python · ANN · Machine Learning",
     "category": "AI / ML Experiment",
     "categories": ["ai-ml"],
@@ -230,8 +255,8 @@
     "displayOrder": 10,
     "featured": false,
     "eyebrow": "",
-    "subtitle": "Lightweight notes management application",
-    "tags": "JavaScript · Web",
+    "subtitle": "Lightweight browser-based notes app.",
+    "tags": "JavaScript · HTML · CSS",
     "category": "Web Application",
     "categories": ["web"],
     "description": "Lightweight notes management application",
