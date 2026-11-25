@@ -217,7 +217,7 @@
 <!-- ================= 02 · ABOUT ================= -->
 <section aria-labelledby="about-title" class="sec" id="about">
   <div class="wrap">
-    <header class="sec-head reveal">
+    <header class="sec-head sec-head--quiet reveal">
       <span aria-hidden="true" class="sec-num">02</span>
       <div>
         <p class="label label--lilac">About — the person behind the commits</p>
@@ -225,7 +225,7 @@
       </div>
     </header>
 
-    <div class="about">
+    <div class="about about--calm">
       <div class="about__story reveal">
         <p class="about__lead">I turn “what if?” into useful software — practical AI tools, dependable backends, and products people can actually use.</p>
         <p class="copy">I'm a final-year Computer Science Engineering student at Jyothy Institute of Technology, Bengaluru, currently holding a 9.32 CGPA. Most of what I know, I've learned by building — rental platforms, gesture-controlled dashboards, recipe recommenders — and then figuring out why they broke.</p>
@@ -234,54 +234,45 @@
           <p class="label label--tan">currently curious about</p>
           <p>Agentic AI, backend systems that stay boring in production, and the small product details that make software feel human.</p>
         </div>
+        <div class="focus-line">
+          <p class="label">Focus areas</p>
+          <ul>
+            <li>Software Engineering</li><li>Full-Stack Development</li><li>Backend Development</li><li>AI-powered apps</li><li>Cloud technologies</li>
+          </ul>
+        </div>
         <p class="note about__note">Built from curiosity — most of these started as “I wonder if…”</p>
       </div>
 
-      <div class="about__panels">
-        <article class="panel panel--index edu reveal reveal-d1">
+      <div class="facts reveal reveal-d1">
+        <section aria-labelledby="fact-edu" class="fact">
           <p class="label label--lilac">Education</p>
-          <h3>B.E. Computer Science &amp; Engineering</h3>
-          <p class="copy edu__school">Jyothy Institute of Technology, Bengaluru</p>
-          <p class="edu__row"><span class="label">2023 – 2027</span><span class="edu__gpa"><span class="label">CGPA</span><span class="gpa__num">9.32</span></span></p>
-        </article>
+          <h3 id="fact-edu">B.E. Computer Science &amp; Engineering</h3>
+          <p class="fact__sub">Jyothy Institute of Technology, Bengaluru</p>
+          <p class="fact__row"><span class="label">2023 – 2027</span><span class="fact__gpa"><span class="label">CGPA</span><span class="gpa__num">9.32</span></span></p>
+        </section>
 
-        <article class="panel panel--lilac reveal reveal-d2">
-          <p class="label label--lilac">Current interests</p>
-          <span class="note note--bare">currently experimenting</span>
+        <section aria-labelledby="fact-int" class="fact">
+          <p class="fact__top"><span class="label label--lilac" id="fact-int">Current interests</span><span class="note note--bare">currently experimenting</span></p>
           <ol class="num-list">
             <li>Backend development</li>
             <li>Practical AI</li>
             <li>Agentic systems</li>
             <li>Software engineering</li>
           </ol>
-        </article>
+        </section>
 
-        <article class="panel panel--sage panel--wide reveal reveal-d3">
-          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem">
-            <p class="label label--sage">Currently building</p>
-            <span class="status-pill">Final Year Major Project</span>
-          </div>
-          <h3>MediAssist</h3>
-          <p class="copy" style="margin-top:.25rem">AI-assisted healthcare platform focused on practical medication and appointment workflows.</p>
-          <div class="build-row">
+        <section aria-labelledby="fact-build" class="fact fact--build">
+          <p class="fact__top"><span class="label label--sage">Currently building</span><span class="status-pill">Final Year Major Project</span></p>
+          <h3 id="fact-build">MediAssist</h3>
+          <p class="fact__sub">AI-assisted healthcare platform focused on practical medication and appointment workflows.</p>
+          <div class="fact__row">
             <ul class="tick-list">
               <li>Full-stack application</li>
               <li>AI experiments</li>
             </ul>
             <a class="link-btn ulink" href="#case-mediassist">Read the case study <span aria-hidden="true" class="arrow arrow--down">↓</span></a>
           </div>
-        </article>
-
-        <div class="focus panel--wide reveal">
-          <p class="label">focus areas</p>
-          <ul class="chips">
-            <li class="chip">Software Engineering</li>
-            <li class="chip">Full-Stack Development</li>
-            <li class="chip">Backend Development</li>
-            <li class="chip">AI-powered apps</li>
-            <li class="chip">Cloud technologies</li>
-          </ul>
-        </div>
+        </section>
       </div>
     </div>
   </div>
