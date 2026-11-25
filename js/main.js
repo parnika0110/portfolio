@@ -65,7 +65,7 @@
   };
   menuBtn.addEventListener('click', () => setMenu(mobileMenu.hidden));
   $$('a', mobileMenu).forEach((a) => a.addEventListener('click', () => setMenu(false)));
-  window.matchMedia('(min-width: 1120px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
+  window.matchMedia('(min-width: 1180px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
 
   /* ------------------------------------------------------------ active section in nav */
   const navLinks = $$('[data-nav]');
