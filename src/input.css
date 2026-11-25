@@ -411,20 +411,10 @@
   .about__note { margin-top: 2rem; }
   @media (min-width: 960px) { .about__note { margin-top: auto; padding-top: 2rem; } }
   .about__lead { font-family: var(--font-display); font-size: clamp(1.25rem, 1.9vw, 1.5rem); line-height: 1.32; letter-spacing: -.018em; font-weight: 500; margin-bottom: 1rem; max-width: 34ch; }
-  .callout { margin-top: 1.6rem; padding: .95rem 0 .95rem 1.2rem; border-left: 2px solid var(--tan); }
-  .callout p:last-child { font-family: var(--font-display); font-size: 1.05rem; font-weight: 500; margin-top: .35rem; line-height: 1.45; }
   .gpa__num { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.05rem, 3.1vw, 2.55rem); line-height: .9; letter-spacing: -.04em; color: var(--lilac); }
   .tick-list { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; margin-top: .55rem; font-family: var(--font-mono); font-size: .8rem; color: var(--ink-2); }
   .tick-list li { display: flex; gap: .45rem; }
   .tick-list li::before { content: "→"; color: var(--sage-700); }
-  .num-list { counter-reset: n; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.25rem; margin-top: .35rem; }
-  .num-list li {
-    counter-increment: n; display: flex; align-items: baseline; gap: .7rem; padding-block: .6rem; border-bottom: 1px dashed rgb(98 80 200 / .3);
-    font-family: var(--font-display); font-size: .98rem; font-weight: 500; line-height: 1.25;
-  }
-  .num-list li:nth-last-child(-n + 2) { border-bottom: 0; }
-  @media (max-width: 420px) { .num-list { grid-template-columns: 1fr; } .num-list li:nth-last-child(2) { border-bottom: 1px dashed rgb(98 80 200 / .3); } }
-  .num-list li::before { content: counter(n, decimal-leading-zero); font-family: var(--font-mono); font-size: .72rem; color: var(--lilac); }
   .status-pill {
     display: inline-flex; align-items: center; gap: .4rem; padding: .22rem .6rem; border-radius: 999px;
     font-family: var(--font-mono); font-size: .66rem; letter-spacing: .04em; background: var(--paper-3); color: var(--sage-700); border: 1px solid rgb(75 95 68 / .35);
@@ -982,7 +972,6 @@
   .about--calm .about__lead { margin-bottom: 1.6rem; }
   .about--calm .copy { line-height: 1.75; }
   .about--calm .copy + .copy { margin-top: 1.15rem; }
-  .about--calm .callout { margin-top: 1.9rem; padding-block: .7rem; }
   .about--calm .about__note { margin-top: 1.6rem; padding-top: 0; }
   .sec-head .about__note { grid-column: 1 / -1; margin-top: .25rem; }   /* below the heading on narrow screens */
 
@@ -1005,10 +994,10 @@
   .fact__row .tick-list { margin-top: 0; }
   .fact__gpa { display: inline-flex; align-items: baseline; gap: .55rem; }
   .fact .gpa__num { font-size: clamp(1.8rem, 2.6vw, 2.2rem); }
-  .fact .num-list { margin-top: .5rem; }
-  .fact .num-list li { padding-block: .45rem; font-size: .98rem; }
   /* currently building: a restrained sage rule instead of a filled card */
   .fact--build { position: relative; }
+  /* currently curious about: one statement, set in the display face, closing the column */
+  .fact__statement { margin-top: .45rem; max-width: 34ch; font-family: var(--font-display); font-size: 1.08rem; font-weight: 500; line-height: 1.45; letter-spacing: -.01em; color: var(--ink); }
   .fact--build::before { content: ""; position: absolute; left: calc(-1 * clamp(1.75rem, 3.2vw, 2.75rem) - 1px); top: 1.35rem; bottom: 0; width: 2px; background: var(--sage); }
   @media (max-width: 959px) { .fact--build::before { display: none; } .fact--build { border-left: 2px solid var(--sage); padding-left: 1rem; } }
 }
@@ -1162,7 +1151,6 @@
     .about--calm .about__lead { font-size: 1.32rem; max-width: 46ch; margin-bottom: .85rem; }
     .about--calm .copy { line-height: 1.62; }
     .about--calm .copy + .copy { margin-top: .7rem; }
-    .about--calm .callout { margin-top: 1.05rem; padding-block: .25rem; }
     .about--calm .focus-line { margin-top: .95rem; }
     /* the margin note sits beside the heading, like an annotation in the journal's margin */
     #about .sec-head--quiet { grid-template-columns: auto minmax(0, 1fr) auto; }
@@ -1170,14 +1158,16 @@
     .about--calm { grid-template-columns: minmax(0, 1.14fr) minmax(0, .86fr); gap: 3rem; }
     .about--calm .facts { padding-left: 2rem; }
     .about--calm .fact--build::before { left: calc(-2rem - 1px); }
-    .fact .num-list { column-gap: .9rem; }
-    .fact .num-list li { gap: .5rem; }
     .fact { padding-block: .85rem; }
     .fact h3 { margin-top: .3rem; }
     .fact__row { margin-top: .45rem; }
-    .fact .num-list { margin-top: .3rem; }
-    .fact .num-list li { padding-block: .3rem; }
     .fact--build::before { top: .85rem; }
+  }
+  @media (min-width: 960px) and (max-width: 1199px) {
+    .about--calm .fact { padding-block: .7rem; }
+    .about--calm .fact:first-child { padding-top: .2rem; }
+    .about--calm .fact:last-child { padding-bottom: 0; }
+    .about--calm .fact--build::before { top: .7rem; }
   }
 
   /* featured case studies: smaller display titles, shorter media, rebalanced columns */
