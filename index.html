@@ -234,8 +234,46 @@
           <p class="label label--tan">currently curious about</p>
           <p>Agentic AI, backend systems that stay boring in production, and the small product details that make software feel human.</p>
         </div>
-        <div style="margin-top:2rem">
-          <p class="label" style="margin-bottom:.75rem">focus areas</p>
+        <p class="note about__note">Built from curiosity — most of these started as “I wonder if…”</p>
+      </div>
+
+      <div class="about__panels">
+        <article class="panel panel--index edu reveal reveal-d1">
+          <p class="label label--lilac">Education</p>
+          <h3>B.E. Computer Science &amp; Engineering</h3>
+          <p class="copy edu__school">Jyothy Institute of Technology, Bengaluru</p>
+          <p class="edu__row"><span class="label">2023 – 2027</span><span class="edu__gpa"><span class="label">CGPA</span><span class="gpa__num">9.32</span></span></p>
+        </article>
+
+        <article class="panel panel--lilac reveal reveal-d2">
+          <p class="label label--lilac">Current interests</p>
+          <span class="note note--bare">currently experimenting</span>
+          <ol class="num-list">
+            <li>Backend development</li>
+            <li>Practical AI</li>
+            <li>Agentic systems</li>
+            <li>Software engineering</li>
+          </ol>
+        </article>
+
+        <article class="panel panel--sage panel--wide reveal reveal-d3">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem">
+            <p class="label label--sage">Currently building</p>
+            <span class="status-pill">Final Year Major Project</span>
+          </div>
+          <h3>MediAssist</h3>
+          <p class="copy" style="margin-top:.25rem">AI-assisted healthcare platform focused on practical medication and appointment workflows.</p>
+          <div class="build-row">
+            <ul class="tick-list">
+              <li>Full-stack application</li>
+              <li>AI experiments</li>
+            </ul>
+            <a class="link-btn ulink" href="#case-mediassist">Read the case study <span aria-hidden="true" class="arrow arrow--down">↓</span></a>
+          </div>
+        </article>
+
+        <div class="focus panel--wide reveal">
+          <p class="label">focus areas</p>
           <ul class="chips">
             <li class="chip">Software Engineering</li>
             <li class="chip">Full-Stack Development</li>
@@ -244,47 +282,6 @@
             <li class="chip">Cloud technologies</li>
           </ul>
         </div>
-        <p class="note about__note">Built from curiosity — most of these started as “I wonder if…”</p>
-      </div>
-
-      <div class="about__panels">
-        <article class="panel panel--index reveal reveal-d1">
-          <p class="label label--lilac">Education</p>
-          <h3>B.E. Computer Science &amp; Engineering</h3>
-          <p class="copy" style="margin-top:.35rem">Jyothy Institute of Technology, Bengaluru</p>
-          <div class="gpa">
-            <span class="label">2023 – 2027</span>
-            <span><span class="label" style="display:block;text-align:right;margin-bottom:.35rem">CGPA</span><span class="gpa__num">9.32</span></span>
-          </div>
-        </article>
-
-        <article class="panel panel--sage reveal reveal-d2">
-          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem">
-            <p class="label label--sage">Currently building</p>
-            <span class="status-pill">Final Year Major Project</span>
-          </div>
-          <h3>MediAssist</h3>
-          <p class="copy" style="margin-top:.35rem">AI-assisted healthcare platform focused on practical medication and appointment workflows.</p>
-          <ul class="tick-list">
-            <li>AI-assisted healthcare platform</li>
-            <li>Full-stack application</li>
-            <li>AI experiments</li>
-          </ul>
-          <a class="link-btn ulink" href="#case-mediassist" style="margin-top:.9rem">Read the case study <span aria-hidden="true" class="arrow arrow--down">↓</span></a>
-        </article>
-
-        <article class="panel panel--lilac reveal reveal-d3">
-          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem">
-            <p class="label label--lilac">Current interests</p>
-            <span class="note note--bare">currently experimenting</span>
-          </div>
-          <ol class="num-list">
-            <li>Backend development</li>
-            <li>Practical AI</li>
-            <li>Agentic systems</li>
-            <li>Software engineering</li>
-          </ol>
-        </article>
       </div>
     </div>
   </div>
@@ -323,8 +320,8 @@
           </div>
           <p class="label">AI Opportunity Discovery Platform</p>
           <h3 class="case__title" id="t-oppy">OPPY</h3>
-          <p class="case__line">An AI-powered opportunity discovery platform that helps students and early-career users discover, personalise, save and track opportunities.</p>
-          <p class="note note--paper" style="margin-top:1.2rem"><a class="ulink" href="#achievements">Demoed on stage at D-Day, Bengaluru Tech Week 2026 — the story is in Milestones ↓</a></p>
+          <p class="case__line">An AI-powered platform that helps students and early-career users discover, save and track opportunities.</p>
+          <p class="note note--paper" style="margin-top:.9rem"><a class="ulink" href="#achievements">Demoed at D-Day, Bengaluru Tech Week 2026 ↓</a></p>
         </div>
         <div class="case__media">
           <!-- To add a real OPPY screenshot later: save it as images/oppy/01.webp, add it to
@@ -369,22 +366,18 @@
         </div>
         <div class="case__body">
           <dl class="pb">
-            <div><dt>Problem</dt><dd>Internships, jobs, hackathons, fellowships, events, grants and scholarships are spread across the web — and discovering, personalising and tracking them usually happens in different places.</dd></div>
-            <div><dt>What I built</dt><dd>A platform that discovers real opportunities from across the web and matches them to what users are looking for: AI-powered natural-language and voice search, “Recommended for you” suggestions, a saved list and application tracking — in one place.</dd></div>
+            <div><dt>Problem</dt><dd>Internships, jobs, hackathons, fellowships, grants and scholarships are scattered across the web — and finding, personalising and tracking them happens in different places.</dd></div>
+            <div><dt>What I built</dt><dd>One platform that discovers real opportunities across the web and matches them to each user: natural-language and voice search (Sarvam AI), “Recommended for you” picks, a saved list and application tracking.</dd></div>
           </dl>
-          <div class="stack">
-            <p class="label">Stack</p>
-            <ul>
-              <li>Next.js 15</li><li>React 19</li><li>TypeScript</li><li>MongoDB</li><li>Sarvam AI</li><li>OpenAI</li><li>AWS Lambda</li><li>AWS Amplify</li><li>Tailwind CSS</li><li>Vitest</li>
-            </ul>
-          </div>
+        </div>
+        <div class="case__foot">
+          <div class="stack"><p class="label">Stack</p><ul><li>Next.js 15</li><li>React 19</li><li>TypeScript</li><li>MongoDB</li><li>Sarvam AI</li><li>OpenAI</li><li>AWS Lambda</li><li>AWS Amplify</li><li>Tailwind CSS</li><li>Vitest</li></ul></div>
           <div class="case__links">
-            <a class="btn btn--paper" href="https://myoppy.xyz/" rel="noopener noreferrer" target="_blank">Live demo <span aria-hidden="true" class="arrow">↗</span></a>
-            <a class="btn btn--outline-paper" href="https://github.com/parnika0110/oppy" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="oppy" style="color:var(--paper)" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <a class="btn btn--paper btn--sm" href="https://myoppy.xyz/" rel="noopener noreferrer" target="_blank">Live demo <span aria-hidden="true" class="arrow">↗</span></a>
+            <a class="btn btn--outline-paper btn--sm" href="https://github.com/parnika0110/oppy" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+            <button class="text-link ulink" data-open-project="oppy" style="color:var(--paper)" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
-        <div aria-label="Opportunity types OPPY covers" class="case__foot"><span>Internships</span><span>Jobs</span><span>Hackathons</span><span>Fellowships</span><span>Events</span><span>Grants</span><span>Scholarships</span></div>
       </article>
 
       <!-- 02 — MediAssist (sage) -->
@@ -396,7 +389,7 @@
           </div>
           <p class="label label--sage">AI Healthcare Platform</p>
           <h3 class="case__title" id="t-medi">MediAssist</h3>
-          <p class="case__line">An AI-assisted healthcare platform focused on prescription analysis, medication management and doctor appointment workflows.</p>
+          <p class="case__line">An AI-assisted healthcare platform for prescriptions, medication and doctor appointments.</p>
         </div>
         <div class="case__media">
           <img alt="MediAssist app icon" class="app-badge" decoding="async" height="256" loading="lazy" src="./images/mediassist/app-icon.webp" width="256"/>
@@ -442,16 +435,15 @@
         </div>
         <div class="case__body">
           <dl class="pb">
-            <div><dt>Problem</dt><dd>Everyday healthcare tasks — prescriptions, medication schedules, symptoms and doctor appointments — are hard to keep organised when they live in different places.</dd></div>
-            <div><dt>What I'm building</dt><dd>A single healthcare companion app with OCR-based prescription analysis and medicine extraction, medication reminders and history tracking, symptom-based health assessment, and a doctor directory with appointment booking and email confirmations.</dd></div>
+            <div><dt>Problem</dt><dd>Prescriptions, medication schedules, symptoms and appointments are hard to keep organised when they live in different places.</dd></div>
+            <div><dt>What I'm building</dt><dd>One Flutter app with OCR prescription analysis and medicine extraction, medication reminders and history, symptom-based assessment, and doctor booking with email confirmations.</dd></div>
           </dl>
-          <div class="stack">
-            <p class="label">Stack</p>
-            <ul><li>Flutter</li><li>Dart</li><li>Firebase</li><li>Cloud Firestore</li><li>OCR</li></ul>
-          </div>
+        </div>
+        <div class="case__foot">
+          <div class="stack"><p class="label">Stack</p><ul><li>Flutter</li><li>Dart</li><li>Firebase</li><li>Cloud Firestore</li><li>OCR</li></ul></div>
           <div class="case__links">
-            <a class="btn btn--ink" href="https://github.com/parnika0110/mediassist" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="mediassist" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <a class="btn btn--ink btn--sm" href="https://github.com/parnika0110/mediassist" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+            <button class="text-link ulink" data-open-project="mediassist" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
       </article>
@@ -465,7 +457,7 @@
           </div>
           <p class="label">Full-Stack Rental Platform</p>
           <h3 class="case__title" id="t-iw">Imperial Wheels</h3>
-          <p class="case__line">A MERN-based car and bike rental platform for browsing vehicles, managing bookings and handling rental operations.</p>
+          <p class="case__line">A MERN car and bike rental platform for browsing vehicles, booking them and managing rentals.</p>
         </div>
         <div class="case__media">
           <button aria-label="Open Imperial Wheels case notes and screenshots" class="shot-btn" data-open-project="imperial-wheels" type="button">
@@ -487,16 +479,15 @@
         </div>
         <div class="case__body">
           <dl class="pb">
-            <div><dt>Problem</dt><dd>Renting a car or bike should be simple: browse what's available, pick a vehicle, book it and get a confirmation.</dd></div>
-            <div><dt>What we built</dt><dd>A secure MERN web app with JWT authentication, vehicle listings, CRUD operations, a booking workflow and automated booking emails using Nodemailer.</dd></div>
+            <div><dt>Problem</dt><dd>Renting a car or bike should be simple: browse, pick a vehicle, book it and get a confirmation.</dd></div>
+            <div><dt>What we built</dt><dd>A secure MERN web app with JWT authentication, vehicle listings, CRUD operations, a booking workflow and automated booking emails via Nodemailer.</dd></div>
           </dl>
-          <div class="stack">
-            <p class="label">Stack</p>
-            <ul><li>MongoDB</li><li>Express.js</li><li>React.js</li><li>Node.js</li><li>JWT</li><li>Nodemailer</li></ul>
-          </div>
+        </div>
+        <div class="case__foot">
+          <div class="stack"><p class="label">Stack</p><ul><li>MongoDB</li><li>Express.js</li><li>React.js</li><li>Node.js</li><li>JWT</li><li>Nodemailer</li></ul></div>
           <div class="case__links">
-            <a class="btn btn--ink" href="https://github.com/parnika0110/imperial-wheels" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="imperial-wheels" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <a class="btn btn--ink btn--sm" href="https://github.com/parnika0110/imperial-wheels" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+            <button class="text-link ulink" data-open-project="imperial-wheels" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
       </article>
@@ -509,7 +500,7 @@
           </div>
           <p class="label">Full-Stack Transportation System</p>
           <h3 class="case__title" id="t-metro">Metro Fare Calculator</h3>
-          <p class="case__line">A Bengaluru Metro route and fare calculator that works out routes and dynamic fares from passenger details, discounts and travel conditions.</p>
+          <p class="case__line">A Bengaluru Metro route and fare calculator with dynamic, rule-based fares.</p>
         </div>
         <div class="transit-line">
           <div class="transit" role="group" aria-label="How a fare is calculated">
@@ -533,17 +524,16 @@
         </div>
         <div class="case__body">
           <dl class="pb">
-            <div><dt>Problem</dt><dd>Planning a metro trip means knowing the route, where to change lines and what the journey will actually cost.</dd></div>
-            <div><dt>What I built</dt><dd>Route calculation over a graph of the metro network, interchange detection, and dynamic fares with peak and non-peak pricing, Smart Card / token discounts and holiday-based fare logic.</dd></div>
+            <div><dt>Problem</dt><dd>Planning a metro trip means knowing the route, where to change lines and what it will actually cost.</dd></div>
+            <div><dt>What I built</dt><dd>Graph-based route finding with interchange detection, and dynamic fares for peak and non-peak hours, Smart Card and token discounts, and holidays.</dd></div>
           </dl>
           <p class="ticket"><span class="label">Fare rule · from the build</span><strong>Smart Card &amp; NCMC: 5% off peak · 10% off non-peak</strong></p>
-          <div class="stack">
-            <p class="label">Stack</p>
-            <ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Node.js</li></ul>
-          </div>
+        </div>
+        <div class="case__foot">
+          <div class="stack"><p class="label">Stack</p><ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Node.js</li></ul></div>
           <div class="case__links">
-            <a class="btn btn--ink" href="https://github.com/parnika0110/metro-fare-calculator" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="metro-fare-calculator" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <a class="btn btn--ink btn--sm" href="https://github.com/parnika0110/metro-fare-calculator" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+            <button class="text-link ulink" data-open-project="metro-fare-calculator" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
       </article>
@@ -557,7 +547,7 @@
           </div>
           <p class="label">Computer Vision · Touch-Free Dashboard</p>
           <h3 class="case__title" id="t-gesture">Gesture Controlled Infotainment System</h3>
-          <p class="case__line">A gesture-controlled infotainment dashboard that enables touch-free interaction using real-time hand gesture recognition.</p>
+          <p class="case__line">A touch-free infotainment dashboard driven by real-time hand gesture recognition.</p>
         </div>
         <div class="case__media gesture-media">
           <button aria-label="Open Gesture Controlled Infotainment System case notes and screenshots" class="shot-btn" data-open-project="Gesture_App" type="button">
@@ -600,16 +590,15 @@
         </div>
         <div class="case__body">
           <dl class="pb">
-            <div><dt>Problem</dt><dd>Exploring touch-free, gesture-based interaction for an infotainment dashboard — music, navigation, calls and settings without touching the screen.</dd></div>
-            <div><dt>What we built</dt><dd>Real-time hand tracking: OpenCV captures webcam frames, MediaPipe Hands tracks hand landmarks, the index fingertip drives a virtual pointer and a thumb–index pinch triggers interaction — plus map-based navigation.</dd></div>
+            <div><dt>Problem</dt><dd>Controlling music, navigation, calls and settings on an infotainment dashboard without touching the screen.</dd></div>
+            <div><dt>What we built</dt><dd>OpenCV captures webcam frames, MediaPipe Hands tracks hand landmarks, the index fingertip drives a pointer and a thumb–index pinch triggers actions — plus map-based navigation.</dd></div>
           </dl>
-          <div class="stack">
-            <p class="label">Stack</p>
-            <ul><li>Python</li><li>MediaPipe</li><li>OpenCV</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Leaflet</li></ul>
-          </div>
+        </div>
+        <div class="case__foot">
+          <div class="stack"><p class="label">Stack</p><ul><li>Python</li><li>MediaPipe</li><li>OpenCV</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Leaflet</li></ul></div>
           <div class="case__links">
-            <a class="btn btn--paper" href="https://github.com/parnika0110/Gesture_App" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="Gesture_App" style="color:var(--paper)" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <a class="btn btn--paper btn--sm" href="https://github.com/parnika0110/Gesture_App" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+            <button class="text-link ulink" data-open-project="Gesture_App" style="color:var(--paper)" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
       </article>
@@ -623,7 +612,7 @@
           </div>
           <p class="label">Campus Management Platform · Full Stack</p>
           <h3 class="case__title" id="t-campus">CampusPortal</h3>
-          <p class="case__line">A campus management portal that brings academic and administrative workflows for students, faculty and campus operations into one centralised platform.</p>
+          <p class="case__line">A centralised portal for academic and administrative workflows across students, faculty and campus operations.</p>
         </div>
         <div class="case__media ledger-media">
           <figure class="sketch sketch--wide">
@@ -661,16 +650,15 @@
         </div>
         <div class="case__body">
           <dl class="pb">
-            <div><dt>Problem</dt><dd>Academic activities and communication between students, teachers and administrators need one shared, organised place.</dd></div>
-            <div><dt>What I built</dt><dd>A portal for student information management, faculty and student workflows, campus resource organisation and dashboard-based experiences — with role-based access for students, teachers and admins.</dd></div>
+            <div><dt>Problem</dt><dd>Academic activity and communication between students, teachers and admins need one organised place.</dd></div>
+            <div><dt>What I built</dt><dd>Student information management, faculty and student workflows, campus resources and dashboards — with role-based access for students, teachers and admins.</dd></div>
           </dl>
-          <div class="stack">
-            <p class="label">Stack</p>
-            <ul><li>PHP</li><li>MySQL</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-          </div>
+        </div>
+        <div class="case__foot">
+          <div class="stack"><p class="label">Stack</p><ul><li>PHP</li><li>MySQL</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul></div>
           <div class="case__links">
-            <a class="btn btn--ink" href="https://github.com/parnika0110/CampusPortal" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="CampusPortal" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <a class="btn btn--ink btn--sm" href="https://github.com/parnika0110/CampusPortal" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+            <button class="text-link ulink" data-open-project="CampusPortal" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
       </article>
@@ -685,7 +673,7 @@
           </div>
           <p class="label label--tan">AI / ML · Web</p>
           <h3 class="case__title" id="t-khana">Khana Kreation</h3>
-          <p class="case__line">An AI-powered recipe recommendation platform that suggests personalised recipes based on your preferences and the ingredients you have.</p>
+          <p class="case__line">An AI-powered recipe recommender that suggests personalised recipes from the ingredients you have.</p>
         </div>
         <div class="case__media">
           <button aria-label="Open Khana Kreation case notes and screenshots" class="shot-btn" data-open-project="recipe-app" data-shot="1" type="button">
@@ -698,14 +686,16 @@
         </div>
         <div class="case__body">
           <dl class="pb recipe">
-            <div><dt>The problem</dt><dd>Deciding what to cook with the ingredients you already have.</dd></div>
-            <div><dt>Method</dt><dd>Add the ingredients you have, set dietary and cuisine preferences, and get AI-assisted, personalised recipe suggestions in a responsive interface.</dd></div>
-            <div><dt>Ingredients</dt><dd><ul class="ingredients"><li>React.js</li><li>Node.js</li><li>MongoDB</li><li>AI APIs</li><li>JavaScript</li></ul></dd></div>
+            <div><dt>The problem</dt><dd>Deciding what to cook with what's already in the kitchen.</dd></div>
+            <div><dt>Method</dt><dd>Add your ingredients, set dietary and cuisine preferences, and get AI-assisted, personalised recipes in a responsive interface.</dd></div>
           </dl>
+        </div>
+        <div class="case__foot">
+          <div class="stack stack--ingredients"><p class="label">Ingredients</p><ul><li>React.js</li><li>Node.js</li><li>MongoDB</li><li>AI APIs</li><li>JavaScript</li></ul></div>
           <div class="case__links">
-            <a class="btn btn--ink" href="https://khanakreation.vercel.app/" rel="noopener noreferrer" target="_blank">Live demo <span aria-hidden="true" class="arrow">↗</span></a>
-            <a class="btn btn--ghost" href="https://github.com/parnika0110/recipe-app" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-            <button class="text-link ulink" data-open-project="recipe-app" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+            <a class="btn btn--ink btn--sm" href="https://khanakreation.vercel.app/" rel="noopener noreferrer" target="_blank">Live demo <span aria-hidden="true" class="arrow">↗</span></a>
+            <a class="btn btn--ghost btn--sm" href="https://github.com/parnika0110/recipe-app" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
+            <button class="text-link ulink" data-open-project="recipe-app" type="button">Full case notes <span aria-hidden="true" class="arrow">→</span></button>
           </div>
         </div>
       </article>
@@ -769,29 +759,25 @@
     <ol class="archive">
       <li class="arow reveal">
         <span class="arow__i">04.1</span>
-        <span class="arow__date">June 2026</span>
-        <h3 class="arow__co">JPMorgan Chase &amp; Co.<span class="arow__track">Software Engineering · Virtual job simulation (Forage)</span></h3>
+        <h3 class="arow__co">JPMorgan Chase &amp; Co.<span class="arow__track">June 2026 · Software Engineering · Virtual job simulation (Forage)</span></h3>
         <p class="arow__desc">Worked with Kafka, an H2 database, and REST APIs to build backend components as part of a simulated engineering team.</p>
         <div class="arow__act"><button aria-label="View JPMorgan Chase &amp; Co. — Software Engineering certificate" class="link-btn ulink achievement-card" data-achievement="JPMorgan Chase &amp; Co. — Software Engineering|Forage · June 2026|Completed practical tasks in project setup, Kafka integration, H2 integration, REST API integration and REST API controller development." data-certificate="jpmorgan" type="button">Certificate <span aria-hidden="true" class="arrow">↗</span></button></div>
       </li>
       <li class="arow reveal">
         <span class="arow__i">04.2</span>
-        <span class="arow__date">June 2026</span>
-        <h3 class="arow__co">Commonwealth Bank<span class="arow__track">Software Engineering · Virtual job simulation (Forage)</span></h3>
+        <h3 class="arow__co">Commonwealth Bank<span class="arow__track">June 2026 · Software Engineering · Virtual job simulation (Forage)</span></h3>
         <p class="arow__desc">Enhanced a .NET backend and a React/Redux frontend, following real-world testing and pull-request workflows.</p>
         <div class="arow__act"><button aria-label="View Commonwealth Bank — Software Engineering certificate" class="link-btn ulink achievement-card" data-achievement="Commonwealth Bank — Software Engineering|Forage · June 2026|Modified an existing .NET backend and React/Redux frontend, updated client requests, covered code with tests and created a pull request." data-certificate="commonwealth" type="button">Certificate <span aria-hidden="true" class="arrow">↗</span></button></div>
       </li>
       <li class="arow reveal">
         <span class="arow__i">04.3</span>
-        <span class="arow__date">June 2026</span>
-        <h3 class="arow__co">Wells Fargo<span class="arow__track">Software Engineering · Virtual job simulation (Forage)</span></h3>
+        <h3 class="arow__co">Wells Fargo<span class="arow__track">June 2026 · Software Engineering · Virtual job simulation (Forage)</span></h3>
         <p class="arow__desc">Designed and implemented a data model for a banking application.</p>
         <div class="arow__act"><button aria-label="View Wells Fargo — Software Engineering certificate" class="link-btn ulink achievement-card" data-achievement="Wells Fargo — Software Engineering|Forage · June 2026|Completed practical software engineering tasks focused on creating and implementing a data model." data-certificate="wells-fargo" type="button">Certificate <span aria-hidden="true" class="arrow">↗</span></button></div>
       </li>
       <li class="arow reveal">
         <span class="arow__i">04.4</span>
-        <span class="arow__date">June 2026</span>
-        <h3 class="arow__co">Deloitte<span class="arow__track">Data Analytics · Virtual job simulation (Forage)</span></h3>
+        <h3 class="arow__co">Deloitte<span class="arow__track">June 2026 · Data Analytics · Virtual job simulation (Forage)</span></h3>
         <p class="arow__desc">Worked on data analysis and forensic technology tasks to derive business insight.</p>
         <div class="arow__act"><button aria-label="View Deloitte — Data Analytics certificate" class="link-btn ulink achievement-card" data-achievement="Deloitte — Data Analytics|Forage · June 2026|Completed data analysis and forensic technology tasks in a virtual job simulation." data-certificate="deloitte" type="button">Certificate <span aria-hidden="true" class="arrow">↗</span></button></div>
       </li>
@@ -839,8 +825,8 @@
       <article class="log reveal reveal-d2">
         <p class="note note--sage">also fluent in</p>
         <h3>Languages spoken</h3>
-        <ul class="chips" style="margin-top:.35rem">
-          <li class="chip">English (Fluent)</li><li class="chip">Kannada (Native)</li><li class="chip">Hindi (Conversational)</li><li class="chip">Telugu (Conversational)</li><li class="chip">German (Beginner)</li>
+        <ul class="slash-list">
+          <li>English (Fluent)</li><li>Kannada (Native)</li><li>Hindi (Conversational)</li><li>Telugu (Conversational)</li><li>German (Beginner)</li>
         </ul>
       </article>
     </div>
@@ -863,9 +849,8 @@
       <article class="cred reveal">
         <div class="cred__top">
           <span aria-hidden="true" class="stamp stamp--tan cred__stamp stamp-in"><span class="stamp__face"><span class="stamp__big">AI</span><span>Oracle</span></span></span>
-          <span class="cred__year">2026</span>
+          <p class="cred__meta"><span class="label">Oracle</span><span class="cred__year">2026</span></p>
         </div>
-        <p class="label">Oracle</p>
         <h3>Oracle Certified Foundations Associate</h3>
         <p>Agentic AI</p>
         <div class="cred__acts">
@@ -876,9 +861,8 @@
       <article class="cred reveal reveal-d1">
         <div class="cred__top">
           <span aria-hidden="true" class="stamp stamp--lilac cred__stamp stamp-in" style="--rot:3deg"><span class="stamp__face"><span class="stamp__big">Gen</span><span>AI · APAC</span></span></span>
-          <span class="cred__year">2026</span>
+          <p class="cred__meta"><span class="label">Google Cloud</span><span class="cred__year">2026</span></p>
         </div>
-        <p class="label">Google Cloud</p>
         <h3>Google Cloud Gen AI Academy APAC</h3>
         <p>Cohort 2 · completed July 23, 2026</p>
         <div class="cred__acts">
@@ -888,9 +872,8 @@
       <article class="cred reveal reveal-d2">
         <div class="cred__top">
           <span aria-hidden="true" class="stamp stamp--sage cred__stamp stamp-in" style="--rot:-2deg"><span class="stamp__face"><span class="stamp__big">GCP</span><span>Credly</span></span></span>
-          <span class="cred__year">Credly</span>
+          <p class="cred__meta"><span class="label">Google Cloud</span><span class="cred__year">Credly</span></p>
         </div>
-        <p class="label">Google Cloud</p>
         <h3>Google Cloud Computing Foundations</h3>
         <p>Verifiable digital credential</p>
         <div class="cred__acts">
@@ -901,9 +884,8 @@
       <article class="cred reveal reveal-d3">
         <div class="cred__top">
           <span aria-hidden="true" class="stamp stamp--ink cred__stamp stamp-in" style="--rot:4deg"><span class="stamp__face"><span class="stamp__big">SAP</span><span>7 courses</span></span></span>
-          <span class="cred__year">2026</span>
+          <p class="cred__meta"><span class="label">Coursera</span><span class="cred__year">2026</span></p>
         </div>
-        <p class="label">Coursera</p>
         <h3>SAP Technology Consultant</h3>
         <p>Professional Certificate · completed Aug 2, 2026</p>
         <div class="cred__acts">
