@@ -725,7 +725,7 @@
   .dday .funnel { padding-top: 2.5rem; }
   @media (min-width: 960px) { .dday .funnel { padding-top: 1.5rem; } }
 
-  .sheet { display: grid; gap: 1rem; margin-top: clamp(1.75rem, 3.5vw, 2.5rem); grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
+  .sheet { display: grid; gap: 1rem; margin-top: clamp(1.75rem, 3.5vw, 2.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr)); }
   .ms {
     position: relative; display: flex; flex-direction: column; align-items: start; gap: .45rem; width: 100%; height: 100%;
     padding: 1.15rem 1.15rem 1.2rem; text-align: left; border: 1px solid var(--line-2); border-radius: 3px; background: var(--paper-3);
@@ -740,7 +740,6 @@
   .ms h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.25; }
   .ms p { font-size: .88rem; color: var(--ink-2); }
   .ms__more { margin-top: auto; padding-top: .5rem; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--lilac); }
-  .ms--cert { background: transparent; border-style: dashed; }
 
   /* ---------- beyond the terminal (contact sheet) ---------- */
   .life-intro { display: grid; gap: 1.25rem; margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem); }
