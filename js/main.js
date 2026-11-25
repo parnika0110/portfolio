@@ -125,46 +125,58 @@
     }
   }
 
-  /* ------------------------------------------------------------ contextual cursor tag (mouse / trackpad only; the system cursor stays) */
+  /* ------------------------------------------------------------ cursor mark (mouse / trackpad only; the system cursor always stays)
+     Over interactive visuals a small postmark ring sits exactly on the pointer's hotspot, with an
+     annotation tag beside it. Position follows the pointer directly (no easing, no trail). */
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-  if (finePointer.matches) {
+  let cursorMarkReady = false;
+  const initCursorMark = () => {
+    if (cursorMarkReady || !finePointer.matches) return;
+    cursorMarkReady = true;
     const TAGS = [['.pc__stamp', 'View screenshot'], ['.case .shot-btn', 'View project'], ['.photo-btn', 'View photo'], ['.pc', 'Open postcard']];
-    let tag = null; let label = ''; let x = 0; let y = 0; let tx = 0; let ty = 0; let raf = 0; let w = 0;
+    const OFFSET_X = 22; const OFFSET_Y = 14; // tag position from the hotspot
+    let mark = null; let tag = null; let label = ''; let tw = 0; let th = 0;
     const labelFor = (el) => {
       if (!(el instanceof Element)) return '';
       for (const [sel, text] of TAGS) {
-        const hit = el.closest(sel);
-        if (!hit) continue;
+        if (!el.closest(sel)) continue;
         // inside a postcard, its own links and buttons already say what they do
         if (sel === '.pc' && el.closest('a, button')) return '';
         return text;
       }
       return '';
     };
-    const hide = () => { if (tag) tag.classList.remove('is-on'); label = ''; };
-    const step = () => {
-      raf = 0;
-      const k = reducedMotion.matches ? 1 : 0.3;
-      x += (tx - x) * k; y += (ty - y) * k;
-      tag.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
-      if (Math.abs(tx - x) > 0.4 || Math.abs(ty - y) > 0.4) raf = requestAnimationFrame(step);
+    const build = () => {
+      mark = document.createElement('div');
+      mark.className = 'cmark';
+      mark.setAttribute('aria-hidden', 'true');
+      mark.innerHTML = '<svg class="cmark__ring" viewBox="0 0 30 30"><circle class="cmark__halo" cx="15" cy="15" r="13"/><circle class="cmark__outer" cx="15" cy="15" r="13" pathLength="100"/><circle class="cmark__inner" cx="15" cy="15" r="9"/></svg><span class="cmark__tag"></span>';
+      tag = mark.lastChild;
+      document.body.append(mark);
     };
+    const hide = () => { if (mark) mark.classList.remove('is-on', 'is-press'); label = ''; };
     document.addEventListener('pointermove', (e) => {
       if (e.pointerType !== 'mouse') return;
       const text = labelFor(e.target);
       if (!text) { hide(); return; }
-      if (!tag) { tag = document.createElement('span'); tag.className = 'ctag'; tag.setAttribute('aria-hidden', 'true'); document.body.append(tag); }
-      if (text !== label) { tag.textContent = text; label = text; w = tag.offsetWidth; }
-      tx = e.clientX + 16; ty = e.clientY + 18;
-      if (tx + w > window.innerWidth - 8) tx = e.clientX - w - 12;
-      if (!tag.classList.contains('is-on')) { x = tx; y = ty; tag.classList.add('is-on'); }
-      if (!raf) raf = requestAnimationFrame(step);
+      if (!mark) build();
+      if (text !== label) { tag.textContent = text; label = text; tw = tag.offsetWidth; th = tag.offsetHeight; }
+      const x = e.clientX; const y = e.clientY;
+      mark.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      mark.classList.toggle('is-left', x + OFFSET_X + tw > window.innerWidth - 8);
+      mark.classList.toggle('is-up', y + OFFSET_Y + th > window.innerHeight - 8);
+      mark.classList.add('is-on');
     }, { passive: true });
+    document.addEventListener('pointerdown', (e) => { if (e.pointerType === 'mouse' && mark?.classList.contains('is-on')) mark.classList.add('is-press'); });
+    document.addEventListener('pointerup', () => mark?.classList.remove('is-press'));
     document.documentElement.addEventListener('mouseleave', hide);
     window.addEventListener('blur', hide);
     window.addEventListener('scroll', hide, { passive: true });
-    document.addEventListener('click', hide, true);
-  }
+    document.addEventListener('keydown', hide); // keyboard navigation keeps the native focus ring only
+    document.addEventListener('click', () => setTimeout(hide, 120), true); // let the press register, then step aside for dialogs
+  };
+  initCursorMark();
+  finePointer.addEventListener?.('change', initCursorMark); // e.g. a mouse connected to a tablet
 
   /* ------------------------------------------------------------ wide sketches: keyboard-scrollable only when they overflow */
   const wideSketches = $$('.sketch--wide');
