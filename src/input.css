@@ -1042,3 +1042,34 @@
   .photo-modal__cap { flex: 1 1 16rem; text-align: center; color: var(--paper); font-family: var(--font-mono); font-size: .8rem; letter-spacing: .02em; }
   @media (max-width: 600px) { .photo-modal__cap { order: -1; flex-basis: 100%; } }
 }
+
+/* ------------------------------------------------------------ OPPY media switcher (live screenshots + sketch) */
+@layer components {
+  .media-tabs { display: none; flex-wrap: wrap; gap: .4rem; margin-bottom: .75rem; }
+  .js .media-tabs { display: flex; }
+  .media-tab {
+    min-height: 36px; padding: .4rem .85rem; border-radius: 999px; border: 1px solid var(--line-2); background: transparent;
+    font-family: var(--font-mono); font-size: .72rem; letter-spacing: .02em; color: var(--ink-2);
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .media-tab:hover { border-color: var(--ink); color: var(--ink); }
+  .media-tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .case--flagship .media-tab { border-color: rgb(245 240 231 / .45); color: var(--paper); }
+  .case--flagship .media-tab:hover { border-color: var(--paper); }
+  .case--flagship .media-tab[aria-selected="true"] { background: var(--paper); border-color: var(--paper); color: var(--lilac-700); }
+
+  /* all views share one grid cell, so switching never changes the case height */
+  .media-stack { display: grid; gap: 1rem; }
+  .media-stack > .media-panel { min-width: 0; }
+  /* wide screens: views share one cell so switching never shifts the layout;
+     narrow screens: each view takes its own height (no empty gap under short views) */
+  @media (min-width: 1000px) {
+    .js .media-stack > .media-panel { grid-area: 1 / 1; }
+    .js .media-panel.is-off { visibility: hidden; }
+  }
+  @media (max-width: 999px) { .js .media-panel.is-off { display: none; } }
+  .shot-cap > span:last-child { white-space: nowrap; }
+
+  /* the default lilac focus ring disappears on the lilac flagship card */
+  .case--flagship :focus-visible { outline-color: var(--paper); }
+}

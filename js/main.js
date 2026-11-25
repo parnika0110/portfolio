@@ -108,6 +108,31 @@
   syncScrollable();
   window.addEventListener('resize', syncScrollable, { passive: true });
 
+  /* ------------------------------------------------------------ media switcher tabs (OPPY case study) */
+  $$('[role="tablist"].media-tabs').forEach((list) => {
+    const tabs = $$('[role="tab"]', list);
+    const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+    const select = (i, focus = false) => {
+      tabs.forEach((t, n) => {
+        const on = n === i;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        panels[n].classList.toggle('is-off', !on);
+        panels[n].inert = !on;
+      });
+      if (focus) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(i));
+      t.addEventListener('keydown', (e) => {
+        const last = tabs.length - 1;
+        const next = { ArrowRight: i === last ? 0 : i + 1, ArrowLeft: i === 0 ? last : i - 1, Home: 0, End: last }[e.key];
+        if (next !== undefined) { e.preventDefault(); select(next, true); }
+      });
+    });
+    select(Math.max(0, tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true')));
+  });
+
   /* ------------------------------------------------------------ project filters */
   const filterBtns = $$('#projectFilters .filter');
   const filterStatus = $('#filterStatus');

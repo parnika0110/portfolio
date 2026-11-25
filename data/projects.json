@@ -54,8 +54,17 @@
       ],
       "repositoryUrl": "https://github.com/parnika0110/oppy",
       "demoUrl": "https://myoppy.xyz/",
-      "imageFolder": "",
-      "screenshots": []
+      "imageFolder": "images/oppy",
+      "screenshots": [
+        {
+          "src": "images/oppy/01.webp",
+          "alt": "OPPY’s live landing page at myoppy.xyz, with the headline “Good opportunities shouldn’t be this hard to find.”"
+        },
+        {
+          "src": "images/oppy/02.webp",
+          "alt": "OPPY’s discovery step: ask in your own words by typing or speaking, or choose opportunity types step by step"
+        }
+      ]
     },
     {
       "id": "mediassist",

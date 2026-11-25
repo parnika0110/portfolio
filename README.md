@@ -43,9 +43,14 @@ Run `npm run build` after any CSS change, and commit the regenerated `styles.css
 
 - **Beyond the terminal** — the five contact-sheet frames use line illustrations. Swap the
   `<svg>` inside each `.frame__print` for an `<img>` (see the `PHOTO PLACEHOLDERS` comment).
-- **OPPY** — no product screenshot yet; the case shows a feature-flow sketch. See the comment in
-  `#case-oppy` for where a screenshot goes.
-- **D-Day** — space for an event photo and event link is marked with a comment in `#achievements`.
+- **D-Day** — no event link yet (the photo story is in `#dday`).
 
-The current project screenshots were captured from each project's own source code running
-locally (Metro Fare Calculator, Gesture App, CampusPortal, Imperial Wheels, Khana Kreation).
+## Where the visuals come from
+
+- **OPPY** (`images/oppy/`) — captured from the live site, https://myoppy.xyz, on 25 Nov 2026
+  (landing page and the discovery step). The case study switches between these and the
+  feature-flow sketch. The opportunity count shown on the landing page is live data from that day.
+- **Metro Fare Calculator, Gesture App, CampusPortal, Imperial Wheels, Khana Kreation** —
+  captured from each project's own source code running locally.
+- **D-Day** (`images/d-day/`) — event photographs; originals kept unchanged, with 960w/1600w
+  WebP versions served on the page.
