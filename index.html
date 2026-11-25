@@ -556,72 +556,86 @@
 
     <div class="more-work" id="more-projects">
       <div class="more-work__head reveal">
-        <p class="label label--tan">At a glance</p>
+        <p class="label label--tan">Postcard archive</p>
         <h3 class="others__title">More projects</h3>
-        <p class="copy">Four more builds. Open any project’s case notes for its problem, approach, diagrams and screenshots.</p>
+        <p class="copy">Four more builds, filed as postcards. Click any postcard for its case notes — problem, approach, diagrams and screenshots.</p>
       </div>
-      <div class="minis">
-        <article aria-labelledby="t-iw" class="mini mini--ink reveal" data-category="full-stack web" id="case-imperial-wheels">
-          <button aria-label="Open Imperial Wheels case notes and screenshots" class="shot-btn mini__shot" data-open-project="imperial-wheels" data-shot="0" type="button">
-            <span class="shot shot--zoom"><span aria-hidden="true" class="shot__bar"><i></i><i></i><i></i></span><span class="shot__img"><img alt="Imperial Wheels home page with the hero, vehicle search and navigation" decoding="async" height="764" loading="lazy" src="./images/imperial-wheels/01.webp" style="object-position:50% 0%" width="1280"/></span></span>
-          </button>
-          <div class="mini__body">
-            <p class="mini__meta"><span class="case__num"><b>04</b> / 07</span><span class="label">Full-stack rental platform</span><span class="team-tag">Team project</span></p>
-            <h4 class="mini__title" id="t-iw">Imperial Wheels</h4>
-            <p class="mini__line">A MERN car and bike rental platform with JWT sign-in, vehicle listings and bookings that admins approve or reject — with automated status emails.</p>
-            <p class="mini__stack"><span class="sr-only">Stack: </span>MongoDB · Express.js · React.js · Node.js · JWT · Resend</p>
-            <div class="mini__links">
-              <a class="link-btn ulink" href="https://github.com/parnika0110/imperial-wheels" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-              <button class="text-link ulink" data-open-project="imperial-wheels" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+      <div class="pc-rack reveal">
+        <article aria-labelledby="t-iw" class="pc pc--ink" data-category="full-stack web" id="case-imperial-wheels">
+          <div class="pc__msg">
+            <p class="pc__meta"><span class="case__num"><b>04</b> / 07</span><span class="pc__kind">Full-stack rental platform</span><span class="team-tag">Team project</span></p>
+            <h4 class="pc__title" id="t-iw">Imperial Wheels</h4>
+            <p class="pc__line">A MERN car and bike rental platform with JWT sign-in, vehicle listings and bookings that admins approve or reject — with automated status emails.</p>
+            <p class="pc__stack"><span class="sr-only">Stack: </span>MongoDB · Express.js · React.js · Node.js · JWT · Resend</p>
+          </div>
+          <div class="pc__addr">
+            <div class="pc__corner">
+              <button aria-label="Open Imperial Wheels case notes and screenshots" class="shot-btn pc__stamp" data-open-project="imperial-wheels" data-shot="0" type="button"><span class="pc__face"><img alt="Imperial Wheels home page with the hero, vehicle search and navigation" decoding="async" height="764" loading="lazy" src="./images/imperial-wheels/01.webp" style="object-position:50% 0%" width="1280"/><b aria-hidden="true">04</b></span></button>
+              <svg aria-hidden="true" class="pc__pm" viewBox="0 0 120 120"><circle cx="60" cy="60" fill="none" r="56" stroke="currentColor" stroke-width="2.2"/><circle cx="60" cy="60" fill="none" r="37" stroke="currentColor" stroke-width="1.2"/><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9.5" font-weight="500" letter-spacing="1.2"><textPath href="#pm-arc" lengthAdjust="spacing" textLength="288">FIRST COMMIT · FIELD JOURNAL · Nº 04 ·</textPath></text><text fill="currentColor" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" text-anchor="middle" x="60" y="60">MAR</text><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" letter-spacing="1" text-anchor="middle" x="60" y="76">2026</text></svg>
             </div>
+            <p class="sr-only">First commit: March 2026.</p>
+            <ul class="pc__lines">
+              <li><a class="ulink" href="https://github.com/parnika0110/imperial-wheels" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a></li>
+              <li><button class="ulink pc__notes" data-open-project="imperial-wheels" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button></li>
+            </ul>
           </div>
         </article>
-        <article aria-labelledby="t-metro" class="mini mini--transit reveal" data-category="full-stack web" id="case-metro">
-          <span aria-hidden="true" class="mini__route"><i></i><i></i><i class="x"></i><i></i><i></i></span>
-          <button aria-label="Open Metro Fare Calculator case notes and screenshots" class="shot-btn mini__shot" data-open-project="metro-fare-calculator" data-shot="0" type="button">
-            <span class="shot shot--zoom"><span aria-hidden="true" class="shot__bar"><i></i><i></i><i></i></span><span class="shot__img"><img alt="Metro Fare Calculator showing a Whitefield to Majestic route, fare and alternate routes" decoding="async" height="676" loading="lazy" src="./images/metro/01.webp" style="object-position:62% 0%" width="1280"/></span></span>
-          </button>
-          <div class="mini__body">
-            <p class="mini__meta"><span class="case__num"><b>05</b> / 07</span><span class="label">Transportation system</span></p>
-            <h4 class="mini__title" id="t-metro">Metro Fare Calculator</h4>
-            <p class="mini__line">A Bengaluru Metro planner that finds routes over a graph of the network and prices each trip by time, holidays and ticket type, with Smart Card and NCMC discounts.</p>
-            <p class="mini__stack"><span class="sr-only">Stack: </span>HTML · CSS · JavaScript · Node.js</p>
-            <div class="mini__links">
-              <a class="link-btn ulink" href="https://github.com/parnika0110/metro-fare-calculator" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-              <button class="text-link ulink" data-open-project="metro-fare-calculator" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+        <article aria-labelledby="t-metro" class="pc pc--lilac" data-category="full-stack web" id="case-metro">
+          <div class="pc__msg">
+            <p class="pc__meta"><span class="case__num"><b>05</b> / 07</span><span class="pc__kind">Transportation system</span></p>
+            <h4 class="pc__title" id="t-metro">Metro Fare Calculator</h4>
+            <p class="pc__line">A Bengaluru Metro planner that finds routes over a graph of the network and prices each trip by time, holidays and ticket type, with Smart Card and NCMC discounts.</p>
+            <p class="pc__stack"><span class="sr-only">Stack: </span>HTML · CSS · JavaScript · Node.js</p>
+          </div>
+          <div class="pc__addr">
+            <div class="pc__corner">
+              <button aria-label="Open Metro Fare Calculator case notes and screenshots" class="shot-btn pc__stamp" data-open-project="metro-fare-calculator" data-shot="0" type="button"><span class="pc__face"><img alt="Metro Fare Calculator showing a Whitefield to Majestic route, fare and alternate routes" decoding="async" height="676" loading="lazy" src="./images/metro/01.webp" style="object-position:62% 0%" width="1280"/><b aria-hidden="true">05</b></span></button>
+              <svg aria-hidden="true" class="pc__pm" viewBox="0 0 120 120"><circle cx="60" cy="60" fill="none" r="56" stroke="currentColor" stroke-width="2.2"/><circle cx="60" cy="60" fill="none" r="37" stroke="currentColor" stroke-width="1.2"/><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9.5" font-weight="500" letter-spacing="1.2"><textPath href="#pm-arc" lengthAdjust="spacing" textLength="288">FIRST COMMIT · FIELD JOURNAL · Nº 05 ·</textPath></text><text fill="currentColor" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" text-anchor="middle" x="60" y="60">APR</text><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" letter-spacing="1" text-anchor="middle" x="60" y="76">2026</text></svg>
             </div>
+            <p class="sr-only">First commit: April 2026.</p>
+            <ul class="pc__lines">
+              <li><a class="ulink" href="https://github.com/parnika0110/metro-fare-calculator" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a></li>
+              <li><button class="ulink pc__notes" data-open-project="metro-fare-calculator" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button></li>
+            </ul>
           </div>
         </article>
-        <article aria-labelledby="t-campus" class="mini mini--ledger reveal" data-category="full-stack web" id="case-campusportal">
-          <button aria-label="Open CampusPortal case notes and screenshots" class="shot-btn mini__shot" data-open-project="CampusPortal" data-shot="1" type="button">
-            <span class="shot shot--zoom"><span aria-hidden="true" class="shot__bar"><i></i><i></i><i></i></span><span class="shot__img"><img alt="CampusPortal sign-in screen" decoding="async" height="800" loading="lazy" src="./images/campusportal/02.webp" style="object-position:50% 30%" width="1280"/></span></span>
-          </button>
-          <div class="mini__body">
-            <p class="mini__meta"><span class="case__num"><b>06</b> / 07</span><span class="label">Campus management platform</span></p>
-            <h4 class="mini__title" id="t-campus">CampusPortal</h4>
-            <p class="mini__line">A PHP and MySQL campus portal with role-based dashboards for students, teachers and admins — courses, grades, attendance, assignments and announcements.</p>
-            <p class="mini__stack"><span class="sr-only">Stack: </span>PHP · MySQL · HTML · CSS · JavaScript</p>
-            <div class="mini__links">
-              <a class="link-btn ulink" href="https://github.com/parnika0110/CampusPortal" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-              <button class="text-link ulink" data-open-project="CampusPortal" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+        <article aria-labelledby="t-campus" class="pc pc--sage" data-category="full-stack web" id="case-campusportal">
+          <div class="pc__msg">
+            <p class="pc__meta"><span class="case__num"><b>06</b> / 07</span><span class="pc__kind">Campus management platform</span></p>
+            <h4 class="pc__title" id="t-campus">CampusPortal</h4>
+            <p class="pc__line">A PHP and MySQL campus portal with role-based dashboards for students, teachers and admins — courses, grades, attendance, assignments and announcements.</p>
+            <p class="pc__stack"><span class="sr-only">Stack: </span>PHP · MySQL · HTML · CSS · JavaScript</p>
+          </div>
+          <div class="pc__addr">
+            <div class="pc__corner">
+              <button aria-label="Open CampusPortal case notes and screenshots" class="shot-btn pc__stamp" data-open-project="CampusPortal" data-shot="1" type="button"><span class="pc__face"><img alt="CampusPortal sign-in screen" decoding="async" height="800" loading="lazy" src="./images/campusportal/02.webp" style="object-position:50% 30%" width="1280"/><b aria-hidden="true">06</b></span></button>
+              <svg aria-hidden="true" class="pc__pm" viewBox="0 0 120 120"><circle cx="60" cy="60" fill="none" r="56" stroke="currentColor" stroke-width="2.2"/><circle cx="60" cy="60" fill="none" r="37" stroke="currentColor" stroke-width="1.2"/><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9.5" font-weight="500" letter-spacing="1.2"><textPath href="#pm-arc" lengthAdjust="spacing" textLength="288">FIRST COMMIT · FIELD JOURNAL · Nº 06 ·</textPath></text><text fill="currentColor" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" text-anchor="middle" x="60" y="60">JUL</text><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" letter-spacing="1" text-anchor="middle" x="60" y="76">2026</text></svg>
             </div>
+            <p class="sr-only">First commit: July 2026.</p>
+            <ul class="pc__lines">
+              <li><a class="ulink" href="https://github.com/parnika0110/CampusPortal" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a></li>
+              <li><button class="ulink pc__notes" data-open-project="CampusPortal" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button></li>
+            </ul>
           </div>
         </article>
-        <article aria-labelledby="t-khana" class="mini mini--recipe reveal" data-category="ai-ml web" id="case-khana-kreation">
-          <p aria-hidden="true" class="mini__band"><span>Recipe card № 07</span><span>Serves: anyone with a fridge</span></p>
-          <button aria-label="Open Khana Kreation case notes and screenshots" class="shot-btn mini__shot" data-open-project="recipe-app" data-shot="1" type="button">
-            <span class="shot shot--zoom"><span aria-hidden="true" class="shot__bar"><i></i><i></i><i></i></span><span class="shot__img"><img alt="Khana Kreation ingredient input with dietary and cuisine preferences" decoding="async" height="800" loading="lazy" src="./images/khana-kreation/02.webp" style="object-position:50% 0%" width="1280"/></span></span>
-          </button>
-          <div class="mini__body">
-            <p class="mini__meta"><span class="case__num"><b>07</b> / 07</span><span class="label">AI recipe app</span></p>
-            <h4 class="mini__title" id="t-khana">Khana Kreation</h4>
-            <p class="mini__line">A Next.js recipe app that turns the ingredients you have into personalised recipes with Google Gemini — sign in to save, rate and comment on them.</p>
-            <p class="mini__stack"><span class="sr-only">Stack: </span>Next.js · React · Prisma · PostgreSQL · NextAuth · Google Gemini</p>
-            <div class="mini__links">
-              <a class="link-btn ulink" href="https://khanakreation.vercel.app/" rel="noopener noreferrer" target="_blank">Live demo <span aria-hidden="true" class="arrow">↗</span></a>
-              <a class="link-btn ulink" href="https://github.com/parnika0110/recipe-app" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a>
-              <button class="text-link ulink" data-open-project="recipe-app" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button>
+        <article aria-labelledby="t-khana" class="pc pc--tan" data-category="ai-ml web" id="case-khana-kreation">
+          <div class="pc__msg">
+            <p class="pc__meta"><span class="case__num"><b>07</b> / 07</span><span class="pc__kind">AI recipe app</span></p>
+            <h4 class="pc__title" id="t-khana">Khana Kreation</h4>
+            <p class="pc__line">A Next.js recipe app that turns the ingredients you have into personalised recipes with Google Gemini — sign in to save, rate and comment on them.</p>
+            <p class="pc__stack"><span class="sr-only">Stack: </span>Next.js · React · Prisma · PostgreSQL · NextAuth · Google Gemini</p>
+          </div>
+          <div class="pc__addr">
+            <div class="pc__corner">
+              <button aria-label="Open Khana Kreation case notes and screenshots" class="shot-btn pc__stamp" data-open-project="recipe-app" data-shot="1" type="button"><span class="pc__face"><img alt="Khana Kreation ingredient input with dietary and cuisine preferences" decoding="async" height="800" loading="lazy" src="./images/khana-kreation/02.webp" style="object-position:50% 0%" width="1280"/><b aria-hidden="true">07</b></span></button>
+              <svg aria-hidden="true" class="pc__pm" viewBox="0 0 120 120"><circle cx="60" cy="60" fill="none" r="56" stroke="currentColor" stroke-width="2.2"/><circle cx="60" cy="60" fill="none" r="37" stroke="currentColor" stroke-width="1.2"/><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9.5" font-weight="500" letter-spacing="1.2"><textPath href="#pm-arc" lengthAdjust="spacing" textLength="288">FIRST COMMIT · FIELD JOURNAL · Nº 07 ·</textPath></text><text fill="currentColor" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" text-anchor="middle" x="60" y="60">NOV</text><text fill="currentColor" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" letter-spacing="1" text-anchor="middle" x="60" y="76">2025</text></svg>
             </div>
+            <p class="sr-only">First commit: November 2025.</p>
+            <ul class="pc__lines">
+              <li><a class="ulink" href="https://khanakreation.vercel.app/" rel="noopener noreferrer" target="_blank">Live demo <span aria-hidden="true" class="arrow">↗</span></a></li>
+              <li><a class="ulink" href="https://github.com/parnika0110/recipe-app" rel="noopener noreferrer" target="_blank">GitHub <span aria-hidden="true" class="arrow">↗</span></a></li>
+              <li><button class="ulink pc__notes" data-open-project="recipe-app" type="button">Case notes <span aria-hidden="true" class="arrow">→</span></button></li>
+            </ul>
           </div>
         </article>
       </div>

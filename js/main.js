@@ -136,7 +136,7 @@
   /* ------------------------------------------------------------ project filters */
   const filterBtns = $$('#projectFilters .filter');
   const filterStatus = $('#filterStatus');
-  const filterables = () => $$('#projectList .case, #more-projects .mini, #other-builds .build');
+  const filterables = () => $$('#projectList .case, #more-projects .pc, #other-builds .build');
   filterBtns.forEach((btn) => btn.addEventListener('click', () => {
     const f = btn.dataset.filter;
     filterBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
@@ -257,6 +257,11 @@
     e.preventDefault();
     openProject(trigger.dataset.openProject, Number(trigger.dataset.shot || 0));
   });
+  // postcards: a click anywhere on the card (outside its links and buttons) opens the case notes
+  $$('#more-projects .pc').forEach((card) => card.addEventListener('click', (e) => {
+    if (e.target.closest('a, button') || String(window.getSelection())) return;
+    card.querySelector('.pc__notes')?.click();
+  }));
   pmClose.addEventListener('click', () => closeModal(pm));
   $('#galleryPrev').addEventListener('click', () => showShot(shotIndex - 1));
   $('#galleryNext').addEventListener('click', () => showShot(shotIndex + 1));

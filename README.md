@@ -54,3 +54,7 @@ Run `npm run build` after any CSS change, and commit the regenerated `styles.css
   captured from each project's own source code running locally.
 - **D-Day** (`images/d-day/`) — event photographs; originals kept unchanged, with 960w/1600w
   WebP versions served on the page.
+- **More projects (postcard archive)** — each postcard's stamp is that project's own screenshot,
+  and the postmark shows the month of the repository's first commit, taken from its Git history
+  (Imperial Wheels Mar 2026, Metro Fare Calculator Apr 2026, CampusPortal Jul 2026,
+  Khana Kreation Nov 2025). Update the postmark if a repository's history changes.

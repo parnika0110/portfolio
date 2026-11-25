@@ -1036,42 +1036,96 @@
   .case--flagship .kc li::before, .case--dark .kc li::before { color: var(--tan); }
   .case--sage .kc li::before { color: var(--sage-700); }
 
-  /* more projects: 2x2 compact cards, each with its own small signature */
   .more-work { margin-top: clamp(3rem, 6vw, 4.5rem); }
   .more-work__head { display: grid; gap: .3rem; margin-bottom: clamp(1.25rem, 2.6vw, 1.75rem); padding-bottom: 1rem; border-bottom: 1.5px solid var(--ink); }
   .more-work__head .copy { max-width: 62ch; }
-  .minis { display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
-  @media (min-width: 760px) { .minis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .mini { position: relative; display: flex; flex-direction: column; min-width: 0; background: var(--paper-3); border: 1px solid var(--line-2); border-radius: 6px; overflow: hidden; transition: border-color .25s ease; }
-  .mini[hidden] { display: none; }
-  .mini:hover, .mini:focus-within { border-color: var(--ink); }
-  .mini__shot { display: block; padding: 1rem 1rem 0; }
-  .mini__shot .shot { display: block; border-width: 1px; box-shadow: none; }
-  .mini__shot .shot__bar { padding: .35rem .6rem; border-bottom-width: 1px; }
-  .mini__shot .shot__img { display: block; aspect-ratio: 16 / 9; }
-  .mini__body { display: flex; flex-direction: column; gap: .5rem; flex: 1; padding: 1rem 1.15rem 1.1rem; }
-  .mini__meta { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; }
-  .mini__title { font-size: clamp(1.3rem, 2vw, 1.55rem); font-weight: 600; letter-spacing: -.025em; line-height: 1.1; }
-  .mini__line { color: var(--ink-2); font-size: .95rem; line-height: 1.55; }
-  .mini__stack { font-family: var(--font-mono); font-size: .76rem; line-height: 1.5; color: var(--ink-3); }
-  .mini__links { display: flex; flex-wrap: wrap; align-items: center; gap: .2rem 1.2rem; margin-top: auto; padding-top: .55rem; border-top: 1px dashed var(--line-2); }
 
-  /* Imperial Wheels: the dark hero sits on an ink mat */
-  .mini--ink { border-top: 3px solid var(--ink); }
-  .mini--ink .mini__shot { background: var(--ink); padding-bottom: 1rem; }
-  .mini--ink .mini__shot .shot { border-color: rgb(245 240 231 / .6); }
-  /* Metro: a small metro line with an interchange */
-  .mini__route { position: relative; display: flex; justify-content: space-between; margin: 1.1rem 1.4rem .15rem; }
-  .mini__route::before { content: ""; position: absolute; left: .3rem; right: .3rem; top: 50%; height: 4px; margin-top: -2px; border-radius: 4px; background: var(--lilac); }
-  .mini__route i { position: relative; width: .8rem; height: .8rem; border-radius: 50%; background: var(--paper-3); border: 3px solid var(--lilac); }
-  .mini__route i.x { border-color: var(--sage); box-shadow: 0 0 0 2px var(--paper-3), 0 0 0 3.5px var(--sage); }
-  .mini__route i:last-child { background: var(--lilac); }
-  /* CampusPortal: ruled notebook page with a margin line */
-  .mini--ledger .mini__body { position: relative; padding-left: 1.75rem; background-image: repeating-linear-gradient(transparent 0 27px, rgb(98 80 200 / .08) 27px 28px); }
-  .mini--ledger .mini__body::before { content: ""; position: absolute; left: .8rem; top: 0; bottom: 0; width: 1.5px; background: rgb(231 139 72 / .55); }
-  /* Khana Kreation: recipe-card band */
-  .mini--recipe { border-color: var(--ink); }
-  .mini__band { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; padding: .5rem 1.15rem; background: var(--tan); color: var(--ink); border-bottom: 1.5px solid var(--ink); font-family: var(--font-mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; }
+  /* more projects: the postcard archive — four postcard backs in one overlapping rack */
+  .pc-rack { display: grid; gap: 1.25rem; padding: .25rem 0 .75rem; }
+  @media (min-width: 640px) { .pc-rack { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 1.5rem; } }
+  .pc {
+    position: relative; isolation: isolate; z-index: 0; min-width: 0;
+    display: grid; grid-template-columns: minmax(0, 1fr) 8.75rem;
+    background: linear-gradient(180deg, var(--paper-3), #F8F3EA); border: 1px solid var(--line-2); border-radius: 3px;
+    box-shadow: 0 1px 0 rgb(33 29 43 / .06), 0 12px 22px -16px rgb(33 29 43 / .4);
+    rotate: var(--rot, 0deg); cursor: pointer;
+    transition: rotate .35s var(--ease), translate .35s var(--ease), box-shadow .35s ease;
+  }
+  .pc[hidden] { display: none; }
+  .pc:nth-child(1) { --rot: -1.1deg; } .pc:nth-child(2) { --rot: .8deg; } .pc:nth-child(3) { --rot: -.5deg; } .pc:nth-child(4) { --rot: 1.2deg; }
+  /* airmail edge */
+  .pc::before {
+    content: ""; position: absolute; inset: 0 0 auto; height: 4px; border-radius: 3px 3px 0 0; opacity: .85;
+    background: repeating-linear-gradient(-45deg, var(--lilac) 0 9px, transparent 9px 14px, var(--tan) 14px 23px, transparent 23px 28px);
+  }
+  .pc:hover, .pc:focus-within { --rot: 0deg; translate: 0 -6px; z-index: 5; box-shadow: 0 1px 0 rgb(33 29 43 / .08), 0 24px 36px -20px rgb(33 29 43 / .5); }
+  .pc:hover { z-index: 6; }   /* the card under the pointer wins over one that merely holds focus */
+
+  /* message side */
+  .pc__msg { display: flex; flex-direction: column; gap: .45rem; min-width: 0; padding: 1.25rem 1.1rem 1.1rem 1.2rem; }
+  .pc__meta { display: flex; flex-wrap: wrap; align-items: center; gap: .2rem .65rem; }
+  .pc__kind { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+  .pc .team-tag { font-size: .62rem; padding: .1rem .45rem; }
+  .pc__title { font-size: clamp(1.15rem, 1.6vw, 1.32rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.12; }
+  .pc__line { color: var(--ink-2); font-size: .88rem; line-height: 1.5; }
+  .pc__stack { margin-top: auto; padding-top: .35rem; font-family: var(--font-mono); font-size: .69rem; line-height: 1.5; color: var(--ink-3); }
+
+  /* address side: perforated stamp (the project's screenshot), first-commit postmark, links on the address lines */
+  .pc__addr { display: flex; flex-direction: column; min-width: 0; margin-block: 1rem; padding: .2rem .95rem .1rem; border-left: 1.5px solid var(--line-2); }
+  .pc__corner { position: relative; height: 8.6rem; }
+  .pc__stamp {
+    --r: 3px; position: absolute; right: 0; top: 0; width: auto; padding: 6px; rotate: 3deg; cursor: zoom-in;
+    background:
+      radial-gradient(var(--r), #0000 97%, #fff) round calc(-1.5 * var(--r)) calc(-1.5 * var(--r)) / calc(3 * var(--r)) calc(3 * var(--r)),
+      linear-gradient(#fff 0 0) no-repeat 50% / calc(100% - 3 * var(--r)) calc(100% - 3 * var(--r));
+    filter: drop-shadow(0 1px 0 rgb(33 29 43 / .2)) drop-shadow(0 3px 5px rgb(33 29 43 / .12));
+    transition: rotate .3s var(--ease);
+  }
+  .pc__stamp:hover { rotate: 0deg; }
+  .pc__face { position: relative; display: block; width: 4.6rem; height: 5.5rem; overflow: hidden; background: var(--ink); outline: 1px solid rgb(33 29 43 / .25); }
+  .pc__face img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) contrast(1.02); }
+  .pc__face b { position: absolute; left: .25rem; bottom: .2rem; padding: .05rem .25rem; background: var(--paper-3); color: var(--ink); font-family: var(--font-display); font-size: .72rem; line-height: 1.1; }
+  .pc--lilac .pc__face b { background: var(--lilac); color: var(--paper); }
+  .pc--sage .pc__face b { background: var(--sage); }
+  .pc--tan .pc__face b { background: var(--tan); }
+  /* below-left of the stamp on narrow cards, so the month and year stay legible */
+  .pc__pm { position: absolute; left: -.55rem; top: 4.2rem; width: 4.4rem; rotate: -12deg; color: var(--ink); opacity: .5; pointer-events: none; }
+  .pc--lilac .pc__pm { color: var(--lilac); opacity: .7; }
+  .pc--sage .pc__pm { color: var(--sage-700); opacity: .65; }
+  .pc--tan .pc__pm { color: var(--tan-700); opacity: .6; }
+  .pc__lines { display: grid; margin-top: auto; }
+  .pc__lines li { border-bottom: 1px solid var(--line-2); font-size: .86rem; font-weight: 600; }
+  .pc__lines a, .pc__lines button { display: inline-flex; align-items: center; gap: .35rem; min-height: 2.15rem; }
+
+  /* wide screens: one overlapping rack. Each card covers only the previous card's address side,
+     so every name and description stays readable; hover/focus brings a card forward. */
+  @media (min-width: 1200px) {
+    .pc-rack { display: flex; gap: 0; padding: .75rem 0 1.25rem; }
+    .pc { flex: 0 0 37%; grid-template-columns: minmax(0, 21fr) minmax(0, 16fr); min-height: 16.25rem; }
+    .pc:not([hidden]) ~ .pc { margin-left: -16%; }
+    .pc__msg { padding-right: 1.6rem; }
+    .pc:last-child .pc__msg { padding-right: 1.1rem; }
+    .pc__corner { height: 6.8rem; }
+    .pc__pm { left: auto; right: 4rem; top: 1.6rem; width: 4.7rem; }   /* wide address side: postmark beside the stamp */
+    /* filtered view: fewer cards, no need to overlap */
+    .pc-rack:has(> .pc[hidden]) { gap: 1.5rem; }
+    .pc-rack:has(> .pc[hidden]) > .pc { flex: 0 1 37%; margin-left: 0; grid-template-columns: minmax(0, 1fr) 9.5rem; }
+    .pc-rack:has(> .pc[hidden]) .pc__corner { height: 8.6rem; }
+    .pc-rack:has(> .pc[hidden]) .pc__pm { right: auto; left: -.55rem; top: 4.2rem; width: 4.4rem; }
+  }
+  @media (max-width: 639px) {
+    .pc-rack { gap: 0; }
+    .pc:not([hidden]) ~ .pc { margin-top: -.5rem; }
+    .pc { grid-template-columns: minmax(0, 1fr) 7.2rem; }
+    .pc__msg { gap: .35rem; padding: 1.1rem .9rem 1rem 1rem; }
+    .pc__line { font-size: .86rem; }
+    .pc__addr { margin-block: .85rem; padding-inline: .75rem; }
+    .pc__face { width: 4.2rem; height: 5rem; }
+    .pc__corner { height: 8.3rem; }
+    .pc__pm { left: -.5rem; top: 4.4rem; width: 3.9rem; }
+    .pc__lines li { font-size: .82rem; }
+    .pc__lines a, .pc__lines button { min-height: 2.5rem; }
+  }
 
   /* case-notes dialog: problem/approach and diagrams moved off the page */
   .modal__extra { display: grid; gap: 1.5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed var(--line-2); }
