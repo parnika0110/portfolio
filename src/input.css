@@ -410,9 +410,6 @@
   .about__story { position: relative; display: flex; flex-direction: column; }
   .about__lead { font-family: var(--font-display); font-size: clamp(1.25rem, 1.9vw, 1.5rem); line-height: 1.32; letter-spacing: -.018em; font-weight: 500; margin-bottom: 1rem; max-width: 34ch; }
   .gpa__num { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.05rem, 3.1vw, 2.55rem); line-height: .9; letter-spacing: -.04em; color: var(--lilac); }
-  .tick-list { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; margin-top: .55rem; font-family: var(--font-mono); font-size: .8rem; color: var(--ink-2); }
-  .tick-list li { display: flex; gap: .45rem; }
-  .tick-list li::before { content: "→"; color: var(--sage-700); }
   .status-pill {
     display: inline-flex; align-items: center; gap: .4rem; padding: .22rem .6rem; border-radius: 999px;
     font-family: var(--font-mono); font-size: .66rem; letter-spacing: .04em; background: var(--paper-3); color: var(--sage-700); border: 1px solid rgb(75 95 68 / .35);
@@ -971,9 +968,8 @@
   .about--calm .copy + .copy { margin-top: 1.15rem; }
 
   /* focus areas: one inline line instead of a block of chips */
-  .focus-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; margin-top: 1.6rem; }
-  .focus-line ul { display: flex; flex-wrap: wrap; gap: .25rem 0; font-size: .95rem; color: var(--ink-2); }
-  .focus-line li:not(:last-child)::after { content: "·"; margin-inline: .55rem; color: var(--tan-700); }
+  .focus-list { display: flex; flex-wrap: wrap; gap: .3rem 0; margin-top: .5rem; font-size: .98rem; line-height: 1.5; color: var(--ink-2); }
+  .focus-list li:not(:last-child)::after { content: "·"; margin-inline: .55rem; color: var(--tan-700); }
 
   /* right column: three quiet entries divided by hairlines, no filled cards */
   .facts { display: grid; align-content: start; }
@@ -984,17 +980,12 @@
   .fact:last-child { border-bottom: 0; padding-bottom: 0; }
   .fact h3 { font-size: clamp(1.1rem, 1.5vw, 1.25rem); font-weight: 600; margin-top: .45rem; line-height: 1.2; }
   .fact__sub { margin-top: .3rem; color: var(--ink-2); font-size: .95rem; line-height: 1.55; }
-  .fact__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem .8rem; }
   .fact__row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1rem; margin-top: .75rem; }
-  .fact__row .tick-list { margin-top: 0; }
   .fact__gpa { display: inline-flex; align-items: baseline; gap: .55rem; }
   .fact .gpa__num { font-size: clamp(1.8rem, 2.6vw, 2.2rem); }
   /* currently building: a restrained sage rule instead of a filled card */
-  .fact--build { position: relative; }
   /* currently curious about: one statement, set in the display face, closing the column */
   .fact__statement { margin-top: .45rem; max-width: 34ch; font-family: var(--font-display); font-size: 1.08rem; font-weight: 500; line-height: 1.45; letter-spacing: -.01em; color: var(--ink); }
-  .fact--build::before { content: ""; position: absolute; left: calc(-1 * clamp(1.75rem, 3.2vw, 2.75rem) - 1px); top: 1.35rem; bottom: 0; width: 2px; background: var(--sage); }
-  @media (max-width: 959px) { .fact--build::before { display: none; } .fact--build { border-left: 2px solid var(--sage); padding-left: 1rem; } }
 }
 
 /* ------------------------------------------------------------ Work: featured lists, compact cards, case-notes extras */
@@ -1145,20 +1136,16 @@
     .about--calm .about__lead { font-size: 1.32rem; max-width: 46ch; margin-bottom: .85rem; }
     .about--calm .copy { line-height: 1.62; }
     .about--calm .copy + .copy { margin-top: .7rem; }
-    .about--calm .focus-line { margin-top: .95rem; }
     .about--calm { grid-template-columns: minmax(0, 1.14fr) minmax(0, .86fr); gap: 3rem; }
     .about--calm .facts { padding-left: 2rem; }
-    .about--calm .fact--build::before { left: calc(-2rem - 1px); }
     .fact { padding-block: .85rem; }
     .fact h3 { margin-top: .3rem; }
     .fact__row { margin-top: .45rem; }
-    .fact--build::before { top: .85rem; }
   }
   @media (min-width: 960px) and (max-width: 1199px) {
     .about--calm .fact { padding-block: .7rem; }
     .about--calm .fact:first-child { padding-top: .2rem; }
     .about--calm .fact:last-child { padding-bottom: 0; }
-    .about--calm .fact--build::before { top: .7rem; }
   }
 
   /* featured case studies: smaller display titles, shorter media, rebalanced columns */
