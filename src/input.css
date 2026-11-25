@@ -927,23 +927,16 @@
   .photo-btn:focus-visible { outline: 2px solid var(--lilac); outline-offset: 4px; }
   .dday-cap { margin-top: .55rem; font-family: var(--font-mono); font-size: .76rem; letter-spacing: .02em; color: var(--ink-3); }
 
-  /* 2 · featured photograph, caption in the margin on wide screens */
-  .dday-hero { display: grid; gap: .5rem; }
+  /* 2-3 · photo story: two balanced rows — featured photo beside a stacked pair, then a mirrored row
+     ending on the cohort photo. Every photo keeps its native 3:2 frame. */
+  .dday-rows { display: grid; gap: clamp(1.25rem, 2.6vw, 2rem); }
+  .dday-row { display: grid; gap: 1rem; align-items: start; }
+  .dday-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
   @media (min-width: 900px) {
-    .dday-hero { grid-template-columns: minmax(0, 10fr) minmax(0, 2fr); column-gap: 1.5rem; align-items: end; }
-    .dday-cap--hero { margin-top: 0; padding-bottom: .2rem; border-left: 2px solid var(--lilac); padding-left: .8rem; }
-  }
-
-  /* 3 · photo story: asymmetric, mirrored widths, every photo at its own aspect ratio */
-  .dday-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
-  .dday-ph--a, .dday-ph--d, .dday-ph--group { grid-column: 1 / -1; }
-  @media (min-width: 900px) {
-    .dday-gallery { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.25rem; }
-    .dday-ph--a { grid-column: 1 / 8; }
-    .dday-ph--b { grid-column: 8 / 13; margin-top: clamp(2.5rem, 7vw, 6rem); }
-    .dday-ph--c { grid-column: 1 / 6; margin-top: clamp(2rem, 5vw, 4rem); }
-    .dday-ph--d { grid-column: 6 / 13; }
-    .dday-ph--group { grid-column: 1 / -1; }
+    .dday-row { gap: clamp(1rem, 1.8vw, 1.5rem); }
+    .dday-row--lead { grid-template-columns: minmax(0, 2.25fr) minmax(0, 1fr); }
+    .dday-row--close { grid-template-columns: minmax(0, 1fr) minmax(0, 2.25fr); }
+    .dday-pair { grid-template-columns: minmax(0, 1fr); gap: clamp(.9rem, 1.6vw, 1.2rem); }
   }
 
   /* 4 · closing note */
