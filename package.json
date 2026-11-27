@@ -3,10 +3,12 @@
     "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
     "sync": "node scripts/sync-projects.js",
     "sync:offline": "node scripts/sync-projects.js --offline",
-    "sync:build": "node scripts/sync-projects.js && tailwindcss -i ./src/input.css -o ./styles.css --minify"
+    "sync:build": "node scripts/sync-projects.js && tailwindcss -i ./src/input.css -o ./styles.css --minify",
+    "test": "node --test \"tests/*.test.js\""
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
+    "playwright": "1.63.0",
     "tailwindcss": "^4.3.3"
   }
 }
