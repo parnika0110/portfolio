@@ -373,6 +373,39 @@
     photoModal.addEventListener('modal:closed', () => photoImg.removeAttribute('src'));
   }
 
+  /* ------------------------------------------------------------ night shift theme (remembered per visitor) */
+  const root = document.documentElement;
+  const themeMeta = $('meta[name="theme-color"]');
+  const themeBtns = $$('[data-theme-toggle]');
+  const isNight = () => root.dataset.theme === 'night';
+  function syncTheme() {
+    themeBtns.forEach((b) => b.setAttribute('aria-pressed', String(isNight())));
+    themeMeta?.setAttribute('content', isNight() ? '#15131C' : '#F5F0E7');
+  }
+  function setTheme(night) {
+    if (night === isNight()) return;
+    const fade = !reducedMotion.matches;
+    if (fade) root.classList.add('theme-switching');
+    if (night) root.dataset.theme = 'night'; else delete root.dataset.theme;
+    syncTheme();
+    try { localStorage.setItem('theme', night ? 'night' : 'day'); } catch { /* private mode: the choice lasts this visit */ }
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { night } }));
+    if (fade) setTimeout(() => root.classList.remove('theme-switching'), 450);
+  }
+  syncTheme();
+  themeBtns.forEach((b) => b.addEventListener('click', () => setTheme(!isNight())));
+
+  /* ------------------------------------------------------------ copy email (button + ⌘K) */
+  const email = 'parnika.sm2005@gmail.com';
+  async function copyEmail() {
+    try { await navigator.clipboard.writeText(email); }
+    catch {
+      const t = document.createElement('textarea');
+      t.value = email; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.append(t); t.select(); document.execCommand('copy'); t.remove();
+    }
+  }
+
   /* ------------------------------------------------------------ command palette (⌘K / Ctrl+K) */
   const cmdk = $('#cmdkOverlay');
   const cmdkInput = $('#cmdkInput');
@@ -395,15 +428,47 @@
     { label: 'Postcrossing', kind: 'link', run: openUrl('https://www.postcrossing.com/user/PARNIKA') },
     { label: 'Resume (PDF)', kind: 'file', run: openUrl('./Parnika_SM_Resume.pdf') },
   ];
+  // typed commands, shown as a console: "open oppy", "theme night", "copy email", "help"…
+  const openNotes = (id) => () => document.querySelector(`[data-open-project="${id}"]`)?.click();
+  const consoleCmds = [
+    { label: 'open oppy', run: goTo('case-oppy') },
+    { label: 'open mediassist', run: goTo('case-mediassist') },
+    { label: 'open gesture', keys: 'infotainment', run: goTo('case-gesture') },
+    { label: 'open metro', keys: 'fare calculator', run: openNotes('metro-fare-calculator') },
+    { label: 'open imperial-wheels', keys: 'rental', run: openNotes('imperial-wheels') },
+    { label: 'open campusportal', keys: 'campus', run: openNotes('CampusPortal') },
+    { label: 'open khana-kreation', keys: 'recipe', run: openNotes('recipe-app') },
+    { label: () => `theme ${isNight() ? 'day' : 'night'}`, keys: 'theme night day dark light mode shift', run: () => setTheme(!isNight()) },
+    { label: 'resume', keys: 'cv pdf download', run: openUrl('./Parnika_SM_Resume.pdf') },
+    { label: 'email', keys: 'mail write contact', run: () => { window.location.href = `mailto:${email}`; } },
+    { label: 'copy email', keys: 'clipboard', stay: true, run: () => copyEmail().then(() => showCmdkNote(`Copied ${email} ✓`)) },
+    { label: 'top', keys: 'home start hero', run: goTo('top') },
+    { label: 'help', keys: '? commands list', stay: true, run: () => { cmdkInput.value = 'help'; active = 0; renderCmdk(); } },
+  ].map((c) => ({ ...c, kind: 'command', cmd: true }));
+  const help = consoleCmds[consoleCmds.length - 1];
+  const labelOf = (c) => (typeof c.label === 'function' ? c.label() : c.label);
+  const matches = (c, q) => { const text = `${labelOf(c)} ${c.keys || ''}`.toLowerCase(); return q.split(/\s+/).every((w) => text.includes(w)); };
   let filtered = commands;
   let active = 0;
+  let noteTimer = 0;
+
+  function showCmdkNote(text) {
+    cmdkList.replaceChildren(Object.assign(document.createElement('li'), { className: 'cmdk__empty', textContent: text }));
+    cmdkList.firstChild.setAttribute('role', 'status');
+    cmdkInput.setAttribute('aria-activedescendant', '');
+    filtered = [];
+    clearTimeout(noteTimer);
+    noteTimer = setTimeout(() => { if (!cmdk.hidden) closeModal(cmdk); }, 1100);
+  }
 
   function renderCmdk() {
-    const q = cmdkInput.value.trim().toLowerCase();
-    filtered = commands.filter((c) => c.label.toLowerCase().includes(q));
+    const q = cmdkInput.value.trim().toLowerCase().replace(/^[>/]\s*/, '');
+    if (q === 'help' || q === '?') filtered = consoleCmds;
+    else if (!q) filtered = [...commands, help];
+    else filtered = [...commands, ...consoleCmds].filter((c) => matches(c, q));
     active = Math.min(active, Math.max(filtered.length - 1, 0));
     if (!filtered.length) {
-      cmdkList.replaceChildren(Object.assign(document.createElement('li'), { className: 'cmdk__empty', textContent: 'Nothing matches — try “projects” or “resume”.' }));
+      cmdkList.replaceChildren(Object.assign(document.createElement('li'), { className: 'cmdk__empty', textContent: 'Nothing matches — type “help” for commands.' }));
       cmdkInput.setAttribute('aria-activedescendant', '');
       return;
     }
@@ -412,9 +477,9 @@
       li.id = `cmdk-opt-${i}`;
       li.setAttribute('role', 'option');
       li.setAttribute('aria-selected', String(i === active));
-      li.className = 'cmdk__item';
+      li.className = c.cmd ? 'cmdk__item is-cmd' : 'cmdk__item';
       li.innerHTML = '<span></span><span class="k"></span>';
-      li.firstChild.textContent = c.label;
+      li.firstChild.textContent = labelOf(c);
       li.lastChild.textContent = c.kind;
       li.addEventListener('mousemove', () => { if (active !== i) { active = i; renderCmdk(); } });
       li.addEventListener('click', () => runCmd(i));
@@ -426,11 +491,12 @@
   function runCmd(i) {
     const c = filtered[i];
     if (!c) return;
-    closeModal(cmdk);
+    if (!c.stay) closeModal(cmdk);
     c.run();
   }
   function openCmdk() {
     if (!cmdk.hidden) return;
+    clearTimeout(noteTimer);
     cmdkInput.value = '';
     active = 0;
     renderCmdk();
@@ -470,16 +536,57 @@
       .catch(() => { ghStats.textContent = 'Explore my GitHub repositories and projects.'; });
   }
 
+  /* ------------------------------------------------------------ build log: latest public commit (live, cached 30 min)
+     The most recently pushed non-fork repository, and its latest commit on the default branch (auto-generated
+     "Merge …" messages skipped). Without JavaScript, or if GitHub can't be reached, the static link stays. */
+  const buildLog = $('#buildLog');
+  if (buildLog) {
+    const GH = 'https://api.github.com';
+    const CACHE = 'build-log-v1';
+    const get = (url) => fetch(url, { headers: { Accept: 'application/vnd.github+json' } }).then((r) => { if (!r.ok) throw new Error(`GitHub ${r.status}`); return r.json(); });
+    const load = async () => {
+      try { const c = JSON.parse(localStorage.getItem(CACHE) || 'null'); if (c && Date.now() - c.at < 30 * 60 * 1000) return c.data; } catch { /* no cache */ }
+      const repos = await get(`${GH}/users/parnika0110/repos?sort=pushed&per_page=10&type=owner`);
+      const repo = Array.isArray(repos) && repos.find((r) => !r.fork && !r.archived && !r.private);
+      if (!repo) throw new Error('no repository');
+      const commits = await get(`${GH}/repos/${repo.full_name}/commits?per_page=10`);
+      const c = (Array.isArray(commits) && (commits.find((x) => !/^Merge (pull request|branch|remote-tracking branch)\b/.test(x.commit?.message || '')) || commits[0])) || null;
+      if (!c) throw new Error('no commit');
+      const data = {
+        repo: repo.name,
+        msg: String(c.commit.message || '').split('\n')[0].trim(),
+        url: /^https:\/\/github\.com\//.test(c.html_url) ? c.html_url : repo.html_url,
+        date: c.commit.committer?.date || c.commit.author?.date,
+      };
+      try { localStorage.setItem(CACHE, JSON.stringify({ at: Date.now(), data })); } catch { /* fine */ }
+      return data;
+    };
+    const ago = (iso) => {
+      const s = Math.min(0, (new Date(iso) - Date.now()) / 1000);
+      const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+      for (const [unit, sec] of [['year', 31536000], ['month', 2592000], ['week', 604800], ['day', 86400], ['hour', 3600], ['minute', 60]]) {
+        if (-s >= sec) return rtf.format(Math.round(s / sec), unit);
+      }
+      return 'just now';
+    };
+    load().then((d) => {
+      if (!d || !d.msg || Number.isNaN(new Date(d.date).getTime())) return;
+      const k = $('.build-log__k', buildLog);
+      const a = $('.build-log__link', buildLog);
+      const time = document.createElement('time');
+      time.dateTime = d.date; time.textContent = ago(d.date); time.title = new Date(d.date).toLocaleString();
+      const sep = document.createElement('span'); sep.setAttribute('aria-hidden', 'true'); sep.textContent = '·';
+      k.textContent = 'Last shipped';
+      a.href = d.url; a.textContent = `${d.repo} — “${d.msg}”`; a.title = `${d.repo}: ${d.msg}`;
+      k.after(' ', time, ' ', sep, ' ');
+      buildLog.classList.add('is-live');
+    }).catch(() => { /* keep the static link to GitHub */ });
+  }
+
   /* ------------------------------------------------------------ copy email */
   const copyBtn = $('#copyEmail');
-  const email = 'parnika.sm2005@gmail.com';
   copyBtn?.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(email); }
-    catch {
-      const t = document.createElement('textarea');
-      t.value = email; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
-      document.body.append(t); t.select(); document.execCommand('copy'); t.remove();
-    }
+    await copyEmail();
     copyBtn.textContent = 'Copied ✓';
     setTimeout(() => { copyBtn.textContent = 'Copy email'; }, 2000);
   });
