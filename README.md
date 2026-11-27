@@ -89,7 +89,13 @@ The footer shows a live total of visitors. `api/visitors.js` is a Vercel serverl
 3. Redeploy: environment variables only apply to new deployments.
 4. Check `https://<your-site>/api/visitors`:
    - `{"count": …}` means it works.
-   - `{"error":"counter not configured"}` means the variables aren't set for that environment.
+   - `{"error":"counter not configured","missing":[…]}` means that deployment's runtime doesn't have the variables listed under `missing`.
+5. If a variable is reported missing, open that deployment's **Logs** in Vercel and find the line starting `[visitors] not configured`. It shows:
+   - the environment and branch
+   - the deployment URL that answered
+   - any similar variable names the runtime does see, quoted so a stray space shows
+
+   This catches variables scoped to another branch or environment, a deployment built before the variables were saved, and typos in names. Values are never logged.
 
 **Locally:** `python3 -m http.server` has no `/api`, so the counter stays hidden. To run the function locally, use `npx vercel dev` with the variables in `.env.local`, for example from `npx vercel env pull .env.local`. `.env*.local` is git-ignored; never commit tokens.
 

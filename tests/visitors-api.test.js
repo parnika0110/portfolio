@@ -105,6 +105,21 @@ test('failures answer 503 with no count: not configured, Upstash errors, timeout
   }
 });
 
+test('not configured: names the missing variables and logs where, never any value', async () => {
+  const logged = []; const warn = console.warn; console.warn = (m) => logged.push(String(m));
+  try {
+    let r = await call('GET', { env: {} });
+    assert.deepEqual([r.status, r.body], [503, { error: 'counter not configured', missing: ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'] }]);
+    const secretUrl = 'https://do-not-print-this.upstash.io';
+    r = await call('POST', { env: { UPSTASH_REDIS_REST_URL: secretUrl, 'UPSTASH_REDIS_REST_TOKEN ': 'do-not-print-this-token', VERCEL_ENV: 'preview', VERCEL_GIT_COMMIT_REF: 'feature', VERCEL_URL: 'app-abc.vercel.app' } });
+    assert.deepEqual(r.body, { error: 'counter not configured', missing: ['UPSTASH_REDIS_REST_TOKEN'] });
+    const line = logged[logged.length - 1];
+    assert.match(line, /missing UPSTASH_REDIS_REST_TOKEN · environment=preview branch=feature deployment=app-abc\.vercel\.app/);
+    assert.ok(line.includes('"UPSTASH_REDIS_REST_TOKEN "'), 'a name with a stray space shows up, quoted');
+    assert.ok(!JSON.stringify(r.body).includes('do-not-print') && !logged.join('\n').includes('do-not-print'), 'no value is ever returned or logged');
+  } finally { console.warn = warn; }
+});
+
 test('also reads the KV_REST_API_* names that Vercel’s Upstash integration adds', async () => {
   const up = fakeUpstash();
   const r = await call('GET', { env: { KV_REST_API_URL: 'https://kv.example.test', KV_REST_API_TOKEN: 'kv-token' }, fetchImpl: up.fetchImpl });

@@ -33,6 +33,9 @@ if ARGV[3] == '1' and not redis.call('SET', KEYS[2], '1', 'NX', 'EX', tonumber(A
 return {redis.call('INCR', KEYS[1]), 1}
 `.trim();
 
+const REQUIRED = [['UPSTASH_REDIS_REST_URL', 'KV_REST_API_URL'], ['UPSTASH_REDIS_REST_TOKEN', 'KV_REST_API_TOKEN']];
+const missingNames = (env) => REQUIRED.filter(([name, alt]) => !env[name] && !env[alt]).map(([name]) => name);
+
 function config(env) {
   const url = env.UPSTASH_REDIS_REST_URL || env.KV_REST_API_URL;
   const token = env.UPSTASH_REDIS_REST_TOKEN || env.KV_REST_API_TOKEN;
@@ -85,7 +88,14 @@ async function handler(req, res, { env = process.env, fetchImpl = fetch, now = n
     return send(res, 405, { error: 'method not allowed' });
   }
   const cfg = config(env);
-  if (!cfg) return send(res, 503, { error: 'counter not configured' });
+  if (!cfg) {
+    // Names only, never values: says which variables this deployment's runtime lacks, and (in Vercel →
+    // Logs) which deployment answered, so a misconfigured environment is easy to pin down.
+    const missing = missingNames(env);
+    const related = Object.keys(env).filter((k) => /UPSTASH|REDIS|^KV_/i.test(k)).sort();
+    console.warn(`[visitors] not configured: missing ${missing.join(', ')} · environment=${env.VERCEL_ENV || 'unknown'} branch=${env.VERCEL_GIT_COMMIT_REF || 'unknown'} deployment=${env.VERCEL_URL || 'unknown'} · similar variable names present: ${JSON.stringify(related)}`);
+    return send(res, 503, { error: 'counter not configured', missing });
+  }
   try {
     if (req.method === 'GET') {
       return send(res, 200, { count: toCount(await redis(cfg, ['GET', TOTAL], fetchImpl)) }, 'public, max-age=0, s-maxage=15, stale-while-revalidate=60');
