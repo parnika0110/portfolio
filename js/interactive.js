@@ -9,6 +9,7 @@
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+  const forcedColors = matchMedia('(forced-colors: active)');   // high-contrast modes keep the user's own system cursor
   const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   const MONO = '"IBM Plex Mono", ui-monospace, monospace';
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -451,8 +452,12 @@
       const kick = () => { if (!raf) raf = requestAnimationFrame(step); };
       build(); kick();
       new ResizeObserver(() => { build(); kick(); }).observe(hero);
-      hero.addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse') return; const r = hero.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; inside = true; lastMove = performance.now(); kick(); });
+      let cx = 0; let cy = 0;
+      const track = () => { const r = hero.getBoundingClientRect(); mx = cx - r.left; my = cy - r.top; lastMove = performance.now(); kick(); };
+      hero.addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse') return; cx = e.clientX; cy = e.clientY; inside = true; track(); });
       hero.addEventListener('pointerleave', () => { inside = false; holdT = 0; kick(); });
+      // the page can scroll under a still mouse (wheel, keys) without a pointer event
+      addEventListener('scroll', () => { if (!inside) return; track(); if (my < 0 || my > H || mx < 0 || mx > W) { inside = false; holdT = 0; } }, { passive: true });
       let ht = 0;
       hero.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse' || e.button !== 0 || e.target.closest('a, button')) return; ht = setTimeout(() => { holdT = 1; kick(); }, 180); });
       addEventListener('pointerup', () => { clearTimeout(ht); holdT = 0; kick(); });
@@ -464,7 +469,8 @@
   /* ======================================================================= engineer's cursor (desktop)
      Replaces the system arrow with a crosshair whose centre is the pointer hotspot, plus live page
      coordinates. Over interactive controls and visuals it locks on with corner brackets and a label.
-     Text inputs keep the text cursor; keyboard use brings the system cursor back until the mouse moves. */
+     Text inputs keep the text cursor; keyboard use brings the system cursor back until the mouse moves;
+     forced-colors (high contrast) mode keeps the system cursor throughout. */
   {
     const LOCK = [
       ['.pc__stamp', 'View screenshot'], ['.shot-btn', 'View project'], ['.photo-btn', 'View photo'],
@@ -500,22 +506,33 @@
         Object.assign(box.style, { left: `${r.left - pad}px`, top: `${r.top - pad}px`, width: `${r.width + pad * 2}px`, height: `${r.height + pad * 2}px` });
       };
       const hide = () => { root.classList.remove('has-xcur'); cur.classList.remove('is-on', 'is-lock', 'is-hot', 'is-press'); box.classList.remove('is-on'); lock = null; };
-      addEventListener('pointermove', (e) => {
-        if (e.pointerType !== 'mouse') return;
-        if (e.target instanceof Element && e.target.closest(TEXT)) { cur.classList.remove('is-on'); box.classList.remove('is-on'); lock = null; return; }
+      const update = (target, cx, cy) => {
+        if (target instanceof Element && target.closest(TEXT)) { cur.classList.remove('is-on'); box.classList.remove('is-on'); lock = null; return; }
         root.classList.add('has-xcur'); cur.classList.add('is-on');
-        cur.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-        pageX = e.pageX; pageY = e.pageY;
-        const l = lockFor(e.target);
-        const hot = e.target instanceof Element && !!e.target.closest('a[href], button, [role="tab"], summary, label[for]');
+        cur.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+        pageX = cx + scrollX; pageY = cy + scrollY;
+        const l = lockFor(target);
+        const hot = target instanceof Element && !!target.closest('a[href], button, [role="tab"], summary, label[for]');
         cur.classList.toggle('is-hot', hot && !l);
         if (l) { lock = l.t; tag.dataset.label = l.label; box.classList.add('is-on'); cur.classList.add('is-lock'); placeBox(); }
         else { lock = null; box.classList.remove('is-on'); cur.classList.remove('is-lock'); read.dataset.v = `x ${String(Math.round(pageX)).padStart(4, '0')}  y ${String(Math.round(pageY)).padStart(4, '0')}`; }
+      };
+      let lastX = 0; let lastY = 0;
+      addEventListener('pointermove', (e) => {
+        if (e.pointerType !== 'mouse') return;
+        if (forcedColors.matches) { hide(); return; }
+        lastX = e.clientX; lastY = e.clientY;
+        update(e.target, lastX, lastY);
       }, { passive: true });
-      addEventListener('scroll', () => { placeBox(); }, { passive: true });
+      // wheel / keyboard scrolling moves the page under a still mouse without any pointer event:
+      // re-read what is under the pointer so the brackets, readout and magnet stay with it
+      let scrollRaf = 0;
+      const rescan = () => { scrollRaf = 0; if (!cur.classList.contains('is-on')) return; const t = document.elementFromPoint(lastX, lastY); update(t, lastX, lastY); magnet(t, lastX, lastY); };
+      addEventListener('scroll', () => { placeBox(); if (!scrollRaf) scrollRaf = requestAnimationFrame(rescan); }, { passive: true });
       addEventListener('pointerdown', (e) => { if (e.pointerType === 'mouse') cur.classList.add('is-press'); });
       addEventListener('pointerup', () => cur.classList.remove('is-press'));
-      addEventListener('keydown', hide);                         // keyboard: system cursor and focus rings only
+      const MODS = ['Shift', 'Control', 'Alt', 'Meta', 'CapsLock'];
+      addEventListener('keydown', (e) => { if (!MODS.includes(e.key)) hide(); });   // keyboard: system cursor and focus rings only (a modifier for ⌘-click doesn't count)
       addEventListener('blur', hide);
       root.addEventListener('mouseleave', hide);
       document.addEventListener('pointerover', (e) => { if (e.target instanceof HTMLIFrameElement) hide(); });
@@ -524,19 +541,20 @@
       const MAG = '.btn, .icon-btn, .filter, .media-tab';
       let held = null;
       const release = () => { if (held) { held.style.transform = ''; held = null; } };
-      addEventListener('pointermove', (e) => {
-        if (e.pointerType !== 'mouse' || reducedMotion.matches) { release(); return; }
-        const m = e.target instanceof Element ? e.target.closest(MAG) : null;
+      function magnet(target, cx, cy) {
+        if (reducedMotion.matches || forcedColors.matches) { release(); return; }
+        const m = target instanceof Element ? target.closest(MAG) : null;
         if (m && m.closest(PLAIN)) { release(); return; }
         if (held && held !== m) release();
         if (!m) return;
         held = m; m.classList.add('magnetic');
         const r = m.getBoundingClientRect();
-        const dx = e.clientX - (r.left + r.width / 2); const dy = e.clientY - (r.top + r.height / 2);
+        const dx = cx - (r.left + r.width / 2); const dy = cy - (r.top + r.height / 2);
         m.style.transform = `translate(${clamp(dx * 0.18, -6, 6).toFixed(1)}px, ${clamp(dy * 0.3, -5, 5).toFixed(1)}px)`;
         requestAnimationFrame(placeBox);
-      }, { passive: true });
-      addEventListener('keydown', release);
+      }
+      addEventListener('pointermove', (e) => { if (e.pointerType === 'mouse') magnet(e.target, e.clientX, e.clientY); else release(); }, { passive: true });
+      addEventListener('keydown', (e) => { if (!MODS.includes(e.key)) release(); });
     };
     init();
     finePointer.addEventListener?.('change', init);
