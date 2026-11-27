@@ -1411,3 +1411,11 @@
     --tan-700: #9A4E16; --tan-100: #F7E0CC; --sage-700: #4B5F44; --sage-100: #DFE6D8;
   }
 }
+
+/* ================================================================== visitor counter (footer) */
+@layer components {
+  .visits { display: inline-flex; align-items: center; gap: .45rem; font-family: var(--font-mono); font-size: .78rem; letter-spacing: .02em; color: var(--ink-3); }
+  .visits[hidden] { display: none; }
+  .visits__eye { flex: none; color: var(--lilac); }
+  .visits__n { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+}
