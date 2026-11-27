@@ -190,7 +190,7 @@
       "Responsive interface"
     ],
     "chips": ["Next.js", "Prisma", "PostgreSQL", "Google Gemini"],
-    "tech": ["Next.js", "React", "Prisma", "PostgreSQL", "NextAuth", "Google Gemini API", "Pollinations.ai", "Tailwind CSS", "JavaScript"],
+    "tech": ["Next.js 16", "React 19", "JavaScript", "Prisma", "PostgreSQL", "NextAuth", "bcryptjs", "Zod", "Google Gemini API", "Pollinations.ai", "Tailwind CSS 4", "Framer Motion"],
     "repositoryUrl": "https://github.com/parnika0110/recipe-app",
     "demoUrl": "https://khanakreation.vercel.app/",
     "imageFolder": "images/khana-kreation",

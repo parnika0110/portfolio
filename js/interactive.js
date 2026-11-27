@@ -13,6 +13,7 @@
   const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   const MONO = '"IBM Plex Mono", ui-monospace, monospace';
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const rgba = (token, a) => `rgba(${css(token).split(/[\s,]+/).join(',')},${a})`;   // token holds space-separated r g b
   const ease = (x) => 1 - Math.pow(1 - clamp(x, 0, 1), 3);
   /* Break a status line into lines that fit maxW (at spaces, never leaving a "·" at a line edge).
      `model` is a same-shaped string at its longest, so a changing number never makes the lines jump. */
@@ -53,6 +54,7 @@
     new ResizeObserver(() => { size(); kick(); }).observe(host);
     new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) { last = 0; kick(); } }).observe(host);
     document.fonts?.ready.then(kick);
+    addEventListener('themechange', kick);   // redraw (also the single still frame) in the new colours
     return { kick };
   }
 
@@ -165,12 +167,13 @@
       host.addEventListener('pointerleave', () => { hover = -1; });
       live(host, (ctx, w, h, t, dt, still) => {
         const ink = css('--ink'); const sage = css('--sage-700'); const tan = css('--tan-700');
+        const onPaper = { ink: '#211D2B', sage: '#4B5F44', tan: '#9A4E16' };   // the paper stays paper-coloured at night
         const cyc = still ? 0.99 : (t % 7) / 7;
         const pw = Math.min(w * 0.48, 230); const ph = h - 18;
         ctx.save(); ctx.translate(4, 6); ctx.rotate(-0.02);
         ctx.fillStyle = '#FBF8F2'; ctx.strokeStyle = 'rgba(33,29,43,.25)'; ctx.fillRect(0, 0, pw, ph); ctx.strokeRect(0, 0, pw, ph);
-        ctx.fillStyle = ink; ctx.font = '700 17px "Space Grotesk", sans-serif'; ctx.fillText('℞', 10, 24);
-        ctx.font = `500 7px ${MONO}`; ctx.fillStyle = tan; ctx.fillText('SAMPLE', pw - 42, 18);
+        ctx.fillStyle = onPaper.ink; ctx.font = '700 17px "Space Grotesk", sans-serif'; ctx.fillText('℞', 10, 24);
+        ctx.font = `500 7px ${MONO}`; ctx.fillStyle = onPaper.tan; ctx.fillText('SAMPLE', pw - 42, 18);
         const scanY = ease(cyc / 0.6) * ph;
         RX.forEach((row, i) => {
           const y0 = 52 + i * 36; let x = 10;
@@ -179,13 +182,13 @@
             if (j === 2) x = 22;
             const y = j < 2 ? y0 : y0 + 14; const tw = ctx.measureText(tok).width;
             ctx.fillStyle = 'rgba(33,29,43,.85)'; ctx.fillText(tok, x, y);
-            if (scanY > y + 4) { ctx.strokeStyle = hover === i ? tan : sage; ctx.lineWidth = hover === i ? 1.6 : 1; ctx.strokeRect(x - 2, y - 10, tw + 4, 13); }
+            if (scanY > y + 4) { ctx.strokeStyle = hover === i ? onPaper.tan : onPaper.sage; ctx.lineWidth = hover === i ? 1.6 : 1; ctx.strokeRect(x - 2, y - 10, tw + 4, 13); }
             x += tw + 8;
           });
         });
         if (cyc < 0.62) {
           const g = ctx.createLinearGradient(0, scanY - 16, 0, scanY); g.addColorStop(0, 'rgba(75,95,68,0)'); g.addColorStop(1, 'rgba(75,95,68,.28)');
-          ctx.fillStyle = g; ctx.fillRect(0, scanY - 16, pw, 16); ctx.strokeStyle = sage; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(0, scanY); ctx.lineTo(pw, scanY); ctx.stroke();
+          ctx.fillStyle = g; ctx.fillRect(0, scanY - 16, pw, 16); ctx.strokeStyle = onPaper.sage; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(0, scanY); ctx.lineTo(pw, scanY); ctx.stroke();
         }
         ctx.restore();
         const tx = pw + 22; const tw2 = w - tx - 4;
@@ -340,10 +343,10 @@
         const k = Math.floor(t / 9) % P.length; const u = still ? 0.99 : (t % 9) / 9; const p = P[k];
         Object.entries(LINES).forEach(([ln, st]) => { ctx.strokeStyle = COL[ln]; ctx.globalAlpha = 0.6; ctx.lineWidth = 2.4; ctx.beginPath(); st.forEach((s, i) => (i ? ctx.lineTo(X(s), Y(s)) : ctx.moveTo(X(s), Y(s)))); ctx.stroke(); });
         ctx.globalAlpha = 1;
-        Object.keys(pos).forEach((s) => { const m = multi.has(s); ctx.fillStyle = '#FBF8F2'; ctx.strokeStyle = 'rgba(33,29,43,.55)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(X(s), Y(s), m ? 3 : 1.6, 0, 7); ctx.fill(); ctx.stroke(); });
+        Object.keys(pos).forEach((s) => { const m = multi.has(s); ctx.fillStyle = css('--paper-3'); ctx.strokeStyle = css('--ink-3'); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(X(s), Y(s), m ? 3 : 1.6, 0, 7); ctx.fill(); ctx.stroke(); });
         if (!still && u < 0.42) {
           const n = Math.floor(ease(u / 0.3) * p.order.length);
-          ctx.fillStyle = `rgba(98,80,200,${u < 0.3 ? 0.55 : 0.55 * (1 - (u - 0.3) / 0.12)})`;
+          ctx.fillStyle = rgba('--field-hot', u < 0.3 ? 0.55 : 0.55 * (1 - (u - 0.3) / 0.12));
           for (let i = 0; i < n; i++) { const s = p.order[i]; ctx.beginPath(); ctx.arc(X(s), Y(s), 2.6, 0, 7); ctx.fill(); }
         }
         if (p.best && u > 0.34) {
@@ -360,7 +363,7 @@
             ctx.beginPath(); ctx.strokeStyle = css('--tan-700'); ctx.lineWidth = 1.5; ctx.arc(X(s), Y(s), 5, 0, 7); ctx.stroke();
             const lw = ctx.measureText(short(s)).width; let lx = X(s) + 7; let ly = Y(s) - 6;
             if (lx + lw > w - 4) lx = Math.max(4, X(s) - 7 - lw); if (ly < 11) ly = Y(s) + 15;
-            ctx.lineJoin = 'round'; ctx.lineWidth = 3; ctx.strokeStyle = '#FBF8F2'; ctx.strokeText(short(s), lx, ly);
+            ctx.lineJoin = 'round'; ctx.lineWidth = 3; ctx.strokeStyle = css('--paper-3'); ctx.strokeText(short(s), lx, ly);
             ctx.fillStyle = css('--ink'); ctx.fillText(short(s), lx, ly);
           });
         }
@@ -433,6 +436,8 @@
         for (let y = G / 2; y < H; y += G) for (let x = G / 2; x < W; x += G) { const bx = x + (Math.random() - 0.5) * 7; const by = y + (Math.random() - 0.5) * 7; dots.push({ bx, by, x: bx, y: by, vx: 0, vy: 0 }); }
       };
       let mx = -1e4; let my = -1e4; let inside = false; let holdT = 0; let hold = 0; let raf = 0; let lastMove = 0;
+      const tok = (n) => css(n).split(/[\s,]+/).join(',');
+      let dot = tok('--field-dot'); let hot = tok('--field-hot');
       const step = (now) => {
         raf = 0; ctx.clearRect(0, 0, W, H); let moving = false;
         hold += (holdT - hold) * 0.12; if (Math.abs(hold - holdT) > 0.01) moving = true;
@@ -443,15 +448,16 @@
           p.vx = (p.vx + (tx - p.x) * 0.12) * 0.74; p.vy = (p.vy + (ty - p.y) * 0.12) * 0.74; p.x += p.vx; p.y += p.vy;
           if (Math.abs(p.vx) + Math.abs(p.vy) > 0.02) moving = true;
           const near = inside ? Math.hypot(p.x - mx, p.y - my) : 1e9;
-          ctx.fillStyle = near < 150 ? `rgba(98,80,200,${(0.75 - near / 300).toFixed(2)})` : 'rgba(33,29,43,.17)';
+          ctx.fillStyle = near < 150 ? `rgba(${hot},${(0.75 - near / 300).toFixed(2)})` : `rgba(${dot},.17)`;
           ctx.beginPath(); ctx.arc(p.x, p.y, near < 150 ? 1.5 : 1.1, 0, 7); ctx.fill();
-          if (inside && near < 105 && hold < 0.5) { ctx.strokeStyle = `rgba(98,80,200,${((1 - near / 105) * 0.45).toFixed(2)})`; ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+          if (inside && near < 105 && hold < 0.5) { ctx.strokeStyle = `rgba(${hot},${((1 - near / 105) * 0.45).toFixed(2)})`; ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(p.x, p.y); ctx.stroke(); }
         }
         if (moving || now - lastMove < 400) raf = requestAnimationFrame(step);
       };
       const kick = () => { if (!raf) raf = requestAnimationFrame(step); };
       build(); kick();
       new ResizeObserver(() => { build(); kick(); }).observe(hero);
+      addEventListener('themechange', () => { dot = tok('--field-dot'); hot = tok('--field-hot'); lastMove = performance.now(); kick(); });
       let cx = 0; let cy = 0;
       const track = () => { const r = hero.getBoundingClientRect(); mx = cx - r.left; my = cy - r.top; lastMove = performance.now(); kick(); };
       hero.addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse') return; cx = e.clientX; cy = e.clientY; inside = true; track(); });
@@ -477,7 +483,7 @@
       ['[data-open-project]', 'Case notes'], ['[role="tab"]', 'Switch view'], ['.filter', 'Filter'],
       ['a[href^="mailto:"]', 'Email'], ['a[href$=".pdf"]', 'Download'], ['#copyEmail', 'Copy'],
       ['.modal__close, #photoModalClose', 'Close'], ['a[href^="#"]', 'Jump'], ['a[target="_blank"]', 'Open ↗'],
-      ['a[href]', 'Open'], ['button', 'Select'],
+      ['[data-theme-toggle]', 'Theme'], ['a[href]', 'Open'], ['button', 'Select'],
     ];
     const PLAIN = '.ms, .cred';             // text cards: crosshair only, no brackets or magnetism
     const TEXT = 'input, textarea, select, [contenteditable="true"]';
