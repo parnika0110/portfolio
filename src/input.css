@@ -857,6 +857,7 @@
   /* Toolkit: compact slash-separated list (spoken languages) */
   .slash-list { display: flex; flex-wrap: wrap; gap: .3rem .2rem; font-family: var(--font-mono); font-size: .84rem; color: var(--ink-2); }
   .slash-list li:not(:last-child)::after { content: "/"; margin-left: .45rem; margin-right: .2rem; color: var(--ink-3); opacity: .6; }
+  .slash-list .lvl { color: var(--ink-3); }   /* proficiency, quieter than the language */
 
   /* Credentials: issuer + year beside the stamp */
   .cred__meta { display: grid; gap: .15rem; }
