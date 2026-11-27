@@ -583,6 +583,29 @@
     }).catch(() => { /* keep the static link to GitHub */ });
   }
 
+  /* ------------------------------------------------------------ visitor counter (footer, api/visitors.js)
+     The first page view of a browser session counts the visit (POST); later views in the same session only
+     read the total (GET). The counter stays hidden unless a real count comes back. */
+  const visits = $('#visitCount');
+  if (visits) {
+    const SEEN = 'visit-counted';
+    let counted = false;
+    try { counted = sessionStorage.getItem(SEEN) === '1'; } catch { /* storage blocked: the server throttles repeats */ }
+    const load = () => fetch('/api/visitors', counted
+      ? { headers: { Accept: 'application/json' } }
+      : { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: '{}' })
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`visitors ${r.status}`))))
+      .then((d) => {
+        if (!d || !Number.isSafeInteger(d.count) || d.count < 1) return;   // never show a made-up or empty number
+        if (!counted) { try { sessionStorage.setItem(SEEN, '1'); } catch { /* fine */ } }
+        $('.visits__n', visits).textContent = d.count.toLocaleString('en-US');
+        $('.visits__l', visits).textContent = d.count === 1 ? 'visitor' : 'visitors';
+        visits.hidden = false;
+      })
+      .catch(() => { /* counter unavailable: keep it hidden, the page carries on */ });
+    if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 2500 }); else setTimeout(load, 1200);
+  }
+
   /* ------------------------------------------------------------ copy email */
   const copyBtn = $('#copyEmail');
   copyBtn?.addEventListener('click', async () => {
