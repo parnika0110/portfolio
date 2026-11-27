@@ -13,6 +13,7 @@ Live: https://parnika-sm.vercel.app/
 | `src/input.css` | Design system + components (Tailwind CSS v4 source) |
 | `styles.css` | Built, minified CSS — generated, but committed so Vercel can serve it as-is |
 | `js/main.js` | Interactions: nav, filters, modals + gallery, ⌘K palette, copy email, GitHub repo count |
+| `js/interactive.js` | Interactive layer: live project visuals (canvas, labelled as simulation / sample data), hero dot field, layered 3D portrait tilt, engineer's cursor. The field, cursor and magnetic buttons need a desktop mouse; everything draws one still frame under reduced motion. The Metro visual uses that project's own station data and depth-first search |
 | `data/projects-override.json` | Source of truth for project details shown in the case-notes modal |
 | `scripts/sync-projects.js` | Refreshes the case-notes data for the seven showcased projects from the overrides + GitHub |
 | `images/<project>/` | Project screenshots |

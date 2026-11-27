@@ -125,59 +125,6 @@
     }
   }
 
-  /* ------------------------------------------------------------ cursor mark (mouse / trackpad only; the system cursor always stays)
-     Over interactive visuals a small postmark ring sits exactly on the pointer's hotspot, with an
-     annotation tag beside it. Position follows the pointer directly (no easing, no trail). */
-  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-  let cursorMarkReady = false;
-  const initCursorMark = () => {
-    if (cursorMarkReady || !finePointer.matches) return;
-    cursorMarkReady = true;
-    const TAGS = [['.pc__stamp', 'View screenshot'], ['.case .shot-btn', 'View project'], ['.photo-btn', 'View photo'], ['.pc', 'Open postcard']];
-    const OFFSET_X = 22; const OFFSET_Y = 14; // tag position from the hotspot
-    let mark = null; let tag = null; let label = ''; let tw = 0; let th = 0;
-    const labelFor = (el) => {
-      if (!(el instanceof Element)) return '';
-      for (const [sel, text] of TAGS) {
-        if (!el.closest(sel)) continue;
-        // inside a postcard, its own links and buttons already say what they do
-        if (sel === '.pc' && el.closest('a, button')) return '';
-        return text;
-      }
-      return '';
-    };
-    const build = () => {
-      mark = document.createElement('div');
-      mark.className = 'cmark';
-      mark.setAttribute('aria-hidden', 'true');
-      mark.innerHTML = '<svg class="cmark__ring" viewBox="0 0 30 30"><circle class="cmark__halo" cx="15" cy="15" r="13"/><circle class="cmark__outer" cx="15" cy="15" r="13" pathLength="100"/><circle class="cmark__inner" cx="15" cy="15" r="9"/></svg><span class="cmark__tag"></span>';
-      tag = mark.lastChild;
-      document.body.append(mark);
-    };
-    const hide = () => { if (mark) mark.classList.remove('is-on', 'is-press'); label = ''; };
-    document.addEventListener('pointermove', (e) => {
-      if (e.pointerType !== 'mouse') return;
-      const text = labelFor(e.target);
-      if (!text) { hide(); return; }
-      if (!mark) build();
-      if (text !== label) { tag.textContent = text; label = text; tw = tag.offsetWidth; th = tag.offsetHeight; }
-      const x = e.clientX; const y = e.clientY;
-      mark.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      mark.classList.toggle('is-left', x + OFFSET_X + tw > window.innerWidth - 8);
-      mark.classList.toggle('is-up', y + OFFSET_Y + th > window.innerHeight - 8);
-      mark.classList.add('is-on');
-    }, { passive: true });
-    document.addEventListener('pointerdown', (e) => { if (e.pointerType === 'mouse' && mark?.classList.contains('is-on')) mark.classList.add('is-press'); });
-    document.addEventListener('pointerup', () => mark?.classList.remove('is-press'));
-    document.documentElement.addEventListener('mouseleave', hide);
-    window.addEventListener('blur', hide);
-    window.addEventListener('scroll', hide, { passive: true });
-    document.addEventListener('keydown', hide); // keyboard navigation keeps the native focus ring only
-    document.addEventListener('click', () => setTimeout(hide, 120), true); // let the press register, then step aside for dialogs
-  };
-  initCursorMark();
-  finePointer.addEventListener?.('change', initCursorMark); // e.g. a mouse connected to a tablet
-
   /* ------------------------------------------------------------ wide sketches: keyboard-scrollable only when they overflow */
   const wideSketches = $$('.sketch--wide');
   const syncScrollable = () => wideSketches.forEach((el) => {
